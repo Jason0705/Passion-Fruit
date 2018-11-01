@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B408E218AEC5800F042D9 /* AppDelegate.swift */; };
-		826B4091218AEC5800F042D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B4090218AEC5800F042D9 /* ViewController.swift */; };
 		826B4094218AEC5800F042D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B4092218AEC5800F042D9 /* Main.storyboard */; };
 		826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826B4095218AEC5A00F042D9 /* Assets.xcassets */; };
 		826B4099218AEC5A00F042D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */; };
 		826B40A4218AEC5A00F042D9 /* Passion_FruitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40A3218AEC5A00F042D9 /* Passion_FruitTests.swift */; };
 		826B40AF218AEC5A00F042D9 /* Passion_FruitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40AE218AEC5A00F042D9 /* Passion_FruitUITests.swift */; };
+		826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40BF218BA15A00F042D9 /* SignInViewController.swift */; };
+		826B40C2218BA16800F042D9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40C1218BA16800F042D9 /* SignUpViewController.swift */; };
+		826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40C3218BA18C00F042D9 /* NearByViewController.swift */; };
+		826B40C6218BA1A400F042D9 /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40C5218BA1A400F042D9 /* MatchViewController.swift */; };
+		826B40C8218BA1B200F042D9 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40C7218BA1B200F042D9 /* FeedViewController.swift */; };
+		826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40C9218BA1C300F042D9 /* SocialViewController.swift */; };
+		826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40CB218BA1D300F042D9 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +42,6 @@
 /* Begin PBXFileReference section */
 		826B408B218AEC5800F042D9 /* Passion Fruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Passion Fruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		826B408E218AEC5800F042D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		826B4090218AEC5800F042D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		826B4093218AEC5800F042D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		826B4095218AEC5A00F042D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		826B4098218AEC5A00F042D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		826B40AA218AEC5A00F042D9 /* Passion FruitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Passion FruitUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		826B40AE218AEC5A00F042D9 /* Passion_FruitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passion_FruitUITests.swift; sourceTree = "<group>"; };
 		826B40B0218AEC5A00F042D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826B40BF218BA15A00F042D9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		826B40C1218BA16800F042D9 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		826B40C3218BA18C00F042D9 /* NearByViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByViewController.swift; sourceTree = "<group>"; };
+		826B40C5218BA1A400F042D9 /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
+		826B40C7218BA1B200F042D9 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		826B40C9218BA1C300F042D9 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		826B40CB218BA1D300F042D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,10 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				826B408E218AEC5800F042D9 /* AppDelegate.swift */,
-				826B4090218AEC5800F042D9 /* ViewController.swift */,
-				826B4092218AEC5800F042D9 /* Main.storyboard */,
+				826B40BE218BA13000F042D9 /* Model */,
+				826B40BD218BA12800F042D9 /* View */,
+				826B40BC218BA11A00F042D9 /* Controller */,
 				826B4095218AEC5A00F042D9 /* Assets.xcassets */,
-				826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */,
 				826B409A218AEC5A00F042D9 /* Info.plist */,
 			);
 			path = "Passion Fruit";
@@ -123,6 +135,36 @@
 				826B40B0218AEC5A00F042D9 /* Info.plist */,
 			);
 			path = "Passion FruitUITests";
+			sourceTree = "<group>";
+		};
+		826B40BC218BA11A00F042D9 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				826B40BF218BA15A00F042D9 /* SignInViewController.swift */,
+				826B40C1218BA16800F042D9 /* SignUpViewController.swift */,
+				826B40C3218BA18C00F042D9 /* NearByViewController.swift */,
+				826B40C5218BA1A400F042D9 /* MatchViewController.swift */,
+				826B40C7218BA1B200F042D9 /* FeedViewController.swift */,
+				826B40C9218BA1C300F042D9 /* SocialViewController.swift */,
+				826B40CB218BA1D300F042D9 /* ProfileViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		826B40BD218BA12800F042D9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				826B4092218AEC5800F042D9 /* Main.storyboard */,
+				826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		826B40BE218BA13000F042D9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,8 +298,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				826B4091218AEC5800F042D9 /* ViewController.swift in Sources */,
+				826B40C2218BA16800F042D9 /* SignUpViewController.swift in Sources */,
+				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
+				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,
+				826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */,
 				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
+				826B40C8218BA1B200F042D9 /* FeedViewController.swift in Sources */,
+				826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */,
+				826B40C6218BA1A400F042D9 /* MatchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AQQF6U36PG;
 				INFOPLIST_FILE = "Passion Fruit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,6 +502,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = AQQF6U36PG;
 				INFOPLIST_FILE = "Passion Fruit/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
