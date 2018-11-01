@@ -1,0 +1,591 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B408E218AEC5800F042D9 /* AppDelegate.swift */; };
+		826B4091218AEC5800F042D9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B4090218AEC5800F042D9 /* ViewController.swift */; };
+		826B4094218AEC5800F042D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B4092218AEC5800F042D9 /* Main.storyboard */; };
+		826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826B4095218AEC5A00F042D9 /* Assets.xcassets */; };
+		826B4099218AEC5A00F042D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */; };
+		826B40A4218AEC5A00F042D9 /* Passion_FruitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40A3218AEC5A00F042D9 /* Passion_FruitTests.swift */; };
+		826B40AF218AEC5A00F042D9 /* Passion_FruitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40AE218AEC5A00F042D9 /* Passion_FruitUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		826B40A0218AEC5A00F042D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 826B4083218AEC5800F042D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 826B408A218AEC5800F042D9;
+			remoteInfo = "Passion Fruit";
+		};
+		826B40AB218AEC5A00F042D9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 826B4083218AEC5800F042D9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 826B408A218AEC5800F042D9;
+			remoteInfo = "Passion Fruit";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		826B408B218AEC5800F042D9 /* Passion Fruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Passion Fruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		826B408E218AEC5800F042D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		826B4090218AEC5800F042D9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		826B4093218AEC5800F042D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		826B4095218AEC5A00F042D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		826B4098218AEC5A00F042D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		826B409A218AEC5A00F042D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826B409F218AEC5A00F042D9 /* Passion FruitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Passion FruitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		826B40A3218AEC5A00F042D9 /* Passion_FruitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passion_FruitTests.swift; sourceTree = "<group>"; };
+		826B40A5218AEC5A00F042D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		826B40AA218AEC5A00F042D9 /* Passion FruitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Passion FruitUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		826B40AE218AEC5A00F042D9 /* Passion_FruitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passion_FruitUITests.swift; sourceTree = "<group>"; };
+		826B40B0218AEC5A00F042D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		826B4088218AEC5800F042D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		826B409C218AEC5A00F042D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		826B40A7218AEC5A00F042D9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		826B4082218AEC5800F042D9 = {
+			isa = PBXGroup;
+			children = (
+				826B408D218AEC5800F042D9 /* Passion Fruit */,
+				826B40A2218AEC5A00F042D9 /* Passion FruitTests */,
+				826B40AD218AEC5A00F042D9 /* Passion FruitUITests */,
+				826B408C218AEC5800F042D9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		826B408C218AEC5800F042D9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				826B408B218AEC5800F042D9 /* Passion Fruit.app */,
+				826B409F218AEC5A00F042D9 /* Passion FruitTests.xctest */,
+				826B40AA218AEC5A00F042D9 /* Passion FruitUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		826B408D218AEC5800F042D9 /* Passion Fruit */ = {
+			isa = PBXGroup;
+			children = (
+				826B408E218AEC5800F042D9 /* AppDelegate.swift */,
+				826B4090218AEC5800F042D9 /* ViewController.swift */,
+				826B4092218AEC5800F042D9 /* Main.storyboard */,
+				826B4095218AEC5A00F042D9 /* Assets.xcassets */,
+				826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */,
+				826B409A218AEC5A00F042D9 /* Info.plist */,
+			);
+			path = "Passion Fruit";
+			sourceTree = "<group>";
+		};
+		826B40A2218AEC5A00F042D9 /* Passion FruitTests */ = {
+			isa = PBXGroup;
+			children = (
+				826B40A3218AEC5A00F042D9 /* Passion_FruitTests.swift */,
+				826B40A5218AEC5A00F042D9 /* Info.plist */,
+			);
+			path = "Passion FruitTests";
+			sourceTree = "<group>";
+		};
+		826B40AD218AEC5A00F042D9 /* Passion FruitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				826B40AE218AEC5A00F042D9 /* Passion_FruitUITests.swift */,
+				826B40B0218AEC5A00F042D9 /* Info.plist */,
+			);
+			path = "Passion FruitUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		826B408A218AEC5800F042D9 /* Passion Fruit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 826B40B3218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion Fruit" */;
+			buildPhases = (
+				826B4087218AEC5800F042D9 /* Sources */,
+				826B4088218AEC5800F042D9 /* Frameworks */,
+				826B4089218AEC5800F042D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Passion Fruit";
+			productName = "Passion Fruit";
+			productReference = 826B408B218AEC5800F042D9 /* Passion Fruit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		826B409E218AEC5A00F042D9 /* Passion FruitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 826B40B6218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion FruitTests" */;
+			buildPhases = (
+				826B409B218AEC5A00F042D9 /* Sources */,
+				826B409C218AEC5A00F042D9 /* Frameworks */,
+				826B409D218AEC5A00F042D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				826B40A1218AEC5A00F042D9 /* PBXTargetDependency */,
+			);
+			name = "Passion FruitTests";
+			productName = "Passion FruitTests";
+			productReference = 826B409F218AEC5A00F042D9 /* Passion FruitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		826B40A9218AEC5A00F042D9 /* Passion FruitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 826B40B9218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion FruitUITests" */;
+			buildPhases = (
+				826B40A6218AEC5A00F042D9 /* Sources */,
+				826B40A7218AEC5A00F042D9 /* Frameworks */,
+				826B40A8218AEC5A00F042D9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				826B40AC218AEC5A00F042D9 /* PBXTargetDependency */,
+			);
+			name = "Passion FruitUITests";
+			productName = "Passion FruitUITests";
+			productReference = 826B40AA218AEC5A00F042D9 /* Passion FruitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		826B4083218AEC5800F042D9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "Jason Li";
+				TargetAttributes = {
+					826B408A218AEC5800F042D9 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					826B409E218AEC5A00F042D9 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 826B408A218AEC5800F042D9;
+					};
+					826B40A9218AEC5A00F042D9 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 826B408A218AEC5800F042D9;
+					};
+				};
+			};
+			buildConfigurationList = 826B4086218AEC5800F042D9 /* Build configuration list for PBXProject "Passion Fruit" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 826B4082218AEC5800F042D9;
+			productRefGroup = 826B408C218AEC5800F042D9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				826B408A218AEC5800F042D9 /* Passion Fruit */,
+				826B409E218AEC5A00F042D9 /* Passion FruitTests */,
+				826B40A9218AEC5A00F042D9 /* Passion FruitUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		826B4089218AEC5800F042D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				826B4099218AEC5A00F042D9 /* LaunchScreen.storyboard in Resources */,
+				826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */,
+				826B4094218AEC5800F042D9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		826B409D218AEC5A00F042D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		826B40A8218AEC5A00F042D9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		826B4087218AEC5800F042D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				826B4091218AEC5800F042D9 /* ViewController.swift in Sources */,
+				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		826B409B218AEC5A00F042D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				826B40A4218AEC5A00F042D9 /* Passion_FruitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		826B40A6218AEC5A00F042D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				826B40AF218AEC5A00F042D9 /* Passion_FruitUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		826B40A1218AEC5A00F042D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 826B408A218AEC5800F042D9 /* Passion Fruit */;
+			targetProxy = 826B40A0218AEC5A00F042D9 /* PBXContainerItemProxy */;
+		};
+		826B40AC218AEC5A00F042D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 826B408A218AEC5800F042D9 /* Passion Fruit */;
+			targetProxy = 826B40AB218AEC5A00F042D9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		826B4092218AEC5800F042D9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				826B4093218AEC5800F042D9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				826B4098218AEC5A00F042D9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		826B40B1218AEC5A00F042D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		826B40B2218AEC5A00F042D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		826B40B4218AEC5A00F042D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AQQF6U36PG;
+				INFOPLIST_FILE = "Passion Fruit/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasondevelopment.Passion-Fruit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		826B40B5218AEC5A00F042D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AQQF6U36PG;
+				INFOPLIST_FILE = "Passion Fruit/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasondevelopment.Passion-Fruit";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		826B40B7218AEC5A00F042D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AQQF6U36PG;
+				INFOPLIST_FILE = "Passion FruitTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasondevelopment.Passion-FruitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Passion Fruit.app/Passion Fruit";
+			};
+			name = Debug;
+		};
+		826B40B8218AEC5A00F042D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AQQF6U36PG;
+				INFOPLIST_FILE = "Passion FruitTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasondevelopment.Passion-FruitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Passion Fruit.app/Passion Fruit";
+			};
+			name = Release;
+		};
+		826B40BA218AEC5A00F042D9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AQQF6U36PG;
+				INFOPLIST_FILE = "Passion FruitUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasondevelopment.Passion-FruitUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Passion Fruit";
+			};
+			name = Debug;
+		};
+		826B40BB218AEC5A00F042D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = AQQF6U36PG;
+				INFOPLIST_FILE = "Passion FruitUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jasondevelopment.Passion-FruitUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Passion Fruit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		826B4086218AEC5800F042D9 /* Build configuration list for PBXProject "Passion Fruit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				826B40B1218AEC5A00F042D9 /* Debug */,
+				826B40B2218AEC5A00F042D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		826B40B3218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion Fruit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				826B40B4218AEC5A00F042D9 /* Debug */,
+				826B40B5218AEC5A00F042D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		826B40B6218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion FruitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				826B40B7218AEC5A00F042D9 /* Debug */,
+				826B40B8218AEC5A00F042D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		826B40B9218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion FruitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				826B40BA218AEC5A00F042D9 /* Debug */,
+				826B40BB218AEC5A00F042D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 826B4083218AEC5800F042D9 /* Project object */;
+}
