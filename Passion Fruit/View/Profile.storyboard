@@ -10,43 +10,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Passion Fruit-->
-        <scene sceneID="LmH-Iu-R6D">
+        <!--Profile-->
+        <scene sceneID="fzJ-Wx-g2d">
             <objects>
-                <viewController id="3KM-HO-rLP" customClass="FeedViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Nim-ze-XXk">
+                <viewController id="QRl-g9-4Y2" customClass="ProfileViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lzo-RU-Kwc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="mIX-mC-O7y"/>
+                        <viewLayoutGuide key="safeArea" id="6og-96-57h"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Passion Fruit" id="WAD-Vu-4Bo"/>
+                    <navigationItem key="navigationItem" title="Profile" id="BLx-fQ-T8L"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="842-2t-DeK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="66H-DS-xdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3983" y="75"/>
+            <point key="canvasLocation" x="3901.5999999999999" y="1497.7832512315272"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="YuM-sX-xLM">
+        <scene sceneID="hiO-KM-qUh">
             <objects>
-                <navigationController storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="6cT-mp-Xug" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="hpG-MX-b4d">
+                <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dlr-Pp-ceX" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="7et-gu-0c7">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fax-5R-FK1">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tdO-2H-KPL">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="3KM-HO-rLP" kind="relationship" relationship="rootViewController" id="fjs-y3-Pnu"/>
+                        <segue destination="QRl-g9-4Y2" kind="relationship" relationship="rootViewController" id="Tvz-ZK-MFg"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="sgt-hE-KIn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VZc-Od-GVP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3076" y="75"/>
+            <point key="canvasLocation" x="2959.1999999999998" y="1497.7832512315272"/>
         </scene>
     </scenes>
     <resources>

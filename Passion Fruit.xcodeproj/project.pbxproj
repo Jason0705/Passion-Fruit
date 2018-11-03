@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54E088A7BFCFA3EF0A103583 /* Pods_Passion_FruitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */; };
+		731DC1023F3A8909ED8BFEE9 /* Pods_Passion_Fruit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */; };
 		826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B408E218AEC5800F042D9 /* AppDelegate.swift */; };
 		826B4094218AEC5800F042D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B4092218AEC5800F042D9 /* Main.storyboard */; };
 		826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826B4095218AEC5A00F042D9 /* Assets.xcassets */; };
@@ -21,11 +23,13 @@
 		826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40C9218BA1C300F042D9 /* SocialViewController.swift */; };
 		826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40CB218BA1D300F042D9 /* ProfileViewController.swift */; };
 		826B40CE218BAB0300F042D9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40CD218BAB0300F042D9 /* Authentication.storyboard */; };
-		826B40D0218BAB8E00F042D9 /* NearBy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40CF218BAB8E00F042D9 /* NearBy.storyboard */; };
-		826B40D2218BABD200F042D9 /* Match.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40D1218BABD200F042D9 /* Match.storyboard */; };
-		826B40D4218BAC1E00F042D9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40D3218BAC1E00F042D9 /* Feed.storyboard */; };
-		826B40D6218BAC5B00F042D9 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40D5218BAC5B00F042D9 /* Social.storyboard */; };
-		826B40D8218BAC9700F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40D7218BAC9700F042D9 /* Profile.storyboard */; };
+		826B40E0218BC12200F042D9 /* NearBy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40DF218BC12200F042D9 /* NearBy.storyboard */; };
+		826B40E2218BC1EF00F042D9 /* Match.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E1218BC1EF00F042D9 /* Match.storyboard */; };
+		826B40E4218BC24500F042D9 /* Feed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E3218BC24500F042D9 /* Feed.storyboard */; };
+		826B40E6218BC29100F042D9 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E5218BC29100F042D9 /* Social.storyboard */; };
+		826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E7218BC2D500F042D9 /* Profile.storyboard */; };
+		826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E9218D107400F042D9 /* GoogleService-Info.plist */; };
+		C21B84E231C1EEC782FEBAD3 /* Pods_Passion_FruitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0CA196CE4F3977740A6B72F1 /* Pods-Passion FruitUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitUITests/Pods-Passion FruitUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4B10AF26A7B833155EF6EEE8 /* Pods-Passion FruitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		51B9F83310D14DA0EE780D58 /* Pods-Passion FruitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitUITests/Pods-Passion FruitUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		80CD88FE5281F8805A5FF6D5 /* Pods-Passion FruitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.release.xcconfig"; sourceTree = "<group>"; };
 		826B408B218AEC5800F042D9 /* Passion Fruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Passion Fruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		826B408E218AEC5800F042D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		826B4093218AEC5800F042D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,11 +74,17 @@
 		826B40C9218BA1C300F042D9 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		826B40CB218BA1D300F042D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		826B40CD218BAB0300F042D9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
-		826B40CF218BAB8E00F042D9 /* NearBy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NearBy.storyboard; sourceTree = "<group>"; };
-		826B40D1218BABD200F042D9 /* Match.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Match.storyboard; sourceTree = "<group>"; };
-		826B40D3218BAC1E00F042D9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
-		826B40D5218BAC5B00F042D9 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
-		826B40D7218BAC9700F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		826B40DF218BC12200F042D9 /* NearBy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NearBy.storyboard; sourceTree = "<group>"; };
+		826B40E1218BC1EF00F042D9 /* Match.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Match.storyboard; sourceTree = "<group>"; };
+		826B40E3218BC24500F042D9 /* Feed.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Feed.storyboard; sourceTree = "<group>"; };
+		826B40E5218BC29100F042D9 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
+		826B40E7218BC2D500F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		826B40E9218D107400F042D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_FruitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion Fruit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit.release.xcconfig"; sourceTree = "<group>"; };
+		A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_Fruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_FruitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F8ED6C8B14D454D2BCBF5B /* Pods-Passion Fruit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion Fruit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				731DC1023F3A8909ED8BFEE9 /* Pods_Passion_Fruit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54E088A7BFCFA3EF0A103583 /* Pods_Passion_FruitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,12 +108,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C21B84E231C1EEC782FEBAD3 /* Pods_Passion_FruitUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		51BDE1D99FC8636F94C05444 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E8F8ED6C8B14D454D2BCBF5B /* Pods-Passion Fruit.debug.xcconfig */,
+				94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */,
+				4B10AF26A7B833155EF6EEE8 /* Pods-Passion FruitTests.debug.xcconfig */,
+				80CD88FE5281F8805A5FF6D5 /* Pods-Passion FruitTests.release.xcconfig */,
+				51B9F83310D14DA0EE780D58 /* Pods-Passion FruitUITests.debug.xcconfig */,
+				0CA196CE4F3977740A6B72F1 /* Pods-Passion FruitUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		5C2310DA6E3D001E109F36F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */,
+				88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */,
+				AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		826B4082218AEC5800F042D9 = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +145,8 @@
 				826B40A2218AEC5A00F042D9 /* Passion FruitTests */,
 				826B40AD218AEC5A00F042D9 /* Passion FruitUITests */,
 				826B408C218AEC5800F042D9 /* Products */,
+				51BDE1D99FC8636F94C05444 /* Pods */,
+				5C2310DA6E3D001E109F36F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +169,7 @@
 				826B40BC218BA11A00F042D9 /* Controller */,
 				826B4095218AEC5A00F042D9 /* Assets.xcassets */,
 				826B409A218AEC5A00F042D9 /* Info.plist */,
+				826B40E9218D107400F042D9 /* GoogleService-Info.plist */,
 			);
 			path = "Passion Fruit";
 			sourceTree = "<group>";
@@ -166,13 +209,13 @@
 		826B40BD218BA12800F042D9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				826B40D7218BAC9700F042D9 /* Profile.storyboard */,
-				826B40D5218BAC5B00F042D9 /* Social.storyboard */,
-				826B40D3218BAC1E00F042D9 /* Feed.storyboard */,
-				826B40D1218BABD200F042D9 /* Match.storyboard */,
-				826B40CF218BAB8E00F042D9 /* NearBy.storyboard */,
 				826B40CD218BAB0300F042D9 /* Authentication.storyboard */,
 				826B4092218AEC5800F042D9 /* Main.storyboard */,
+				826B40DF218BC12200F042D9 /* NearBy.storyboard */,
+				826B40E1218BC1EF00F042D9 /* Match.storyboard */,
+				826B40E3218BC24500F042D9 /* Feed.storyboard */,
+				826B40E5218BC29100F042D9 /* Social.storyboard */,
+				826B40E7218BC2D500F042D9 /* Profile.storyboard */,
 				826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -192,9 +235,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 826B40B3218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion Fruit" */;
 			buildPhases = (
+				FA3222FAAFE71F696408D550 /* [CP] Check Pods Manifest.lock */,
 				826B4087218AEC5800F042D9 /* Sources */,
 				826B4088218AEC5800F042D9 /* Frameworks */,
 				826B4089218AEC5800F042D9 /* Resources */,
+				5AD3896270E0EC2042210530 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -209,6 +254,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 826B40B6218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion FruitTests" */;
 			buildPhases = (
+				AFDB51FD9210308547027D45 /* [CP] Check Pods Manifest.lock */,
 				826B409B218AEC5A00F042D9 /* Sources */,
 				826B409C218AEC5A00F042D9 /* Frameworks */,
 				826B409D218AEC5A00F042D9 /* Resources */,
@@ -227,6 +273,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 826B40B9218AEC5A00F042D9 /* Build configuration list for PBXNativeTarget "Passion FruitUITests" */;
 			buildPhases = (
+				AD3C66FAEB7CFF63C02A6DD2 /* [CP] Check Pods Manifest.lock */,
 				826B40A6218AEC5A00F042D9 /* Sources */,
 				826B40A7218AEC5A00F042D9 /* Frameworks */,
 				826B40A8218AEC5A00F042D9 /* Resources */,
@@ -290,14 +337,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				826B40CE218BAB0300F042D9 /* Authentication.storyboard in Resources */,
-				826B40D4218BAC1E00F042D9 /* Feed.storyboard in Resources */,
+				826B40E4218BC24500F042D9 /* Feed.storyboard in Resources */,
 				826B4099218AEC5A00F042D9 /* LaunchScreen.storyboard in Resources */,
-				826B40D6218BAC5B00F042D9 /* Social.storyboard in Resources */,
-				826B40D2218BABD200F042D9 /* Match.storyboard in Resources */,
+				826B40E6218BC29100F042D9 /* Social.storyboard in Resources */,
+				826B40E2218BC1EF00F042D9 /* Match.storyboard in Resources */,
 				826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */,
-				826B40D8218BAC9700F042D9 /* Profile.storyboard in Resources */,
+				826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */,
+				826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */,
 				826B4094218AEC5800F042D9 /* Main.storyboard in Resources */,
-				826B40D0218BAB8E00F042D9 /* NearBy.storyboard in Resources */,
+				826B40E0218BC12200F042D9 /* NearBy.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +364,103 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5AD3896270E0EC2042210530 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD3C66FAEB7CFF63C02A6DD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Passion FruitUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AFDB51FD9210308547027D45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Passion FruitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FA3222FAAFE71F696408D550 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Passion Fruit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		826B4087218AEC5800F042D9 /* Sources */ = {
@@ -502,6 +647,7 @@
 		};
 		826B40B4218AEC5A00F042D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8F8ED6C8B14D454D2BCBF5B /* Pods-Passion Fruit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -521,6 +667,7 @@
 		};
 		826B40B5218AEC5A00F042D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -540,6 +687,7 @@
 		};
 		826B40B7218AEC5A00F042D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B10AF26A7B833155EF6EEE8 /* Pods-Passion FruitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -561,6 +709,7 @@
 		};
 		826B40B8218AEC5A00F042D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80CD88FE5281F8805A5FF6D5 /* Pods-Passion FruitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -582,6 +731,7 @@
 		};
 		826B40BA218AEC5A00F042D9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 51B9F83310D14DA0EE780D58 /* Pods-Passion FruitUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -602,6 +752,7 @@
 		};
 		826B40BB218AEC5A00F042D9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CA196CE4F3977740A6B72F1 /* Pods-Passion FruitUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

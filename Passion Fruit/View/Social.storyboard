@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="M1g-YZ-eCX" customClass="SocialViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W5p-h2-L1E">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="x6I-yi-Ypd"/>
@@ -24,18 +24,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6mX-fX-E5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3911.1999999999998" y="837.93103448275861"/>
+            <point key="canvasLocation" x="3902" y="658"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UDz-53-257">
             <objects>
                 <navigationController storyboardIdentifier="SocialNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="UMn-wo-HbB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="Azf-3e-itD">
+                    <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="Azf-3e-itD">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Z5C-pD-cvg">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -45,7 +46,10 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LKJ-xo-8fe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2968.8000000000002" y="837.93103448275861"/>
+            <point key="canvasLocation" x="3172" y="658"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="add_feeling_btn" width="19" height="19"/>
+    </resources>
 </document>
