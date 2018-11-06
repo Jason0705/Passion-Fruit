@@ -12,9 +12,12 @@ import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var toSignInButton: UIButton!
     
     
     override func viewDidLoad() {

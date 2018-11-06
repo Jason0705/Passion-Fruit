@@ -1,0 +1,78 @@
+//
+//  ProfilePhotoViewController.swift
+//  Passion Fruit
+//
+//  Created by Jason Li on 2018-11-05.
+//  Copyright © 2018 Jason Li. All rights reserved.
+//
+
+import UIKit
+import FirebaseAuth
+import FirebaseDatabase
+import FirebaseStorage
+
+class ProfilePhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var selectPhotoButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
+    
+    var selectedProfilePhoto: UIImage?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let tapGesture_profilePhotoImageView = UITapGestureRecognizer(target: self, action: #selector(ProfilePhotoViewController.handleSelectProfilePhoto))
+        profilePhotoImageView.addGestureRecognizer(tapGesture_profilePhotoImageView)
+        profilePhotoImageView.isUserInteractionEnabled = true
+    }
+    
+    
+    @objc func handleSelectProfilePhoto() {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedProfilePhoto = image
+            profilePhotoImageView.image = image
+        }
+        dismiss(animated: true, completion: nil)
+    }
+
+    
+    @IBAction func selectPhotoButtonPressed(_ sender: UIButton) {
+        handleSelectProfilePhoto()
+    }
+    
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
+            let storageReference = Storage.storage().reference()
+            let profilePhotoReference = storageReference.child("profile_images").child(uid!)
+            if let profilePhoto = selectedProfilePhoto, let imageData = profilePhoto.jpegData(compressionQuality: 0.1) {
+                profilePhotoReference.putData(imageData, metadata: nil) { (storageMetadata, error) in
+                    if error != nil {
+                        print("Save profile photo error: \(error!)")
+                        return
+                    }
+                    // no error
+                    profilePhotoReference.downloadURL(completion: { (url, error) in
+                        if error != nil {
+                            print("Get profile photo URL error: \(error!)")
+                            return
+                        }
+                        // no error
+                        let profilePhotoURL = url?.absoluteString
+                        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
+                        let userReference = databaseReference.child("users").child(uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+                        userReference.child("/profilePhotoURL").setValue(profilePhotoURL)
+                    })
+                }
+            }
+        }
+    }
+}

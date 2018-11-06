@@ -29,6 +29,7 @@
 		826B40E6218BC29100F042D9 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E5218BC29100F042D9 /* Social.storyboard */; };
 		826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E7218BC2D500F042D9 /* Profile.storyboard */; };
 		826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E9218D107400F042D9 /* GoogleService-Info.plist */; };
+		826B40EC2191183A00F042D9 /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40EB2191183A00F042D9 /* ProfilePhotoViewController.swift */; };
 		C21B84E231C1EEC782FEBAD3 /* Pods_Passion_FruitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +81,7 @@
 		826B40E5218BC29100F042D9 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
 		826B40E7218BC2D500F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		826B40E9218D107400F042D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		826B40EB2191183A00F042D9 /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_FruitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion Fruit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit.release.xcconfig"; sourceTree = "<group>"; };
 		A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_Fruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +199,7 @@
 			children = (
 				826B40BF218BA15A00F042D9 /* SignInViewController.swift */,
 				826B40C1218BA16800F042D9 /* SignUpViewController.swift */,
+				826B40EB2191183A00F042D9 /* ProfilePhotoViewController.swift */,
 				826B40C3218BA18C00F042D9 /* NearByViewController.swift */,
 				826B40C5218BA1A400F042D9 /* MatchViewController.swift */,
 				826B40C7218BA1B200F042D9 /* FeedViewController.swift */,
@@ -467,6 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				826B40EC2191183A00F042D9 /* ProfilePhotoViewController.swift in Sources */,
 				826B40C2218BA16800F042D9 /* SignUpViewController.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,

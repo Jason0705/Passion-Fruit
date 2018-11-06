@@ -11,8 +11,12 @@ import UIKit
 class SignInViewController: UIViewController {
 
     
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var forgotPasswordButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var toSignUpButton: UIButton!
     
     
     override func viewDidLoad() {
