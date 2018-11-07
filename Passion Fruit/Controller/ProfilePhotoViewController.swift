@@ -11,14 +11,19 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
-class ProfilePhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfilePhotoViewController: UIViewController {
 
+    // MARK: - IBOutlets
+    
     @IBOutlet weak var profilePhotoImageView: UIImageView!
     @IBOutlet weak var selectPhotoButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     
+    // MARK: - Variables
+    
     var selectedProfilePhoto: UIImage?
     
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,32 +32,30 @@ class ProfilePhotoViewController: UIViewController, UIImagePickerControllerDeleg
         profilePhotoImageView.isUserInteractionEnabled = true
     }
     
+    // MARK: - Functions
     
+    // Pick profile photo
     @objc func handleSelectProfilePhoto() {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            selectedProfilePhoto = image
-            profilePhotoImageView.image = image
-        }
-        dismiss(animated: true, completion: nil)
-    }
-
+    
+    // MARK: - IBActions
     
     @IBAction func selectPhotoButtonPressed(_ sender: UIButton) {
         handleSelectProfilePhoto()
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
+        // Save profile photo to Firebase Storage and the url to Firebase Database
         if Auth.auth().currentUser != nil {
+            // User signed in
             let user = Auth.auth().currentUser
             let uid = user?.uid
             let storageReference = Storage.storage().reference()
-            let profilePhotoReference = storageReference.child("profile_images").child(uid!)
+            let profilePhotoReference = storageReference.child("profile_images").child("\(uid!).jpg")
             if let profilePhoto = selectedProfilePhoto, let imageData = profilePhoto.jpegData(compressionQuality: 0.1) {
                 profilePhotoReference.putData(imageData, metadata: nil) { (storageMetadata, error) in
                     if error != nil {
@@ -74,5 +77,20 @@ class ProfilePhotoViewController: UIViewController, UIImagePickerControllerDeleg
                 }
             }
         }
+        // User not signed in
+    }
+}
+
+
+
+// MARK: - Image Picker Delegation
+extension ProfilePhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            selectedProfilePhoto = image
+            profilePhotoImageView.image = image
+        }
+        dismiss(animated: true, completion: nil)
     }
 }

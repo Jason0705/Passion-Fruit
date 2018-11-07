@@ -10,6 +10,7 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    // MARK: - IBOtlets
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
@@ -19,9 +20,11 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var toSignUpButton: UIButton!
     
     
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Textfields Customization
         emailTextField.backgroundColor = UIColor.clear
         emailTextField.borderStyle = .none
         let emailBottomLayer = CALayer()
