@@ -48,6 +48,9 @@ class SignUpViewController: UIViewController {
         confirmPasswordBottomLayer.backgroundColor = UIColor.gray.cgColor
         confirmPasswordTextField.layer.addSublayer(confirmPasswordBottomLayer)
         
+        // State Preperation
+        signUpButton.isEnabled = false
+        
         checkTextFields()
     }
     
@@ -120,6 +123,7 @@ class SignUpViewController: UIViewController {
         }
         else {
             signUpUser()
+            performSegue(withIdentifier: "signUpToSetUpNavigationVC", sender: nil)
         }
     }
     

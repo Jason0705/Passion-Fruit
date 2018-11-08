@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3n6-Fq-LfI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -69,13 +69,16 @@
                                 <rect key="frame" x="118" y="462" width="139" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" title="Forgot your password?"/>
+                                <connections>
+                                    <action selector="forgotPasswordButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oI9-eC-8h8"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o4Z-bd-EKe">
                                 <rect key="frame" x="40" y="506" width="295" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
-                                    <segue destination="xzm-mQ-mvp" kind="show" id="cOt-KR-SJL"/>
+                                    <action selector="signInButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yg6-WE-yAe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -107,11 +110,12 @@
                         <outlet property="passwordTextField" destination="duQ-5d-kJN" id="k8B-NE-8Qz"/>
                         <outlet property="signInButton" destination="o4Z-bd-EKe" id="XdL-WR-Jtw"/>
                         <outlet property="toSignUpButton" destination="ia1-pD-CMf" id="Npf-QY-a37"/>
+                        <segue destination="xzm-mQ-mvp" kind="show" identifier="signInToMainTabbarVC" id="oqo-ls-Tof"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.00492610837438"/>
+            <point key="canvasLocation" x="121" y="132"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="f6l-BB-W2i">
@@ -170,7 +174,7 @@
                                     <constraint firstItem="sf6-OW-KoQ" firstAttribute="centerX" secondItem="6Hj-iU-ZVw" secondAttribute="centerX" id="y1X-gw-rma"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZL-5x-DFf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KZL-5x-DFf">
                                 <rect key="frame" x="40" y="498" width="295" height="39"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Sign Up"/>
@@ -212,11 +216,12 @@
                         <outlet property="passwordTextField" destination="HZE-ZP-Gey" id="DJ1-l2-xrk"/>
                         <outlet property="signUpButton" destination="KZL-5x-DFf" id="FVL-Lw-ukc"/>
                         <outlet property="toSignInButton" destination="ahy-gn-wLN" id="lE6-xJ-luE"/>
+                        <segue destination="SM6-DM-mmm" kind="show" identifier="signUpToSetUpNavigationVC" id="Jpz-Ej-Wzd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdj-JD-8Zx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1204" y="132.26600985221674"/>
+            <point key="canvasLocation" x="1065" y="132"/>
         </scene>
         <!--Profile Photo-->
         <scene sceneID="Uc3-pU-Tap">
@@ -290,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6k-vQ-3oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3504.8000000000002" y="127.83251231527095"/>
+            <point key="canvasLocation" x="2926" y="132"/>
         </scene>
         <!--User Info-->
         <scene sceneID="KDG-Ke-HbM">
@@ -308,7 +313,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ppj-sp-RyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4573" y="128"/>
+            <point key="canvasLocation" x="3860" y="132"/>
         </scene>
         <!--MainTabBarController-->
         <scene sceneID="S74-CI-xuX">
@@ -316,7 +321,7 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MainTabBarController" id="xzm-mQ-mvp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-Gh-tyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="655" y="810"/>
+            <point key="canvasLocation" x="654" y="710"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z8n-wx-Y5d">
@@ -334,7 +339,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsq-C1-H2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2562.4000000000001" y="127.83251231527095"/>
+            <point key="canvasLocation" x="2060" y="132"/>
         </scene>
     </scenes>
 </document>
