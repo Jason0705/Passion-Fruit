@@ -57,14 +57,16 @@ class SignUpViewController: UIViewController {
     // Sign Up User
     func signUpUser() {
         Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
-            guard let user = authResult?.user else { return }
             if error != nil {
-                print("Sign Up Error: \(error!.localizedDescription)")
-                return
+                self.presentAlert(message: "\(error!.localizedDescription)")
             }
-            let uid = user.uid
-            
-            self.setUserInfo(email: self.emailTextField.text!, uid: uid)
+            else {
+                guard let user = authResult?.user else { return }
+                let uid = user.uid
+                self.setUserInfo(email: self.emailTextField.text!, uid: uid)
+                
+                self.performSegue(withIdentifier: "signUpToSetUpNavigationVC", sender: nil)
+            }
         }
     }
     
@@ -91,13 +93,6 @@ class SignUpViewController: UIViewController {
         signUpButton.isEnabled = true
     }
     
-    func isValidEmail(email:String?) -> Bool {
-        guard email != nil else { return false }
-        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
-        return pred.evaluate(with: email)
-    }
-    
     // Present Alert
     func presentAlert(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
@@ -115,15 +110,11 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         // Sign up user using email and password input.
-        if isValidEmail(email: emailTextField.text) == false {
-            presentAlert(message: "The email address is badly formatted! Please check again.")
-        }
-        else if passwordTextField.text != confirmPasswordTextField.text {
+        if passwordTextField.text != confirmPasswordTextField.text {
             presentAlert(message: "Password does not match the confirm password! Please check again.")
         }
         else {
             signUpUser()
-            performSegue(withIdentifier: "signUpToSetUpNavigationVC", sender: nil)
         }
     }
     

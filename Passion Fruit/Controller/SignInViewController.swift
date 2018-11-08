@@ -46,15 +46,27 @@ class SignInViewController: UIViewController {
         checkTextFields()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        autoSignIn()
+    }
+    
     // Sign In User
     func signInUser() {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult, error) in
-            //guard let user = authDataResult?.user else { return }
             if error != nil {
-                print("Sign In Error: \(error!.localizedDescription)")
-                return
+                self.presentAlert(message: "\(error!.localizedDescription)")
             }
-            self.performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
+            else {
+                self.performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
+            }
+        }
+    }
+    
+    // Auto Sign In
+    func autoSignIn() {
+        if Auth.auth().currentUser != nil {
+            performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
         }
     }
     
@@ -70,13 +82,6 @@ class SignInViewController: UIViewController {
             return
         }
         signInButton.isEnabled = true
-    }
-    
-    func isValidEmail(email:String?) -> Bool {
-        guard email != nil else { return false }
-        let regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
-        let pred = NSPredicate(format:"SELF MATCHES %@", regEx)
-        return pred.evaluate(with: email)
     }
     
     // Present Alert
@@ -99,12 +104,7 @@ class SignInViewController: UIViewController {
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         // Sign in user using email and password input.
-        if isValidEmail(email: emailTextField.text) == false {
-            presentAlert(message: "The email address is badly formatted! Please check again.")
-        }
-        else {
-            signInUser()
-        }
+        signInUser()
     }
     
 }
