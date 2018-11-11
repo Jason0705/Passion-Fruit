@@ -10,6 +10,8 @@
 		54E088A7BFCFA3EF0A103583 /* Pods_Passion_FruitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */; };
 		731DC1023F3A8909ED8BFEE9 /* Pods_Passion_Fruit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */; };
 		8267109C219549C2005B3D0A /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109B219549C2005B3D0A /* UserInfoViewController.swift */; };
+		8267109F2197F19D005B3D0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109E2197F19D005B3D0A /* AuthService.swift */; };
+		826710A12197F7BC005B3D0A /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826710A02197F7BC005B3D0A /* AlertService.swift */; };
 		826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B408E218AEC5800F042D9 /* AppDelegate.swift */; };
 		826B4094218AEC5800F042D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B4092218AEC5800F042D9 /* Main.storyboard */; };
 		826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 826B4095218AEC5A00F042D9 /* Assets.xcassets */; };
@@ -57,6 +59,8 @@
 		51B9F83310D14DA0EE780D58 /* Pods-Passion FruitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitUITests/Pods-Passion FruitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		80CD88FE5281F8805A5FF6D5 /* Pods-Passion FruitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8267109B219549C2005B3D0A /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		8267109E2197F19D005B3D0A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		826710A02197F7BC005B3D0A /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		826B408B218AEC5800F042D9 /* Passion Fruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Passion Fruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		826B408E218AEC5800F042D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		826B4093218AEC5800F042D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -142,6 +146,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8267109D2197F16D005B3D0A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8267109E2197F19D005B3D0A /* AuthService.swift */,
+				826710A02197F7BC005B3D0A /* AlertService.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		826B4082218AEC5800F042D9 = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +180,7 @@
 		826B408D218AEC5800F042D9 /* Passion Fruit */ = {
 			isa = PBXGroup;
 			children = (
+				8267109D2197F16D005B3D0A /* Supporting Files */,
 				826B408E218AEC5800F042D9 /* AppDelegate.swift */,
 				826B40BE218BA13000F042D9 /* Model */,
 				826B40BD218BA12800F042D9 /* View */,
@@ -478,10 +492,12 @@
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,
 				826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */,
+				8267109F2197F19D005B3D0A /* AuthService.swift in Sources */,
 				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
 				826B40C8218BA1B200F042D9 /* FeedViewController.swift in Sources */,
 				8267109C219549C2005B3D0A /* UserInfoViewController.swift in Sources */,
 				826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */,
+				826710A12197F7BC005B3D0A /* AlertService.swift in Sources */,
 				826B40C6218BA1A400F042D9 /* MatchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

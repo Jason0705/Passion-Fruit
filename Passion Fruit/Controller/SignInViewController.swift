@@ -46,22 +46,11 @@ class SignInViewController: UIViewController {
         checkTextFields()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        autoSignIn()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        autoSignIn()
+//    }
     
-    // Sign In User
-    func signInUser() {
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authDataResult, error) in
-            if error != nil {
-                self.presentAlert(message: "\(error!.localizedDescription)")
-            }
-            else {
-                self.performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
-            }
-        }
-    }
     
     // Auto Sign In
     func autoSignIn() {
@@ -83,18 +72,6 @@ class SignInViewController: UIViewController {
         }
         signInButton.isEnabled = true
     }
-    
-    // Present Alert
-    func presentAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (AlertAction) in
-            alert.dismiss(animated: true, completion: nil)
-        }
-        
-        alert.addAction(okAction)
-        
-        present(alert, animated: true, completion: nil)
-    }
 
     
     // MARK: - IBActions
@@ -103,8 +80,13 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
+        
         // Sign in user using email and password input.
-        signInUser()
+        AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            self.performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
+        }, onFail: { (error) in
+            AlertService.alertService.presentAlert(message: error!, vc: self)
+        })
     }
     
 }

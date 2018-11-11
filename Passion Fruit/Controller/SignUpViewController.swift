@@ -54,30 +54,6 @@ class SignUpViewController: UIViewController {
         checkTextFields()
     }
     
-    // Sign Up User
-    func signUpUser() {
-        Auth.auth().createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (authResult, error) in
-            if error != nil {
-                self.presentAlert(message: "\(error!.localizedDescription)")
-            }
-            else {
-                guard let user = authResult?.user else { return }
-                let uid = user.uid
-                self.setUserInfo(email: self.emailTextField.text!, uid: uid)
-                
-                self.performSegue(withIdentifier: "signUpToSetUpNavigationVC", sender: nil)
-            }
-        }
-    }
-    
-    func setUserInfo(email: String, uid: String) {
-        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
-        let usersReference = databaseReference.child("users") // : https://passion-fruit-39bda.firebaseio.com/users
-        let newUserReference = usersReference.child(uid) // : https://passion-fruit-39bda.firebaseio.com/users/uid
-        
-        newUserReference.setValue(["email": email])
-    }
-    
     // Checking Text Fields Format
     func checkTextFields() {
         emailTextField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChange), for: UIControl.Event.editingChanged)
@@ -93,29 +69,20 @@ class SignUpViewController: UIViewController {
         signUpButton.isEnabled = true
     }
     
-    // Present Alert
-    func presentAlert(message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) { (AlertAction) in
-            alert.dismiss(animated: true, completion: nil)
-        }
-        
-        alert.addAction(okAction)
-        
-        present(alert, animated: true, completion: nil)
-    }
-    
     
     // MARK: - IBActions
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         // Sign up user using email and password input.
         if passwordTextField.text != confirmPasswordTextField.text {
-            presentAlert(message: "Password does not match the confirm password! Please check again.")
+            AlertService.alertService.presentAlert(message: "Password does not match the confirm password! Please check again.", vc: self)
+            return
         }
-        else {
-            signUpUser()
-        }
+        AuthService.signUpUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            self.performSegue(withIdentifier: "signUpToSetUpNavigationVC", sender: nil)
+        }, onFail: { (error) in
+            AlertService.alertService.presentAlert(message: error!, vc: self)
+        })
     }
     
     @IBAction func toSignInButtonPressed(_ sender: UIButton) {
