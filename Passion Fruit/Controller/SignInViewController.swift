@@ -26,19 +26,7 @@ class SignInViewController: UIViewController {
         super.viewDidLoad()
 
         // Textfields Customization
-        emailTextField.backgroundColor = UIColor.clear
-        emailTextField.borderStyle = .none
-        let emailBottomLayer = CALayer()
-        emailBottomLayer.frame = CGRect(x: 0, y: emailTextField.frame.height - 1, width: emailTextField.frame.width, height: 0.6)
-        emailBottomLayer.backgroundColor = UIColor.gray.cgColor
-        emailTextField.layer.addSublayer(emailBottomLayer)
-        
-        passwordTextField.backgroundColor = UIColor.clear
-        passwordTextField.borderStyle = .none
-        let passwordBottomLayer = CALayer()
-        passwordBottomLayer.frame = CGRect(x: 0, y: passwordTextField.frame.height - 1, width: passwordTextField.frame.width, height: 0.6)
-        passwordBottomLayer.backgroundColor = UIColor.gray.cgColor
-        passwordTextField.layer.addSublayer(passwordBottomLayer)
+        textFieldsUnderline()
         
         // State Preperation
         signInButton.isEnabled = false
@@ -52,10 +40,18 @@ class SignInViewController: UIViewController {
 //    }
     
     
+    // MARK: - Functions
+    
+    // Text Fields Underline style
+    func textFieldsUnderline() {
+        CustomizationService.textFieldUnderline(textField: emailTextField)
+        CustomizationService.textFieldUnderline(textField: passwordTextField)
+    }
+    
     // Auto Sign In
     func autoSignIn() {
         if Auth.auth().currentUser != nil {
-            performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
+            performSegue(withIdentifier: "signInToMainTabBarVC", sender: nil)
         }
     }
     
@@ -85,7 +81,7 @@ class SignInViewController: UIViewController {
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
             self.performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
         }, onFail: { (error) in
-            AlertService.alertService.presentAlert(message: error!, vc: self)
+            AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })
     }
     

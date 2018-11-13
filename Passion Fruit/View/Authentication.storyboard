@@ -110,7 +110,7 @@
                         <outlet property="passwordTextField" destination="duQ-5d-kJN" id="k8B-NE-8Qz"/>
                         <outlet property="signInButton" destination="o4Z-bd-EKe" id="XdL-WR-Jtw"/>
                         <outlet property="toSignUpButton" destination="ia1-pD-CMf" id="Npf-QY-a37"/>
-                        <segue destination="xzm-mQ-mvp" kind="show" identifier="signInToMainTabbarVC" id="oqo-ls-Tof"/>
+                        <segue destination="xzm-mQ-mvp" kind="show" identifier="signInToMainTabBarVC" id="oqo-ls-Tof"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -217,6 +217,7 @@
                         <outlet property="signUpButton" destination="KZL-5x-DFf" id="FVL-Lw-ukc"/>
                         <outlet property="toSignInButton" destination="ahy-gn-wLN" id="lE6-xJ-luE"/>
                         <segue destination="SM6-DM-mmm" kind="show" identifier="signUpToSetUpNavigationVC" id="Jpz-Ej-Wzd"/>
+                        <segue destination="Xsn-3A-TKH" kind="show" identifier="signUpToProfileEditNavigationVC" id="6jy-Ul-DJK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdj-JD-8Zx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -283,7 +284,7 @@
                     <navigationItem key="navigationItem" title="Profile Photo" id="wyn-Qf-qiz">
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="BhX-sE-WvM">
                             <connections>
-                                <segue destination="dYh-Ff-3bF" kind="show" id="vfx-8e-udV"/>
+                                <action selector="skipBarButtonPressed:" destination="dpa-Aj-hVn" id="ke0-Gd-5sZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -291,6 +292,7 @@
                         <outlet property="nextButton" destination="bKF-d1-CRV" id="Mjx-F6-2dg"/>
                         <outlet property="profilePhotoImageView" destination="hBE-lo-AoN" id="0zJ-AJ-Vhl"/>
                         <outlet property="selectPhotoButton" destination="zvZ-k8-SmT" id="VN5-bo-AC3"/>
+                        <segue destination="dYh-Ff-3bF" kind="show" identifier="profilePhotoToUserInfoVC" id="QFt-un-Xkr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V6k-vQ-3oD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,6 +503,9 @@
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                         <state key="normal" title="Finish"/>
+                                                        <connections>
+                                                            <action selector="finishButtonPressed:" destination="dYh-Ff-3bF" eventType="touchUpInside" id="sAP-xY-BzA"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -608,10 +613,24 @@
                     <navigationItem key="navigationItem" title="User Info" id="QFB-rP-uLl">
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="hQq-ii-W1I">
                             <connections>
-                                <segue destination="xzm-mQ-mvp" kind="show" id="KEt-mU-9hG"/>
+                                <action selector="skipBarButtonPressed:" destination="dYh-Ff-3bF" id="Mvp-Kt-WpV"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="aboutTextField" destination="8gm-r6-eFo" id="nQA-zQ-dBx"/>
+                        <outlet property="ageTextField" destination="3Uc-R8-sUC" id="b42-uJ-X7s"/>
+                        <outlet property="ethnicityTextField" destination="z9w-5b-ppz" id="kgQ-AH-MVB"/>
+                        <outlet property="expectTextField" destination="t0O-fM-7Cf" id="Kfv-5P-JBQ"/>
+                        <outlet property="genderTextField" destination="vgS-Zs-4WU" id="drD-5s-mHF"/>
+                        <outlet property="heightTextField" destination="8oI-rL-55q" id="BG5-o2-w7H"/>
+                        <outlet property="intoTextField" destination="PIc-70-Q8U" id="MQm-v1-HZ6"/>
+                        <outlet property="likeTextField" destination="TTt-gy-I8D" id="Meq-Xx-e7G"/>
+                        <outlet property="lookingTextField" destination="jWX-Oa-9eh" id="ae0-1j-Pqj"/>
+                        <outlet property="preferenceTextField" destination="1uw-ha-fww" id="bZv-uz-nz2"/>
+                        <outlet property="userNameTextField" destination="wES-Um-EpT" id="SA2-CY-Kme"/>
+                        <outlet property="weightTextField" destination="0Vf-aK-ia2" id="Szu-ag-FLS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ppj-sp-RyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -623,7 +642,7 @@
                 <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MainTabBarController" id="xzm-mQ-mvp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-Gh-tyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1064" y="890"/>
+            <point key="canvasLocation" x="120" y="647"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="z8n-wx-Y5d">
@@ -643,8 +662,13 @@
             </objects>
             <point key="canvasLocation" x="2060" y="132"/>
         </scene>
+        <!--ProfileEditNavigationController-->
+        <scene sceneID="LhV-FV-3Zz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileEdit" referencedIdentifier="ProfileEditNavigationController" id="Xsn-3A-TKH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vuk-c6-Ers" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1065" y="647"/>
+        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="KEt-mU-9hG"/>
-    </inferredMetricsTieBreakers>
 </document>

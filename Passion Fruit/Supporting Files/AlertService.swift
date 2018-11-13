@@ -12,8 +12,8 @@ class AlertService: UIViewController {
     
     static var alertService = AlertService()
     
-    // Present Alert
-    func presentAlert(message: String, vc: UIViewController) {
+    // Present Error Alert
+    func presentErrorAlert(message: String, vc: UIViewController) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (AlertAction) in
             alert.dismiss(animated: true, completion: nil)

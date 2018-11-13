@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
-import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
@@ -27,31 +25,22 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         // Textfields Customization
-        emailTextField.backgroundColor = UIColor.clear
-        emailTextField.borderStyle = .none
-        let emailBottomLayer = CALayer()
-        emailBottomLayer.frame = CGRect(x: 0, y: emailTextField.frame.height - 1, width: emailTextField.frame.width, height: 0.6)
-        emailBottomLayer.backgroundColor = UIColor.gray.cgColor
-        emailTextField.layer.addSublayer(emailBottomLayer)
-        
-        passwordTextField.backgroundColor = UIColor.clear
-        passwordTextField.borderStyle = .none
-        let passwordBottomLayer = CALayer()
-        passwordBottomLayer.frame = CGRect(x: 0, y: passwordTextField.frame.height - 1, width: passwordTextField.frame.width, height: 0.6)
-        passwordBottomLayer.backgroundColor = UIColor.gray.cgColor
-        passwordTextField.layer.addSublayer(passwordBottomLayer)
-        
-        confirmPasswordTextField.backgroundColor = UIColor.clear
-        confirmPasswordTextField.borderStyle = .none
-        let confirmPasswordBottomLayer = CALayer()
-        confirmPasswordBottomLayer.frame = CGRect(x: 0, y: confirmPasswordTextField.frame.height - 1, width: confirmPasswordTextField.frame.width, height: 0.6)
-        confirmPasswordBottomLayer.backgroundColor = UIColor.gray.cgColor
-        confirmPasswordTextField.layer.addSublayer(confirmPasswordBottomLayer)
+        textFieldsUnderline()
         
         // State Preperation
         signUpButton.isEnabled = false
         
         checkTextFields()
+    }
+    
+    
+    // MARK: - Functions
+    
+    // Text Fields Underline Style
+    func textFieldsUnderline() {
+        CustomizationService.textFieldUnderline(textField: emailTextField)
+        CustomizationService.textFieldUnderline(textField: passwordTextField)
+        CustomizationService.textFieldUnderline(textField: confirmPasswordTextField)
     }
     
     // Checking Text Fields Format
@@ -75,13 +64,13 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         // Sign up user using email and password input.
         if passwordTextField.text != confirmPasswordTextField.text {
-            AlertService.alertService.presentAlert(message: "Password does not match the confirm password! Please check again.", vc: self)
+            AlertService.alertService.presentErrorAlert(message: "Password does not match the confirm password! Please check again.", vc: self)
             return
         }
         AuthService.signUpUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
-            self.performSegue(withIdentifier: "signUpToSetUpNavigationVC", sender: nil)
+            self.performSegue(withIdentifier: "signUpToProfileEditNavigationVC", sender: nil)
         }, onFail: { (error) in
-            AlertService.alertService.presentAlert(message: error!, vc: self)
+            AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })
     }
     

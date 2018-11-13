@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="profileImageCell" rowHeight="241" id="KGk-i7-Jjw" customClass="ProfileImageCell" customModule="Passion_Fruit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="279.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYU-75-bDy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="279"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-Zz-ie8">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="279"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixd-f2-20X">
+                                <rect key="frame" x="8" y="235.5" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ixd-f2-20X" secondAttribute="height" multiplier="1:1" id="sDL-aV-g0W"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ixd-f2-20X" firstAttribute="width" secondItem="IOY-Zz-ie8" secondAttribute="height" multiplier="35:279" id="Jtb-Zh-aml"/>
+                            <constraint firstItem="IOY-Zz-ie8" firstAttribute="top" secondItem="FYU-75-bDy" secondAttribute="top" id="T3r-i6-kn1"/>
+                            <constraint firstAttribute="width" secondItem="FYU-75-bDy" secondAttribute="height" multiplier="320:279" id="WLk-Xn-sB7"/>
+                            <constraint firstAttribute="bottom" secondItem="ixd-f2-20X" secondAttribute="bottom" constant="8.5" id="cFx-k1-Hf8"/>
+                            <constraint firstItem="ixd-f2-20X" firstAttribute="leading" secondItem="FYU-75-bDy" secondAttribute="leading" constant="8" id="iqv-dF-q2Z"/>
+                            <constraint firstItem="IOY-Zz-ie8" firstAttribute="leading" secondItem="FYU-75-bDy" secondAttribute="leading" id="ogb-hm-gwF"/>
+                            <constraint firstAttribute="bottom" secondItem="IOY-Zz-ie8" secondAttribute="bottom" id="tiR-2v-kJ9"/>
+                            <constraint firstAttribute="trailing" secondItem="IOY-Zz-ie8" secondAttribute="trailing" id="tuh-JO-Gwt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="FYU-75-bDy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hgh-Nu-cwg"/>
+                    <constraint firstAttribute="trailing" secondItem="FYU-75-bDy" secondAttribute="trailing" id="Xf4-rP-cyP"/>
+                    <constraint firstItem="FYU-75-bDy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YsY-zo-Mmn"/>
+                    <constraint firstItem="FYU-75-bDy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Yvd-Cx-yBN"/>
+                    <constraint firstItem="FYU-75-bDy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ZoE-uh-3wf"/>
+                    <constraint firstAttribute="bottom" secondItem="FYU-75-bDy" secondAttribute="bottom" id="cP6-Ac-NQL"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="profilePhotoImageView" destination="IOY-Zz-ie8" id="a4X-Ju-xPn"/>
+            </connections>
+            <point key="canvasLocation" x="56" y="136.73163418290855"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,21 @@
+//
+//  CustomizationService.swift
+//  Passion Fruit
+//
+//  Created by Jason Li on 2018-11-10.
+//  Copyright © 2018 Jason Li. All rights reserved.
+//
+
+import UIKit
+
+class CustomizationService {
+    
+    static func textFieldUnderline(textField: UITextField) {
+        textField.backgroundColor = UIColor.clear
+        textField.borderStyle = .none
+        let bottomLayer = CALayer()
+        bottomLayer.frame = CGRect(x: 0, y: textField.frame.height - 1, width: textField.frame.width, height: 0.6)
+        bottomLayer.backgroundColor = UIColor.gray.cgColor
+        textField.layer.addSublayer(bottomLayer)
+    }
+}
