@@ -1,5 +1,5 @@
 //
-//  ProfileStatsCell.swift
+//  ProfileImageCell.swift
 //  Passion Fruit
 //
 //  Created by Jason Li on 2018-11-12.
@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ProfileStatsCell: UITableViewCell {
+class ProfileImageCell: UITableViewCell {
+    
+    
+    @IBOutlet weak var profilePhotoImageView: UIImageView!
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +23,7 @@ class ProfileStatsCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+
     }
     
 }

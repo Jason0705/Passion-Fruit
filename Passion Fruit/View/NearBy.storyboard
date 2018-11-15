@@ -21,15 +21,34 @@
                         <viewLayoutGuide key="safeArea" id="r0x-p1-6a8"/>
                     </view>
                     <navigationItem key="navigationItem" title="Near By" id="8yd-44-4gq"/>
+                    <connections>
+                        <segue destination="3w0-ew-Vfy" kind="show" id="5pv-Nd-6JG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBV-aM-QzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3644" y="-1202"/>
         </scene>
+        <!--Match-->
+        <scene sceneID="ooq-wz-FXG">
+            <objects>
+                <viewController id="3w0-ew-Vfy" customClass="MatchViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tT9-mq-NUE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="CX8-MC-pGP"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Match" id="zNL-KD-pbc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LV4-wK-iln" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4581" y="-1200"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IMF-SS-aIN">
             <objects>
-                <navigationController storyboardIdentifier="NearByNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="vYN-7N-DU2" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NearByNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="vYN-7N-DU2" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="dc2-lj-Gb9">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

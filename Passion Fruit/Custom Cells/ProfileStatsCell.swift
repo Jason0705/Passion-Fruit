@@ -1,5 +1,5 @@
 //
-//  ProfileInfoCell.swift
+//  ProfileStatsCell.swift
 //  Passion Fruit
 //
 //  Created by Jason Li on 2018-11-12.
@@ -8,8 +8,12 @@
 
 import UIKit
 
-class ProfileInfoCell: UITableViewCell {
+class ProfileStatsCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

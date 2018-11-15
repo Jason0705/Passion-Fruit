@@ -13,7 +13,7 @@
         <!--Passion Fruit-->
         <scene sceneID="LmH-Iu-R6D">
             <objects>
-                <viewController id="3KM-HO-rLP" customClass="FeedViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3KM-HO-rLP" customClass="HomeViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nim-ze-XXk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,7 +29,7 @@
         <!--Navigation Controller-->
         <scene sceneID="YuM-sX-xLM">
             <objects>
-                <navigationController storyboardIdentifier="FeedNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="6cT-mp-Xug" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="6cT-mp-Xug" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="hpG-MX-b4d">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

@@ -1,14 +1,14 @@
 //
-//  FeedViewController.swift
+//  HomeViewController.swift
 //  Passion Fruit
 //
-//  Created by Jason Li on 2018-11-01.
+//  Created by Jason Li on 2018-11-13.
 //  Copyright © 2018 Jason Li. All rights reserved.
 //
 
 import UIKit
 
-class FeedViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

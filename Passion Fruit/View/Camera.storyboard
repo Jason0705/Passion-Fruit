@@ -10,17 +10,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Match-->
+        <!--Camera-->
         <scene sceneID="85R-hk-yJF">
             <objects>
-                <viewController id="QAM-9a-fJt" customClass="MatchViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="QAM-9a-fJt" customClass="CameraViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xjk-6h-J85">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="CYo-R1-z3y"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Match" id="MEd-a2-pZ3"/>
+                    <navigationItem key="navigationItem" title="Camera" id="MEd-a2-pZ3"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fdh-nI-64G" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -29,7 +29,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0yl-aK-qig">
             <objects>
-                <navigationController storyboardIdentifier="MatchNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="UnB-oC-J1y" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CameraNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="UnB-oC-J1y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="ROI-gp-XKc">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

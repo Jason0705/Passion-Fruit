@@ -1,5 +1,5 @@
 //
-//  MatchViewController.swift
+//  CameraViewController.swift
 //  Passion Fruit
 //
 //  Created by Jason Li on 2018-11-13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MatchViewController: UIViewController {
+class CameraViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

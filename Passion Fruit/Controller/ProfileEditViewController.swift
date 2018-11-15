@@ -21,7 +21,22 @@ class ProfileEditViewController: UIViewController {
     
     // MARK: - Variables
     
+    struct tableSection {
+        var header: String!
+        var cell: [String]!
+        var showHeader: Bool!
+    }
+    
+    var tableData = [tableSection]()
+    
     var selectedProfilePhoto: UIImage?
+    //var infoCellContent = [String]()
+    
+    
+    let imageCells = ["image"]
+    let infoCells = ["User Name", "I AM", "I Like", "My Date Would"]
+    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Gender", "Preference", "Relationship Status", "I'm Looking For", "I'm Into"]
+    let infoCellPlaceholders = ["This will be displayed on your profile...", "Let people know about you...", "Let people know what you like...", "Let people know what you expect..."]
     
     
     // MARK: - View Did Load
@@ -31,6 +46,10 @@ class ProfileEditViewController: UIViewController {
 
         // Register OrderCell.xib
         profileEditTableView.register(UINib(nibName: "ProfileImageCell", bundle: nil), forCellReuseIdentifier: "profileImageCell")
+        profileEditTableView.register(UINib(nibName: "ProfileInfoCell", bundle: nil), forCellReuseIdentifier: "profileInfoCell")
+        profileEditTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
+        
+        populateTableData()
     }
     
     
@@ -41,7 +60,14 @@ class ProfileEditViewController: UIViewController {
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         present(pickerController, animated: true, completion: nil)
-
+    }
+    
+    // Populate table
+    func populateTableData() {
+        tableData.removeAll()
+        tableData.append(tableSection(header: "IMAGE", cell: imageCells, showHeader: false))
+        tableData.append(tableSection(header: "INFO", cell: infoCells, showHeader: true))
+        tableData.append(tableSection(header: "STATS", cell: statsCells, showHeader: true))
     }
     
 
@@ -54,36 +80,51 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     
     // Number of Section
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        return tableData.count
     }
     
     // Number of Rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        var numberOfRow = 5
-        
-        if section == 0 {
-            numberOfRow = 1
-        }
-        else if section == 1 {
-            numberOfRow = 4
-        }
-        else if section == 2 {
-            numberOfRow = 9
-        }
-        
-        return numberOfRow
+        return tableData[section].cell.count
         
     }
     
     // Populate Cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //var cell = tableView.dequeueReusableCell(withIdentifier: "profileEditCell", for: indexPath)
-        //cell.textLabel?.text = "\(indexPath)"
-        if indexPath == [0,0] {
+        
+        switch indexPath.section {
+        case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell", for: indexPath) as! ProfileImageCell
             cell.profilePhotoImageView.image = selectedProfilePhoto
+            
             return cell
+
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "profileInfoCell", for: indexPath) as! ProfileInfoCell
+            cell.cellDelegate = self
+            cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
+//            cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
+//            cell.placeholderLabel.textColor = UIColor.lightGray
+            cell.placeholder = infoCellPlaceholders[indexPath.row]
+            cell.contentTextView.text = cell.placeholder
+            cell.contentTextView.textColor = UIColor.lightGray
+            
+            return cell
+            
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "profileStatsCell", for: indexPath) as! ProfileStatsCell
+            cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
+            cell.accessoryType = .none
+            
+            if indexPath.row == tableData[indexPath.section].cell.count - 1 {
+                cell.accessoryType = .disclosureIndicator
+            }
+            
+            return cell
+            
+        default:
+            break
         }
         return tableView.dequeueReusableCell(withIdentifier: "profileEditCell", for: indexPath)
     }
@@ -97,33 +138,22 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     
+    
     // MARK: - Section Header
     
     // Header Title
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        var title = "Section: \(section)"
         
-        if section == 0 {
-            title = "IMAGE"
-        }
-        else if section == 1 {
-            title = "INFO"
-        }
-        else if section == 2 {
-            title = "STATS"
-        }
-        return title
+        return tableData[section].header
     }
     
     // Header Height
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        var height: CGFloat = 50
         
-        if section == 0 {
-            height = 0
+        if !tableData[section].showHeader {
+            return 0
         }
-        
-        return height
+        return 50
     }
     
     // Header View
@@ -135,6 +165,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 // MARK: - Image Picker Delegation
+
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -146,3 +177,18 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
         profileEditTableView.reloadData()
     }
 }
+
+
+// MARK: - Update Custom Cell
+
+// Update cell
+extension ProfileEditViewController: InfoCell {
+    func updateTableView() {
+        UIView.setAnimationsEnabled(false)
+        profileEditTableView.beginUpdates()
+        profileEditTableView.endUpdates()
+        UIView.setAnimationsEnabled(true)
+    }
+    
+}
+

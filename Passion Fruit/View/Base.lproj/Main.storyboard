@@ -30,55 +30,55 @@
             </objects>
             <point key="canvasLocation" x="1090" y="188"/>
         </scene>
-        <!--NearByNavigationController-->
+        <!--HomeNavigationVC-->
         <scene sceneID="aSr-Sl-T3l">
             <objects>
-                <viewControllerPlaceholder storyboardName="NearBy" referencedIdentifier="NearByNavigationController" id="wuT-l7-fG3" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="HomeNavigationVC" id="wuT-l7-fG3" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="qfQ-fr-XcQ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IXy-LL-XXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2101" y="-103"/>
+            <point key="canvasLocation" x="2079" y="-103"/>
         </scene>
-        <!--MatchNavigationController-->
+        <!--NearByNavigationVC-->
         <scene sceneID="3bA-il-G1r">
             <objects>
-                <viewControllerPlaceholder storyboardName="Match" referencedIdentifier="MatchNavigationController" id="4aB-Ng-eXJ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="NearBy" referencedIdentifier="NearByNavigationVC" id="4aB-Ng-eXJ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="YnK-SD-4Ks"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3k-us-qGu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2096" y="33"/>
+            <point key="canvasLocation" x="2086" y="39"/>
         </scene>
-        <!--FeedNavigationController-->
+        <!--CameraNavigationVC-->
         <scene sceneID="sBT-pI-3U0">
             <objects>
-                <viewControllerPlaceholder storyboardName="Feed" referencedIdentifier="FeedNavigationController" id="siA-2Z-zRM" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Camera" referencedIdentifier="CameraNavigationVC" id="siA-2Z-zRM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="tNs-gE-1ZE"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iaL-pf-tzY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2089" y="188"/>
+            <point key="canvasLocation" x="2088" y="188"/>
         </scene>
-        <!--SocialNavigationController-->
+        <!--SocialNavigationVC-->
         <scene sceneID="rxo-lY-BAZ">
             <objects>
-                <viewControllerPlaceholder storyboardName="Social" referencedIdentifier="SocialNavigationController" id="wAA-zf-eYQ" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Social" referencedIdentifier="SocialNavigationVC" id="wAA-zf-eYQ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="QkB-9p-dJC"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AtY-aI-FTL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2095" y="340"/>
+            <point key="canvasLocation" x="2080" y="341"/>
         </scene>
-        <!--ProfileNavigationController-->
+        <!--ProfileNavigationVC-->
         <scene sceneID="ksG-i2-OVX">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileNavigationController" id="YBF-9J-fqr" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileNavigationVC" id="YBF-9J-fqr" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="0lm-6d-Lsa"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GF6-KU-59X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2098" y="478"/>
+            <point key="canvasLocation" x="2083" y="478"/>
         </scene>
     </scenes>
 </document>
