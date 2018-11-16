@@ -17,7 +17,9 @@ class ProfileEditViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var profileEditTableView: UITableView!
-    
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var doneButtonView: UIView!
+    @IBOutlet weak var doneButtonViewHeight: NSLayoutConstraint!
     
     // MARK: - Variables
     
@@ -30,12 +32,12 @@ class ProfileEditViewController: UIViewController {
     var tableData = [tableSection]()
     
     var selectedProfilePhoto: UIImage?
-    //var infoCellContent = [String]()
+    var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold ProfileInfoCell().contentTextView.text
     
     
-    let imageCells = ["image"]
-    let infoCells = ["User Name", "I AM", "I Like", "My Date Would"]
-    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Gender", "Preference", "Relationship Status", "I'm Looking For", "I'm Into"]
+    let imageCells = ["Image"]
+    let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
+    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Gender", "Preference", "Relationship Status", "I'm Looking For", "I'm Into"] // hold statsCell displaying title
     let infoCellPlaceholders = ["This will be displayed on your profile...", "Let people know about you...", "Let people know what you like...", "Let people know what you expect..."]
     
     
@@ -50,6 +52,10 @@ class ProfileEditViewController: UIViewController {
         profileEditTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
         
         populateTableData()
+        
+        // Set UI State
+        doneButtonViewHeight.constant = 0
+        doneButton.isHidden = true
     }
     
     
@@ -70,7 +76,54 @@ class ProfileEditViewController: UIViewController {
         tableData.append(tableSection(header: "STATS", cell: statsCells, showHeader: true))
     }
     
+    // Save User Info
+    func saveUserInfoToArray() {
+        for index in 0...3 {
+            if let cell = profileEditTableView.cellForRow(at: [1,index]) as? ProfileInfoCell {
+                infoCellContent[index] = cell.content
+            }
+        }
+    }
+    
+    // UI State
+    func doneButtonViewState(state: Int){
+        UIView.animate(withDuration: 0.225) {
+            if state == 0 {
+                self.doneButtonViewHeight.constant = 0
+                self.doneButton.isHidden = true
+                for index in 0...3 {
+                    if let cell = self.profileEditTableView.cellForRow(at: [1,index]) as? ProfileInfoCell {
+                        cell.contentTextView.endEditing(true)
+                    }
+                }
+            }
+            else if state == 1 {
+                self.doneButtonViewHeight.constant = 258 + 44 + 44 // keyboard height + sugest text view height + visable view height
+                self.doneButton.isHidden = false
+            }
+            else if state == 2 {
+                
+            }
+            self.view.layoutIfNeeded()
+        }
+        
+        
+        
+    }
+    
 
+    // MARK: - IBActions
+    
+    @IBAction func skipSaveBarButtonPressed(_ sender: UIBarButtonItem) {
+        saveUserInfoToArray()
+        print(infoCellContent)
+        
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        doneButtonViewState(state: 0)
+    }
+    
 
 }
 
@@ -104,11 +157,13 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileInfoCell", for: indexPath) as! ProfileInfoCell
             cell.cellDelegate = self
             cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
-//            cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
-//            cell.placeholderLabel.textColor = UIColor.lightGray
-            cell.placeholder = infoCellPlaceholders[indexPath.row]
-            cell.contentTextView.text = cell.placeholder
-            cell.contentTextView.textColor = UIColor.lightGray
+            cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
+            cell.placeholderLabel.textColor = UIColor.lightGray
+            cell.index = indexPath.row
+            if !cell.content.isEmpty {
+                cell.placeholderLabel.isHidden = true
+                cell.contentTextView.text = cell.content
+            }
             
             return cell
             
@@ -131,11 +186,23 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     
     // Select Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath == [0,0] {
+        if indexPath.section == 0 {
+            doneButtonViewState(state: 0)
             handleSelectProfilePhoto()
         }
-        tableView.deselectRow(at: indexPath, animated: false)
+        else if indexPath.section == 1 {
+            doneButtonViewState(state: 1)
+            if let cell = profileEditTableView.cellForRow(at: indexPath) as? ProfileInfoCell {
+                cell.contentTextView.becomeFirstResponder()
+            }
+        }
+        else if indexPath.section == 2 {
+            doneButtonViewState(state: 1)
+        }
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
+    
+    
     
     
     
@@ -183,6 +250,7 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
 
 // Update cell
 extension ProfileEditViewController: InfoCell {
+    
     func updateTableView() {
         UIView.setAnimationsEnabled(false)
         profileEditTableView.beginUpdates()

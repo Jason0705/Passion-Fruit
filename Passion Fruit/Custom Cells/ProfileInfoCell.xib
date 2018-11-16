@@ -28,21 +28,29 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTC-PW-UCy">
-                                <rect key="frame" x="24" y="24.5" width="272" height="30"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZN-N1-Deu">
                                 <rect key="frame" x="24" y="4" width="87.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIg-eZ-K28">
+                                <rect key="frame" x="24" y="30.5" width="37.5" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NTC-PW-UCy">
+                                <rect key="frame" x="24" y="24.5" width="272" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="VIg-eZ-K28" firstAttribute="centerY" secondItem="NTC-PW-UCy" secondAttribute="centerY" id="44a-9B-sB0"/>
+                            <constraint firstItem="NTC-PW-UCy" firstAttribute="leading" secondItem="VIg-eZ-K28" secondAttribute="leading" id="86o-lq-l4n"/>
                             <constraint firstItem="YZN-N1-Deu" firstAttribute="leading" secondItem="pz0-xo-gFT" secondAttribute="leading" constant="24" id="ABg-gx-3Xp"/>
                             <constraint firstAttribute="trailing" secondItem="NTC-PW-UCy" secondAttribute="trailing" constant="24" id="Cmp-SA-OHS"/>
                             <constraint firstItem="NTC-PW-UCy" firstAttribute="leading" secondItem="pz0-xo-gFT" secondAttribute="leading" constant="24" id="KIV-cM-jEO"/>
@@ -67,6 +75,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="contentTextView" destination="NTC-PW-UCy" id="wvY-q2-heu"/>
+                <outlet property="placeholderLabel" destination="VIg-eZ-K28" id="ald-ah-Yov"/>
                 <outlet property="titleLabel" destination="YZN-N1-Deu" id="6KR-7r-mpz"/>
                 <outlet property="wordCountLabel" destination="UUL-MH-Ws5" id="hTk-5Z-GgG"/>
             </connections>

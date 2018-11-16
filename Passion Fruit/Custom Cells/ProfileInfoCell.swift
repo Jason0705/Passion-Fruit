@@ -15,10 +15,12 @@ protocol InfoCell {
 class ProfileInfoCell: UITableViewCell {
 
     var cellDelegate: InfoCell?
-    var placeholder = ""
+    var index = 0
+    var content = ""
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var wordCountLabel: UILabel!
+    @IBOutlet weak var placeholderLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
     
     
@@ -38,23 +40,21 @@ class ProfileInfoCell: UITableViewCell {
 
 extension ProfileInfoCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        //placeholderLabel.isHidden = true
-        if contentTextView.textColor == UIColor.lightGray {
-            contentTextView.text = nil
-            contentTextView.textColor = UIColor.black
-        }
+        placeholderLabel.isHidden = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-//        if contentTextView.text.isEmpty {
-//            placeholderLabel.isHidden = false
-//            return
-//        }
-//        placeholderLabel.isHidden = true
         if contentTextView.text.isEmpty {
-            contentTextView.text = placeholder
-            contentTextView.textColor = UIColor.lightGray
+            placeholderLabel.isHidden = false
+            return
         }
+        placeholderLabel.isHidden = true
+//        let profileEditViewController = ProfileEditViewController()
+//        profileEditViewController.infoCellContent[index] = contentTextView.text
+//        print(profileEditViewController.infoCellContent)
+        
+
+        
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -65,6 +65,11 @@ extension ProfileInfoCell: UITextViewDelegate {
         let baseHeight: CGFloat = 30
         let height: CGFloat = newSize.height > baseHeight ? newSize.height : baseHeight
         newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: height)
+        
+//        let profileEditViewController = ProfileEditViewController()
+//        profileEditViewController.infoCellContent[index] = contentTextView.text
+//        print(profileEditViewController.infoCellContent)
+        content = contentTextView.text
         
         cellDelegate?.updateTableView()
     }
