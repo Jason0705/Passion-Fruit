@@ -35,28 +35,28 @@
                                     <constraint firstAttribute="width" constant="8" id="aAt-7X-NU4"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2m-YZ-v7i">
-                                <rect key="frame" x="164" y="8" width="132" height="27.5"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-5b-8uY">
+                                <rect key="frame" x="156" y="7" width="140" height="29.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Vpx-5b-8uY" secondAttribute="trailing" constant="24" id="2as-3q-mHe"/>
                             <constraint firstItem="q1v-xq-1Ht" firstAttribute="top" secondItem="6dm-7e-rpv" secondAttribute="top" constant="8" id="3Ew-NF-2hG"/>
                             <constraint firstAttribute="height" priority="500" constant="50" id="84q-zQ-eiq"/>
                             <constraint firstItem="q1v-xq-1Ht" firstAttribute="leading" secondItem="6dm-7e-rpv" secondAttribute="leading" constant="24" id="Fcv-NL-4LB"/>
                             <constraint firstItem="9Hg-Uo-TaC" firstAttribute="centerY" secondItem="6dm-7e-rpv" secondAttribute="centerY" id="Kwg-ny-08U"/>
-                            <constraint firstAttribute="bottom" secondItem="j2m-YZ-v7i" secondAttribute="bottom" constant="8" id="LvR-VP-8Me"/>
                             <constraint firstAttribute="width" priority="500" constant="320" id="U1Q-17-ABs"/>
                             <constraint firstAttribute="bottom" secondItem="q1v-xq-1Ht" secondAttribute="bottom" constant="8" id="XAu-0R-Lsr"/>
                             <constraint firstItem="9Hg-Uo-TaC" firstAttribute="leading" secondItem="q1v-xq-1Ht" secondAttribute="trailing" id="aaj-Oo-wYj"/>
-                            <constraint firstAttribute="trailing" secondItem="j2m-YZ-v7i" secondAttribute="trailing" constant="24" id="m3D-XI-DK6"/>
+                            <constraint firstItem="Vpx-5b-8uY" firstAttribute="top" secondItem="6dm-7e-rpv" secondAttribute="top" constant="7" id="cdj-vV-8Ax"/>
+                            <constraint firstItem="Vpx-5b-8uY" firstAttribute="leading" secondItem="q1v-xq-1Ht" secondAttribute="trailing" id="dTA-AA-ByP"/>
+                            <constraint firstAttribute="bottom" secondItem="Vpx-5b-8uY" secondAttribute="bottom" constant="7" id="nLC-QM-0DD"/>
                             <constraint firstItem="9Hg-Uo-TaC" firstAttribute="top" secondItem="6dm-7e-rpv" secondAttribute="top" id="ndU-xD-gXL"/>
-                            <constraint firstItem="j2m-YZ-v7i" firstAttribute="leading" secondItem="9Hg-Uo-TaC" secondAttribute="trailing" id="r9K-eR-JVP"/>
                             <constraint firstAttribute="bottom" secondItem="9Hg-Uo-TaC" secondAttribute="bottom" id="ykf-vP-Yn1"/>
-                            <constraint firstItem="j2m-YZ-v7i" firstAttribute="top" secondItem="6dm-7e-rpv" secondAttribute="top" constant="8" id="z6p-J1-IJO"/>
                             <constraint firstItem="9Hg-Uo-TaC" firstAttribute="centerX" secondItem="6dm-7e-rpv" secondAttribute="centerX" id="zfO-b5-skn"/>
                         </constraints>
                     </view>
@@ -72,7 +72,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="contentLabel" destination="j2m-YZ-v7i" id="1aQ-zf-M2u"/>
+                <outlet property="contentTextView" destination="Vpx-5b-8uY" id="qE9-71-1rG"/>
                 <outlet property="titleLabel" destination="q1v-xq-1Ht" id="bqK-El-7w2"/>
             </connections>
             <point key="canvasLocation" x="52.799999999999997" y="48.575712143928037"/>

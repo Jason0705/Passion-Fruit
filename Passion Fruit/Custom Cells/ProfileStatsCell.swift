@@ -11,7 +11,7 @@ import UIKit
 class ProfileStatsCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var contentTextView: UITextView!
     
     
     override func awakeFromNib() {

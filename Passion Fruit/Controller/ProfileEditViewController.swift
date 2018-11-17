@@ -21,6 +21,10 @@ class ProfileEditViewController: UIViewController {
     @IBOutlet weak var doneButtonView: UIView!
     @IBOutlet weak var doneButtonViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var pickerViewHeight: NSLayoutConstraint!
+    
+    
     // MARK: - Variables
     
     struct tableSection {
@@ -29,16 +33,36 @@ class ProfileEditViewController: UIViewController {
         var showHeader: Bool!
     }
     
+    struct picker {
+        var data: [String]!
+        var row: Int!
+    }
+    
+    
     var tableData = [tableSection]()
+    var pickerData = [picker]()
     
     var selectedProfilePhoto: UIImage?
     var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold ProfileInfoCell().contentTextView.text
     
+    var statsIndex = 0
+    var agePickerData = (18...100).map {"\($0)"}
+    var heightPickerData = (100...250).map {"\($0) cm"}
+    var weightPickerData = (40...280).map {"\($0) kg"}
+    var wantPickerData = ["Do Not Show", "Have A Relationship", "Have Fun", "Have Both (Require Subscription)"]
     
     let imageCells = ["Image"]
     let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
-    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Gender", "Preference", "Relationship Status", "I'm Looking For", "I'm Into"] // hold statsCell displaying title
+    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Gender", "Preference", "Relationship Status", "I Want To", "I'm Looking For"] // hold statsCell displaying title
     let infoCellPlaceholders = ["This will be displayed on your profile...", "Let people know about you...", "Let people know what you like...", "Let people know what you expect..."]
+    
+    let ethnicityPickerData = ["Do Not Show", "Asian", "African", "Latino", "Middle Eastern", "Native American", "White", "South Asian", "Mixed", "Other"]
+    let genderPickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
+    let preferencePickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
+    let relationshipPickerData = ["Do Not Show", "Single", "Dating", "Exclusive", "Committed", "Engaged", "Partnered", "Married", "Open Relationship", "Separated", "Divorced"]
+    let relationshipOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking"]
+    let funOptionsData = ["NSA", "Right Now", "Discreet Fun", "Kinks", "Networking"]
+    let bothOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
     
     
     // MARK: - View Did Load
@@ -51,11 +75,14 @@ class ProfileEditViewController: UIViewController {
         profileEditTableView.register(UINib(nibName: "ProfileInfoCell", bundle: nil), forCellReuseIdentifier: "profileInfoCell")
         profileEditTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
         
-        populateTableData()
-        
         // Set UI State
         doneButtonViewHeight.constant = 0
         doneButton.isHidden = true
+        pickerViewHeight.constant = 0
+        
+        // Call Functions
+        populateTableData()
+        populatePickerData()
     }
     
     
@@ -68,12 +95,29 @@ class ProfileEditViewController: UIViewController {
         present(pickerController, animated: true, completion: nil)
     }
     
-    // Populate table
+    // Populate table data
     func populateTableData() {
         tableData.removeAll()
         tableData.append(tableSection(header: "IMAGE", cell: imageCells, showHeader: false))
         tableData.append(tableSection(header: "INFO", cell: infoCells, showHeader: true))
         tableData.append(tableSection(header: "STATS", cell: statsCells, showHeader: true))
+    }
+    
+    // Populate picker data
+    func populatePickerData() {
+        pickerData.removeAll()
+        agePickerData.insert("Do Not Show", at: 0)
+        heightPickerData.insert("Do Not Show", at: 0)
+        weightPickerData.insert("Do Not Show", at: 0)
+        pickerData.append(picker(data: agePickerData, row: 0))
+        pickerData.append(picker(data: heightPickerData, row: 0))
+        pickerData.append(picker(data: weightPickerData, row: 0))
+        pickerData.append(picker(data: ethnicityPickerData, row: 0))
+        pickerData.append(picker(data: genderPickerData, row: 0))
+        pickerData.append(picker(data: preferencePickerData, row: 0))
+        pickerData.append(picker(data: relationshipPickerData, row: 0))
+        pickerData.append(picker(data: wantPickerData, row: 0))
+
     }
     
     // Save User Info
@@ -88,21 +132,29 @@ class ProfileEditViewController: UIViewController {
     // UI State
     func doneButtonViewState(state: Int){
         UIView.animate(withDuration: 0.225) {
+            // close state
             if state == 0 {
                 self.doneButtonViewHeight.constant = 0
                 self.doneButton.isHidden = true
-                for index in 0...3 {
+                self.pickerViewHeight.constant = 0
+                for index in 0...self.infoCells.count - 1 {
                     if let cell = self.profileEditTableView.cellForRow(at: [1,index]) as? ProfileInfoCell {
                         cell.contentTextView.endEditing(true)
                     }
                 }
             }
+                
+                // keyboard editing state
             else if state == 1 {
-                self.doneButtonViewHeight.constant = 258 + 44 + 44 // keyboard height + sugest text view height + visable view height
+                self.doneButtonViewHeight.constant = 258 + 44 + 44 // keyboard height + sugest text view height + visable dont button view height
                 self.doneButton.isHidden = false
             }
-            else if state == 2 {
                 
+                // picker editing state
+            else if state == 2 {
+                self.pickerViewHeight.constant = 216 // picker view height
+                self.doneButtonViewHeight.constant = 216 + 44 // picker view height + visable done button view height
+                self.doneButton.isHidden = false
             }
             self.view.layoutIfNeeded()
         }
@@ -127,7 +179,7 @@ class ProfileEditViewController: UIViewController {
 
 }
 
-// MARK: - Table View Delegation and Data Source
+// MARK: - Table View Delegation, Data Source
 
 extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -170,11 +222,15 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileStatsCell", for: indexPath) as! ProfileStatsCell
             cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
-            cell.accessoryType = .none
-            
+            // if last row
             if indexPath.row == tableData[indexPath.section].cell.count - 1 {
                 cell.accessoryType = .disclosureIndicator
+                cell.contentTextView.text = ""////////////////////////////
+                return cell
             }
+            // not last row
+            cell.accessoryType = .none
+            cell.contentTextView.text = pickerData[indexPath.row].data[pickerData[indexPath.row].row]
             
             return cell
             
@@ -197,7 +253,17 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             }
         }
         else if indexPath.section == 2 {
-            doneButtonViewState(state: 1)
+            // if last row selected
+            if indexPath.row == tableData[indexPath.section].cell.count - 1 {
+                
+            }
+                // not last row selected
+            else {
+                statsIndex = indexPath.row
+                pickerView.reloadAllComponents()
+                pickerView.selectRow(pickerData[indexPath.row].row, inComponent: 0, animated: false)
+                doneButtonViewState(state: 2)
+            }
         }
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
@@ -231,6 +297,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 
+
 // MARK: - Image Picker Delegation
 
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -238,10 +305,43 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectedProfilePhoto = image
-            //profilePhotoImageView.image = image
         }
         dismiss(animated: true, completion: nil)
         profileEditTableView.reloadData()
+    }
+}
+
+
+// MARK: - UI Picker Delegation, Data Source
+
+extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    // Number of components
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    // Number of rows
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        if statsIndex < tableData[2].cell.count - 1 {
+//            return pickerData[statsIndex].data.count
+//        }
+//        return 0
+        return pickerData[statsIndex].data.count
+    }
+
+    // Populate picker
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[statsIndex].data[row]
+    }
+
+    // Select row
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerData[statsIndex].row = row
+        
+        // Update section data
+        UIView.setAnimationsEnabled(false)
+        profileEditTableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: UITableView.RowAnimation.none)
+        UIView.setAnimationsEnabled(true)
     }
 }
 
@@ -257,6 +357,7 @@ extension ProfileEditViewController: InfoCell {
         profileEditTableView.endUpdates()
         UIView.setAnimationsEnabled(true)
     }
+    
     
 }
 
