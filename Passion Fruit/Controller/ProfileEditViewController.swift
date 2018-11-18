@@ -34,12 +34,16 @@ class ProfileEditViewController: UIViewController {
     var selectedProfilePhoto: UIImage?
     var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold ProfileInfoCell().contentTextView.text
     
-    var statsIndex = 0
+//    var statsIndex = 0
+    var selectedIndexPath = IndexPath(row: 0, section: 0)
     var agePickerData = (18...100).map {"\($0)"}
     var heightPickerData = (100...250).map {"\($0) cm"}
     var weightPickerData = (40...280).map {"\($0) kg"}
     var wantPickerData = ["Do Not Show", "Have A Relationship", "Have Fun", "Have Both (Require Subscription)"]
-    var optionsData = [""]
+//    var optionsData = [String]()
+    var selectedLookingData = ""
+    var lastSelectedLooking = [Int]()
+    
     
     let imageCells = ["Image"]
     let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
@@ -50,9 +54,10 @@ class ProfileEditViewController: UIViewController {
     let genderPickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
     let preferencePickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
     let relationshipPickerData = ["Do Not Show", "Single", "Dating", "Exclusive", "Committed", "Engaged", "Partnered", "Married", "Open Relationship", "Separated", "Divorced"]
-    let relationshipOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking"]
-    let funOptionsData = ["NSA", "Right Now", "Discreet Fun", "Kinks", "Networking"]
-    let bothOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
+//    let relationshipOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking"]
+//    let funOptionsData = ["NSA", "Right Now", "Discreet Fun", "Kinks", "Networking"]
+//    let bothOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
+    let lookingData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
     
     
     // MARK: - IBOutlets
@@ -84,6 +89,8 @@ class ProfileEditViewController: UIViewController {
         // Call Functions
         populateTableData()
         populatePickerData()
+        
+        print(selectedLookingData)
     }
     
     
@@ -225,11 +232,15 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             // if last row
             if indexPath.row == tableData[indexPath.section].cell.count - 1 {
                 cell.accessoryType = .disclosureIndicator
-                cell.contentTextView.text = ""////////////////////////////
+                cell.contentTextView.text = selectedLookingData////////////////////////////
                 return cell
             }
             // not last row
             cell.accessoryType = .none
+            if pickerData[indexPath.row].row == 0 {
+                cell.contentTextView.text = ""
+                return cell
+            }
             cell.contentTextView.text = pickerData[indexPath.row].data[pickerData[indexPath.row].row]
             
             return cell
@@ -255,29 +266,31 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
         else if indexPath.section == 2 {
             // if last row selected
             if indexPath.row == tableData[indexPath.section].cell.count - 1 {
-                if pickerData[7].row == 1 {
-                    optionsData = relationshipOptionsData
-                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
-                    return
-                }
-                    // if fun
-                else if pickerData[7].row == 2 {
-                    optionsData = funOptionsData
-                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
-                    return
-                }
-                    // if both
-                else if pickerData[7].row == 3 {
-                    optionsData = bothOptionsData
-                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
-                    return
-                }
-                // Present error message
-                AlertService.alertService.presentErrorAlert(message: "Please choose an option for \"I Want To\" first.", vc: self)
+//                if pickerData[7].row == 1 {
+//                    optionsData = relationshipOptionsData
+//                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+//                    return
+//                }
+//                    // if fun
+//                else if pickerData[7].row == 2 {
+//                    optionsData = funOptionsData
+//                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+//                    return
+//                }
+//                    // if both
+//                else if pickerData[7].row == 3 {
+//                    optionsData = bothOptionsData
+//                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+//                    return
+//                }
+//                // Present error message
+//                AlertService.alertService.presentErrorAlert(message: "Please choose an option for \"I Want To\" first.", vc: self)
+                performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
             }
                 // not last row selected
             else {
-                statsIndex = indexPath.row
+//                statsIndex = indexPath.row
+                selectedIndexPath = indexPath
                 pickerView.reloadAllComponents()
                 pickerView.selectRow(pickerData[indexPath.row].row, inComponent: 0, animated: false)
                 doneButtonViewState(state: 2)
@@ -291,7 +304,10 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileEditToProfileOptionVC" {
             let destinationVC = segue.destination as! ProfileOptionViewController
-            destinationVC.optionsData = optionsData
+//            destinationVC.optionsData = optionsData
+            destinationVC.optionsData = lookingData
+            destinationVC.lastSelected = lastSelectedLooking
+            destinationVC.delegate = self
         }
     }
     
@@ -348,29 +364,30 @@ extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 
     // Number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData[statsIndex].data.count
+//        return pickerData[statsIndex].data.count
+        return pickerData[selectedIndexPath.row].data.count
     }
 
     // Populate picker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[statsIndex].data[row]
+//        return pickerData[statsIndex].data[row]
+        return pickerData[selectedIndexPath.row].data[row]
     }
 
     // Select row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerData[statsIndex].row = row
+//        pickerData[statsIndex].row = row
+        pickerData[selectedIndexPath.row].row = row
         
         // Update section data
-        UIView.setAnimationsEnabled(false)
-        profileEditTableView.reloadSections(NSIndexSet(index: 2) as IndexSet, with: UITableView.RowAnimation.none)
-        UIView.setAnimationsEnabled(true)
+        updateSection(section: 2)
     }
 }
 
 
-// MARK: - Update Custom Cell
+// MARK: - Protocols
 
-// Update cell
+// Update Custom cell
 extension ProfileEditViewController: InfoCell {
     
     func updateTableView() {
@@ -380,6 +397,22 @@ extension ProfileEditViewController: InfoCell {
         UIView.setAnimationsEnabled(true)
     }
     
+}
+
+
+// Receive Data
+extension ProfileEditViewController: CanReceive {
+    
+    func dataReceived(data: String, lastSelected: [Int]) {
+        selectedLookingData = data
+        lastSelectedLooking = lastSelected
+    }
+    
+    func updateSection(section: Int) {
+        UIView.setAnimationsEnabled(false)
+        profileEditTableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: UITableView.RowAnimation.none)
+        UIView.setAnimationsEnabled(true)
+    }
     
 }
 

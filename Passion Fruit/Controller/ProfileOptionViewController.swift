@@ -8,11 +8,23 @@
 
 import UIKit
 
+
+protocol CanReceive {
+    func dataReceived(data: String, lastSelected: [Int])
+    func updateSection(section: Int)
+}
+
+
 class ProfileOptionViewController: UIViewController {
 
     
     // MMARK: - Variables
-    var optionsData = [""]
+    
+    var delegate: CanReceive?
+    var optionsData = [String]()
+    var lastSelected = [Int]()
+    var selectedOptionsArray = [String]()
+    var selectedOptions = ""
     
     
     // MARK: - IBOutlets
@@ -27,6 +39,29 @@ class ProfileOptionViewController: UIViewController {
         
         // Register Cell.xib
         optionsTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if self.isMovingFromParent {
+            saveSelectedOptions()
+            selectedOptions = selectedOptionsArray.joined(separator: ", ")
+            delegate?.dataReceived(data: selectedOptions, lastSelected: lastSelected)
+            delegate?.updateSection(section: 2)
+        }
+    }
+    
+    func saveSelectedOptions() {
+        lastSelected.removeAll()
+        for index in 0...optionsData.count - 1 {
+            if let cell = optionsTableView.cellForRow(at: [0, index]) as? ProfileStatsCell {
+                if cell.accessoryType == .checkmark {
+                    selectedOptionsArray.append(optionsData[index])
+                    lastSelected.append(index)
+                }
+            }
+        }
     }
     
     
@@ -46,6 +81,12 @@ extension ProfileOptionViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileStatsCell", for: indexPath) as! ProfileStatsCell
         cell.titleLabel.text = optionsData[indexPath.row]
+        for index in lastSelected {
+            if indexPath.row == index {
+                cell.tag = 1
+                cell.accessoryType = .checkmark
+            }
+        }
         return cell
     }
 
