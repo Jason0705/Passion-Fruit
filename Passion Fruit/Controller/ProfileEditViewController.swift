@@ -14,17 +14,6 @@ import FirebaseStorage
 class ProfileEditViewController: UIViewController {
 
     
-    // MARK: - IBOutlets
-    
-    @IBOutlet weak var profileEditTableView: UITableView!
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var doneButtonView: UIView!
-    @IBOutlet weak var doneButtonViewHeight: NSLayoutConstraint!
-    
-    @IBOutlet weak var pickerView: UIPickerView!
-    @IBOutlet weak var pickerViewHeight: NSLayoutConstraint!
-    
-    
     // MARK: - Variables
     
     struct tableSection {
@@ -50,6 +39,7 @@ class ProfileEditViewController: UIViewController {
     var heightPickerData = (100...250).map {"\($0) cm"}
     var weightPickerData = (40...280).map {"\($0) kg"}
     var wantPickerData = ["Do Not Show", "Have A Relationship", "Have Fun", "Have Both (Require Subscription)"]
+    var optionsData = [""]
     
     let imageCells = ["Image"]
     let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
@@ -65,12 +55,23 @@ class ProfileEditViewController: UIViewController {
     let bothOptionsData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
     
     
+    // MARK: - IBOutlets
+    
+    @IBOutlet weak var profileEditTableView: UITableView!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var doneButtonView: UIView!
+    @IBOutlet weak var doneButtonViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var pickerViewHeight: NSLayoutConstraint!
+    
+    
     // MARK: - View Did Load
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Register OrderCell.xib
+        // Register Cell.xib
         profileEditTableView.register(UINib(nibName: "ProfileImageCell", bundle: nil), forCellReuseIdentifier: "profileImageCell")
         profileEditTableView.register(UINib(nibName: "ProfileInfoCell", bundle: nil), forCellReuseIdentifier: "profileInfoCell")
         profileEditTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
@@ -158,7 +159,6 @@ class ProfileEditViewController: UIViewController {
             }
             self.view.layoutIfNeeded()
         }
-        
         
         
     }
@@ -255,7 +255,25 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
         else if indexPath.section == 2 {
             // if last row selected
             if indexPath.row == tableData[indexPath.section].cell.count - 1 {
-                
+                if pickerData[7].row == 1 {
+                    optionsData = relationshipOptionsData
+                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+                    return
+                }
+                    // if fun
+                else if pickerData[7].row == 2 {
+                    optionsData = funOptionsData
+                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+                    return
+                }
+                    // if both
+                else if pickerData[7].row == 3 {
+                    optionsData = bothOptionsData
+                    performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+                    return
+                }
+                // Present error message
+                AlertService.alertService.presentErrorAlert(message: "Please choose an option for \"I Want To\" first.", vc: self)
             }
                 // not last row selected
             else {
@@ -268,6 +286,14 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
+    
+    // Prepare for segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profileEditToProfileOptionVC" {
+            let destinationVC = segue.destination as! ProfileOptionViewController
+            destinationVC.optionsData = optionsData
+        }
+    }
     
     
     
@@ -322,10 +348,6 @@ extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 
     // Number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        if statsIndex < tableData[2].cell.count - 1 {
-//            return pickerData[statsIndex].data.count
-//        }
-//        return 0
         return pickerData[statsIndex].data.count
     }
 
