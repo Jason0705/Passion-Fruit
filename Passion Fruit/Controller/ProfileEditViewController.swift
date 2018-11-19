@@ -33,6 +33,10 @@ class ProfileEditViewController: UIViewController {
     
     var selectedProfilePhoto: UIImage?
     var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold ProfileInfoCell().contentTextView.text
+    var statsCellContent: Array<String> = Array(repeating: "", count: 8) // hold ProfileStatsCell().contentTextView.text
+    var statsCellPickerRow: Array<Int> = Array(repeating: 0, count: 8) // hold all pickerData.row
+    var selectedLookingData = ""
+    var lastSelectedLooking = [Int]()
     
 //    var statsIndex = 0
     var selectedIndexPath = IndexPath(row: 0, section: 0)
@@ -41,8 +45,7 @@ class ProfileEditViewController: UIViewController {
     var weightPickerData = (40...280).map {"\($0) kg"}
     var wantPickerData = ["Do Not Show", "Have A Relationship", "Have Fun", "Have Both (Require Subscription)"]
 //    var optionsData = [String]()
-    var selectedLookingData = ""
-    var lastSelectedLooking = [Int]()
+    
     
     
     let imageCells = ["Image"]
@@ -130,10 +133,19 @@ class ProfileEditViewController: UIViewController {
     
     // Save User Info
     func saveUserInfoToArray() {
-        for index in 0...3 {
+        for index in 0...tableData[1].cell.count - 1 {
             if let cell = profileEditTableView.cellForRow(at: [1,index]) as? ProfileInfoCell {
                 infoCellContent[index] = cell.content
             }
+        }
+    }
+    
+    func saveUserStatsToArray() {
+        for index in 0...pickerData.count - 1 {
+            if pickerData[index].row != 0 {
+                statsCellContent[index] = pickerData[index].data[pickerData[index].row]
+            }
+            statsCellPickerRow[index] = pickerData[index].row
         }
     }
     
@@ -175,7 +187,10 @@ class ProfileEditViewController: UIViewController {
     
     @IBAction func skipSaveBarButtonPressed(_ sender: UIBarButtonItem) {
         saveUserInfoToArray()
+        saveUserStatsToArray()
         print(infoCellContent)
+        print(statsCellContent)
+        print(statsCellPickerRow)
         
     }
     
@@ -219,9 +234,13 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
             cell.placeholderLabel.textColor = UIColor.lightGray
             cell.index = indexPath.row
-            if !cell.content.isEmpty {
+//            if !cell.content.isEmpty {
+//                cell.placeholderLabel.isHidden = true
+//                cell.contentTextView.text = cell.content
+//            }
+            if !infoCellContent[indexPath.row].isEmpty {
                 cell.placeholderLabel.isHidden = true
-                cell.contentTextView.text = cell.content
+                cell.contentTextView.text = infoCellContent[indexPath.row]
             }
             
             return cell
@@ -232,7 +251,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             // if last row
             if indexPath.row == tableData[indexPath.section].cell.count - 1 {
                 cell.accessoryType = .disclosureIndicator
-                cell.contentTextView.text = selectedLookingData////////////////////////////
+                cell.contentTextView.text = selectedLookingData
                 return cell
             }
             // not last row
