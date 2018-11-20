@@ -9,14 +9,13 @@
 import UIKit
 
 protocol InfoCell {
+    func infoCellContentReceived(content: String)
     func updateTableView()
 }
 
 class ProfileInfoCell: UITableViewCell {
 
     var cellDelegate: InfoCell?
-    var index = 0
-    var content = ""
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var wordCountLabel: UILabel!
@@ -49,28 +48,11 @@ extension ProfileInfoCell: UITextViewDelegate {
             return
         }
         placeholderLabel.isHidden = true
-//        let profileEditViewController = ProfileEditViewController()
-//        profileEditViewController.infoCellContent[index] = contentTextView.text
-//        print(profileEditViewController.infoCellContent)
-        
-
-        
+//        cellDelegate?.infoCellContentReceived(content: contentTextView.text)
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        let fixedWidth = contentTextView.frame.size.width
-        let newSize = contentTextView.sizeThatFits(CGSize(width: fixedWidth, height: .greatestFiniteMagnitude))
-        var newFrame = contentTextView.frame
-        
-        let baseHeight: CGFloat = 30
-        let height: CGFloat = newSize.height > baseHeight ? newSize.height : baseHeight
-        newFrame.size = CGSize(width: max(newSize.width, fixedWidth), height: height)
-        
-//        let profileEditViewController = ProfileEditViewController()
-//        profileEditViewController.infoCellContent[index] = contentTextView.text
-//        print(profileEditViewController.infoCellContent)
-        content = contentTextView.text
-        
+        cellDelegate?.infoCellContentReceived(content: contentTextView.text)
         cellDelegate?.updateTableView()
     }
 }

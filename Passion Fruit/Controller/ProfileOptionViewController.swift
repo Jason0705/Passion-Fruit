@@ -9,8 +9,8 @@
 import UIKit
 
 
-protocol CanReceive {
-    func dataReceived(data: String, lastSelected: [Int])
+protocol ProfileOptionReceive {
+    func optionReceived(option: String, lastSelected: [Int])
     func updateSection(section: Int)
 }
 
@@ -20,7 +20,7 @@ class ProfileOptionViewController: UIViewController {
     
     // MMARK: - Variables
     
-    var delegate: CanReceive?
+    var delegate: ProfileOptionReceive?
     var optionsData = [String]()
     var lastSelected = [Int]()
     var selectedOptionsArray = [String]()
@@ -47,7 +47,7 @@ class ProfileOptionViewController: UIViewController {
         if self.isMovingFromParent {
             saveSelectedOptions()
             selectedOptions = selectedOptionsArray.joined(separator: ", ")
-            delegate?.dataReceived(data: selectedOptions, lastSelected: lastSelected)
+            delegate?.optionReceived(option: selectedOptions, lastSelected: lastSelected)
             delegate?.updateSection(section: 2)
         }
     }
