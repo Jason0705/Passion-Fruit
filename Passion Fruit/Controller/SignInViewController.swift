@@ -79,7 +79,7 @@ class SignInViewController: UIViewController {
         
         // Sign in user using email and password input.
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
-            self.performSegue(withIdentifier: "signInToMainTabbarVC", sender: nil)
+            self.performSegue(withIdentifier: "signInToMainTabBarVC", sender: nil)
         }, onFail: { (error) in
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })

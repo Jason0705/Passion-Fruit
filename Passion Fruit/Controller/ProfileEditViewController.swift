@@ -161,17 +161,78 @@ class ProfileEditViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
         
+    }
+    
+    
+    // Save data to firebase
+    func saveProfile() {
         
+        if Auth.auth().currentUser != nil {
+            // User signed in
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
+            let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
+            let userReference = databaseReference.child("users").child(uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+            
+            let storageReference = Storage.storage().reference()
+            let profilePhotoReference = storageReference.child("profile_images").child("\(uid!).jpg")
+            
+            // Save profile photo
+            if let profilePhoto = selectedProfilePhoto, let imageData = profilePhoto.jpegData(compressionQuality: 0.1) {
+                profilePhotoReference.putData(imageData, metadata: nil) { (storageMetadata, error) in
+                    if error != nil {
+                        print("Save profile photo error: \(error!)")
+                        return
+                    }
+                    // no error
+                    profilePhotoReference.downloadURL(completion: { (url, error) in
+                        if error != nil {
+                            print("Get profile photo URL error: \(error!)")
+                            return
+                        }
+                        // no error
+                        let profilePhotoURL = url?.absoluteString
+                        userReference.child("/profilePhotoURL").setValue(profilePhotoURL)
+                    })
+                }
+            }
+            userReference.child("/profilePhotoURL").setValue("")
+            
+            // Save info data
+            userReference.child("/user_info").child("user_name").setValue(infoCellContent[0])
+            userReference.child("/user_info").child("i_am").setValue(infoCellContent[1])
+            userReference.child("/user_info").child("i_like").setValue(infoCellContent[2])
+            userReference.child("/user_info").child("my_date_would").setValue(infoCellContent[3])
+            
+            // Save stats data
+            userReference.child("/user_info").child("age").child("content").setValue(statsCellContent[0])
+            userReference.child("/user_info").child("age").child("row").setValue(statsCellPickerRow[0])
+            userReference.child("/user_info").child("height").child("content").setValue(statsCellContent[1])
+            userReference.child("/user_info").child("height").child("row").setValue(statsCellPickerRow[1])
+            userReference.child("/user_info").child("weight").child("content").setValue(statsCellContent[2])
+            userReference.child("/user_info").child("weight").child("row").setValue(statsCellPickerRow[2])
+            userReference.child("/user_info").child("ethnicity").child("content").setValue(statsCellContent[3])
+            userReference.child("/user_info").child("ethnicity").child("row").setValue(statsCellPickerRow[3])
+            userReference.child("/user_info").child("gender").child("content").setValue(statsCellContent[4])
+            userReference.child("/user_info").child("gender").child("row").setValue(statsCellPickerRow[4])
+            userReference.child("/user_info").child("preference").child("content").setValue(statsCellContent[5])
+            userReference.child("/user_info").child("preference").child("row").setValue(statsCellPickerRow[5])
+            userReference.child("/user_info").child("relationship_status").child("content").setValue(statsCellContent[6])
+            userReference.child("/user_info").child("relationship_status").child("row").setValue(statsCellPickerRow[6])
+            userReference.child("/user_info").child("want_to").child("content").setValue(statsCellContent[7])
+            userReference.child("/user_info").child("want_to").child("row").setValue(statsCellPickerRow[7])
+            userReference.child("/user_info").child("looking_for").child("content").setValue(selectedLookingData)
+            userReference.child("/user_info").child("looking_for").child("row").setValue(lastSelectedLooking)
+        }
+//        performSegue(withIdentifier: "profilePhotoToUserInfoVC", sender: nil)
+        // User not signed in
     }
     
 
     // MARK: - IBActions
     
     @IBAction func skipSaveBarButtonPressed(_ sender: UIBarButtonItem) {
-        
-        print(infoCellContent)
-        print(statsCellContent)
-        print(statsCellPickerRow)
+        saveProfile()
         
     }
     
