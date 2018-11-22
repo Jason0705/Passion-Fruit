@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class SignUpViewController: UIViewController {
 
@@ -66,15 +67,22 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     // MARK: - IBActions
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        view.endEditing(true)
+        SVProgressHUD.show()
         // Sign up user using email and password input.
         if passwordTextField.text != confirmPasswordTextField.text {
             AlertService.alertService.presentErrorAlert(message: "Password does not match the confirm password! Please check again.", vc: self)
             return
         }
         AuthService.signUpUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            SVProgressHUD.dismiss()
             self.performSegue(withIdentifier: "signUpToProfileEditNavigationController", sender: nil)
         }, onFail: { (error) in
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)

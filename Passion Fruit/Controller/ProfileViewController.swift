@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SVProgressHUD
 
 class ProfileViewController: UIViewController {
 
@@ -31,6 +32,7 @@ class ProfileViewController: UIViewController {
             
         } catch let logOutError {
             print(logOutError)
+            SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
         }
         
     }

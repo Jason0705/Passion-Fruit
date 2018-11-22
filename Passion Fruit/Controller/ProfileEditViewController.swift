@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import SVProgressHUD
 
 class ProfileEditViewController: UIViewController {
 
@@ -152,11 +153,7 @@ class ProfileEditViewController: UIViewController {
                 self.doneButtonViewHeight.constant = 0
                 self.doneButton.isHidden = true
                 self.pickerViewHeight.constant = 0
-                for index in 0...self.infoCells.count - 1 {
-                    if let cell = self.profileEditTableView.cellForRow(at: [1,index]) as? ProfileInfoCell {
-                        cell.contentTextView.endEditing(true)
-                    }
-                }
+                self.view.endEditing(true)
             }
                 
                 // keyboard editing state
@@ -192,6 +189,10 @@ class ProfileEditViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        doneButtonViewState(state: 0)
+    }
+    
     // Pick Profile Photo
     func handleSelectProfilePhoto() {
         let pickerController = UIImagePickerController()
@@ -217,12 +218,16 @@ class ProfileEditViewController: UIViewController {
                 profilePhotoReference.putData(imageData, metadata: nil) { (storageMetadata, error) in
                     if error != nil {
                         print("Save profile photo error: \(error!)")
+                        SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                        SVProgressHUD.dismiss(withDelay: 2)
                         return
                     }
                     // no error
                     profilePhotoReference.downloadURL(completion: { (url, error) in
                         if error != nil {
                             print("Get profile photo URL error: \(error!)")
+                            SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                            SVProgressHUD.dismiss(withDelay: 2)
                             return
                         }
                         // no error
@@ -259,6 +264,8 @@ class ProfileEditViewController: UIViewController {
             userReference.child("/profile").child("/user_stats").child("looking_for").child("content").setValue(selectedLookingData)
             userReference.child("/profile").child("/user_stats").child("looking_for").child("row").setValue(lastSelectedLooking)
             
+            SVProgressHUD.showSuccess(withStatus: "Changes Saved")
+            SVProgressHUD.dismiss(withDelay: 1)
         }
         
         // User not signed in
@@ -268,6 +275,7 @@ class ProfileEditViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
+        doneButtonViewState(state: 0)
         saveProfile()
         if from == 1 {
             // Navigate to MainTabBarController

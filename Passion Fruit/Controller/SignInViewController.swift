@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SVProgressHUD
 
 class SignInViewController: UIViewController {
 
@@ -34,10 +35,10 @@ class SignInViewController: UIViewController {
         checkTextFields()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        autoSignIn()
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        autoSignIn()
+    }
     
     
     // MARK: - Functions
@@ -68,6 +69,10 @@ class SignInViewController: UIViewController {
         }
         signInButton.isEnabled = true
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 
     
     // MARK: - IBActions
@@ -77,10 +82,15 @@ class SignInViewController: UIViewController {
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         
+        view.endEditing(true)
+        SVProgressHUD.show()
+        
         // Sign in user using email and password input.
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
+            SVProgressHUD.dismiss()
             self.performSegue(withIdentifier: "signInToMainTabBarController", sender: nil)
         }, onFail: { (error) in
+            SVProgressHUD.dismiss()
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })
     }
