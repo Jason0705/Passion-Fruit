@@ -51,7 +51,7 @@ class SignInViewController: UIViewController {
     // Auto Sign In
     func autoSignIn() {
         if Auth.auth().currentUser != nil {
-            performSegue(withIdentifier: "signInToMainTabBarVC", sender: nil)
+            performSegue(withIdentifier: "signInToMainTabBarController", sender: nil)
         }
     }
     
@@ -79,7 +79,7 @@ class SignInViewController: UIViewController {
         
         // Sign in user using email and password input.
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
-            self.performSegue(withIdentifier: "signInToMainTabBarVC", sender: nil)
+            self.performSegue(withIdentifier: "signInToMainTabBarController", sender: nil)
         }, onFail: { (error) in
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })

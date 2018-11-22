@@ -30,16 +30,24 @@ class ProfileEditViewController: UIViewController {
     var tableData = [tableSection]()
     var pickerData = [picker]()
     
+    var from = 0
+    
         // section 0
     var selectedProfilePhoto: UIImage?
+    var selectedProfilePhotoCompare: UIImage?
         // section 1
     var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold ProfileInfoCell().contentTextView.text
+    var infoCellContentCompare: Array<String> = Array(repeating: "", count: 4)
         // section 2 row 0 ~ 7
     var statsCellContent: Array<String> = Array(repeating: "", count: 8) // hold ProfileStatsCell().contentTextView.text
+    var statsCellContentCompare: Array<String> = Array(repeating: "", count: 8)
     var statsCellPickerRow: Array<Int> = Array(repeating: 0, count: 8) // hold all pickerData.row
         // section 2 row 8 (last row)
+    var statsCellPickerRowCompare: Array<Int> = Array(repeating: 0, count: 8)
     var selectedLookingData = ""
+    var selectedLookingDataCompare = ""
     var lastSelectedLooking = [Int]()
+    var lastSelectedLookingCompare = [Int]()
     
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     var agePickerData = (18...100).map {"\($0)"}
@@ -64,6 +72,7 @@ class ProfileEditViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet weak var profileEditTableView: UITableView!
+    @IBOutlet weak var saveBarButton: UIBarButtonItem!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var doneButtonView: UIView!
     @IBOutlet weak var doneButtonViewHeight: NSLayoutConstraint!
@@ -83,26 +92,16 @@ class ProfileEditViewController: UIViewController {
         profileEditTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
         
         // Set UI State
-        doneButtonViewHeight.constant = 0
-        doneButton.isHidden = true
-        pickerViewHeight.constant = 0
+        setUp()
         
         // Call Functions
         populateTableData()
         populatePickerData()
         
-        print(selectedLookingData)
     }
     
     
     // MARK: - Functions
-
-    // Pick Profile Photo
-    func handleSelectProfilePhoto() {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        present(pickerController, animated: true, completion: nil)
-    }
     
     // Populate table data
     func populateTableData() {
@@ -132,6 +131,20 @@ class ProfileEditViewController: UIViewController {
     
     
     // UI State
+    func setUp() {
+        doneButtonViewHeight.constant = 0
+        doneButton.isHidden = true
+        pickerViewHeight.constant = 0
+        navigationItem.title = "Edit"
+        saveBarButton.isEnabled = false
+        saveBarButton.title = ""
+        if from == 1 {
+            navigationItem.title = "Set Up"
+            saveBarButton.isEnabled = true
+            saveBarButton.title = "Skip"
+        }
+    }
+    
     func doneButtonViewState(state: Int){
         UIView.animate(withDuration: 0.225) {
             // close state
@@ -163,6 +176,28 @@ class ProfileEditViewController: UIViewController {
         
     }
     
+    // Update save bar button state
+    func updateSaveBarButton() {
+        if selectedProfilePhoto != selectedProfilePhotoCompare || infoCellContent != infoCellContentCompare || statsCellContent != statsCellContentCompare || statsCellPickerRow != statsCellPickerRowCompare || selectedLookingData != selectedLookingDataCompare || lastSelectedLooking != lastSelectedLookingCompare {
+            saveBarButton.isEnabled = true
+            saveBarButton.title = "Save"
+        }
+        else if from == 1 { // from sign up page
+            saveBarButton.isEnabled = true
+            saveBarButton.title = "Skip"
+        }
+        else if from == 0 { // from profile page
+            saveBarButton.isEnabled = false
+            saveBarButton.title = ""
+        }
+    }
+    
+    // Pick Profile Photo
+    func handleSelectProfilePhoto() {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        present(pickerController, animated: true, completion: nil)
+    }
     
     // Save data to firebase
     func saveProfile() {
@@ -192,48 +227,52 @@ class ProfileEditViewController: UIViewController {
                         }
                         // no error
                         let profilePhotoURL = url?.absoluteString
-                        userReference.child("/profilePhotoURL").setValue(profilePhotoURL)
+                        userReference.child("/profile").child("/profile_photo_url").setValue(profilePhotoURL)
                     })
                 }
             }
-            userReference.child("/profilePhotoURL").setValue("")
+            userReference.child("/profile").child("/profile_photo_url").setValue("")
             
             // Save info data
-            userReference.child("/user_info").child("user_name").setValue(infoCellContent[0])
-            userReference.child("/user_info").child("i_am").setValue(infoCellContent[1])
-            userReference.child("/user_info").child("i_like").setValue(infoCellContent[2])
-            userReference.child("/user_info").child("my_date_would").setValue(infoCellContent[3])
+            userReference.child("/profile").child("/user_info").child("user_name").setValue(infoCellContent[0])
+            userReference.child("/profile").child("/user_info").child("i_am").setValue(infoCellContent[1])
+            userReference.child("/profile").child("/user_info").child("i_like").setValue(infoCellContent[2])
+            userReference.child("/profile").child("/user_info").child("my_date_would").setValue(infoCellContent[3])
             
             // Save stats data
-            userReference.child("/user_info").child("age").child("content").setValue(statsCellContent[0])
-            userReference.child("/user_info").child("age").child("row").setValue(statsCellPickerRow[0])
-            userReference.child("/user_info").child("height").child("content").setValue(statsCellContent[1])
-            userReference.child("/user_info").child("height").child("row").setValue(statsCellPickerRow[1])
-            userReference.child("/user_info").child("weight").child("content").setValue(statsCellContent[2])
-            userReference.child("/user_info").child("weight").child("row").setValue(statsCellPickerRow[2])
-            userReference.child("/user_info").child("ethnicity").child("content").setValue(statsCellContent[3])
-            userReference.child("/user_info").child("ethnicity").child("row").setValue(statsCellPickerRow[3])
-            userReference.child("/user_info").child("gender").child("content").setValue(statsCellContent[4])
-            userReference.child("/user_info").child("gender").child("row").setValue(statsCellPickerRow[4])
-            userReference.child("/user_info").child("preference").child("content").setValue(statsCellContent[5])
-            userReference.child("/user_info").child("preference").child("row").setValue(statsCellPickerRow[5])
-            userReference.child("/user_info").child("relationship_status").child("content").setValue(statsCellContent[6])
-            userReference.child("/user_info").child("relationship_status").child("row").setValue(statsCellPickerRow[6])
-            userReference.child("/user_info").child("want_to").child("content").setValue(statsCellContent[7])
-            userReference.child("/user_info").child("want_to").child("row").setValue(statsCellPickerRow[7])
-            userReference.child("/user_info").child("looking_for").child("content").setValue(selectedLookingData)
-            userReference.child("/user_info").child("looking_for").child("row").setValue(lastSelectedLooking)
+            userReference.child("/profile").child("/user_stats").child("age").child("content").setValue(statsCellContent[0])
+            userReference.child("/profile").child("/user_stats").child("age").child("row").setValue(statsCellPickerRow[0])
+            userReference.child("/profile").child("/user_stats").child("height").child("content").setValue(statsCellContent[1])
+            userReference.child("/profile").child("/user_stats").child("height").child("row").setValue(statsCellPickerRow[1])
+            userReference.child("/profile").child("/user_stats").child("weight").child("content").setValue(statsCellContent[2])
+            userReference.child("/profile").child("/user_stats").child("weight").child("row").setValue(statsCellPickerRow[2])
+            userReference.child("/profile").child("/user_stats").child("ethnicity").child("content").setValue(statsCellContent[3])
+            userReference.child("/profile").child("/user_stats").child("ethnicity").child("row").setValue(statsCellPickerRow[3])
+            userReference.child("/profile").child("/user_stats").child("gender").child("content").setValue(statsCellContent[4])
+            userReference.child("/profile").child("/user_stats").child("gender").child("row").setValue(statsCellPickerRow[4])
+            userReference.child("/profile").child("/user_stats").child("preference").child("content").setValue(statsCellContent[5])
+            userReference.child("/profile").child("/user_stats").child("preference").child("row").setValue(statsCellPickerRow[5])
+            userReference.child("/profile").child("/user_stats").child("relationship_status").child("content").setValue(statsCellContent[6])
+            userReference.child("/profile").child("/user_stats").child("relationship_status").child("row").setValue(statsCellPickerRow[6])
+            userReference.child("/profile").child("/user_stats").child("want_to").child("content").setValue(statsCellContent[7])
+            userReference.child("/profile").child("/user_stats").child("want_to").child("row").setValue(statsCellPickerRow[7])
+            userReference.child("/profile").child("/user_stats").child("looking_for").child("content").setValue(selectedLookingData)
+            userReference.child("/profile").child("/user_stats").child("looking_for").child("row").setValue(lastSelectedLooking)
+            
+            // Navigate to MainTabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+            self.present(mainTabBarController, animated: true, completion: nil)
         }
-//        performSegue(withIdentifier: "profilePhotoToUserInfoVC", sender: nil)
+        
         // User not signed in
     }
     
 
     // MARK: - IBActions
     
-    @IBAction func skipSaveBarButtonPressed(_ sender: UIBarButtonItem) {
+    @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
         saveProfile()
-        
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
@@ -382,6 +421,7 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             selectedProfilePhoto = image
+            updateSaveBarButton()
         }
         dismiss(animated: true, completion: nil)
         profileEditTableView.reloadData()
@@ -421,6 +461,7 @@ extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
         
         // Update section data
         updateSection(section: 2)
+        updateSaveBarButton()
     }
 }
 
@@ -431,6 +472,7 @@ extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 extension ProfileEditViewController: InfoCell {
     func infoCellContentReceived(content: String) {
         infoCellContent[selectedIndexPath.row] = content
+        updateSaveBarButton()
     }
     
     
@@ -438,6 +480,7 @@ extension ProfileEditViewController: InfoCell {
         UIView.setAnimationsEnabled(false)
         profileEditTableView.beginUpdates()
         profileEditTableView.endUpdates()
+        profileEditTableView.scrollToRow(at: selectedIndexPath, at: .bottom, animated: false)
         UIView.setAnimationsEnabled(true)
     }
     
@@ -450,12 +493,14 @@ extension ProfileEditViewController: ProfileOptionReceive {
     func optionReceived(option: String, lastSelected: [Int]) {
         selectedLookingData = option
         lastSelectedLooking = lastSelected
+        updateSaveBarButton()
     }
     
     
     func updateSection(section: Int) {
         UIView.setAnimationsEnabled(false)
         profileEditTableView.reloadSections(NSIndexSet(index: section) as IndexSet, with: UITableView.RowAnimation.none)
+        profileEditTableView.scrollToRow(at: selectedIndexPath, at: .bottom, animated: false)
         UIView.setAnimationsEnabled(true)
     }
     

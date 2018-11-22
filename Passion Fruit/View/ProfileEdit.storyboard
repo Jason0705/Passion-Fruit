@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bdy-ye-sgF">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Set Up-->
+        <!--Edit-->
         <scene sceneID="NA8-dn-5st">
             <objects>
                 <viewController id="8UB-4R-Ws3" customClass="ProfileEditViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
@@ -81,10 +81,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0hR-DR-zdX"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Set Up" id="828-gt-7v9">
-                        <barButtonItem key="rightBarButtonItem" title="Skip" id="cc8-DG-oDn">
+                    <navigationItem key="navigationItem" title="Edit" id="828-gt-7v9">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="cc8-DG-oDn">
                             <connections>
-                                <action selector="skipSaveBarButtonPressed:" destination="8UB-4R-Ws3" id="d43-f4-7mA"/>
+                                <action selector="saveBarButtonPressed:" destination="8UB-4R-Ws3" id="sOW-yg-DyF"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -95,6 +95,7 @@
                         <outlet property="pickerView" destination="t7G-wo-7Xk" id="YEa-q9-0D5"/>
                         <outlet property="pickerViewHeight" destination="JOr-Yt-gKa" id="WlK-pE-7Rj"/>
                         <outlet property="profileEditTableView" destination="4zZ-VF-PWD" id="htT-6E-s2x"/>
+                        <outlet property="saveBarButton" destination="cc8-DG-oDn" id="tvo-Zu-43d"/>
                         <segue destination="7Om-xj-8yB" kind="show" identifier="profileEditToProfileOptionVC" id="iQg-FB-Ngz"/>
                     </connections>
                 </viewController>

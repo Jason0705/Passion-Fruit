@@ -29,7 +29,7 @@
         <!--Navigation Controller-->
         <scene sceneID="UDz-53-257">
             <objects>
-                <navigationController storyboardIdentifier="SocialNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="UMn-wo-HbB" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SocialNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="UMn-wo-HbB" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="Azf-3e-itD">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

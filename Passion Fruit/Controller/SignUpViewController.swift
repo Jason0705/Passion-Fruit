@@ -58,6 +58,13 @@ class SignUpViewController: UIViewController {
         signUpButton.isEnabled = true
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "signUpToProfileEditNavigationController" {
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let destinationVC = destinationNavigationController.topViewController as! ProfileEditViewController
+            destinationVC.from = 1
+        }
+    }
     
     // MARK: - IBActions
     
@@ -68,7 +75,7 @@ class SignUpViewController: UIViewController {
             return
         }
         AuthService.signUpUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
-            self.performSegue(withIdentifier: "signUpToProfileEditNavigationVC", sender: nil)
+            self.performSegue(withIdentifier: "signUpToProfileEditNavigationController", sender: nil)
         }, onFail: { (error) in
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })

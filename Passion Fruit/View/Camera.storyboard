@@ -29,7 +29,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0yl-aK-qig">
             <objects>
-                <navigationController storyboardIdentifier="CameraNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="UnB-oC-J1y" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CameraNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="UnB-oC-J1y" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="ROI-gp-XKc">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>

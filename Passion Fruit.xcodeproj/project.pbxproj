@@ -19,7 +19,6 @@
 		822AB985219A947500F5C266 /* ProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB983219A947500F5C266 /* ProfileInfoCell.xib */; };
 		822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB986219A948D00F5C266 /* ProfileStatsCell.swift */; };
 		822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB987219A948D00F5C266 /* ProfileStatsCell.xib */; };
-		8267109C219549C2005B3D0A /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109B219549C2005B3D0A /* UserInfoViewController.swift */; };
 		8267109F2197F19D005B3D0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109E2197F19D005B3D0A /* AuthService.swift */; };
 		826710A12197F7BC005B3D0A /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826710A02197F7BC005B3D0A /* AlertService.swift */; };
 		826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B408E218AEC5800F042D9 /* AppDelegate.swift */; };
@@ -39,7 +38,6 @@
 		826B40E6218BC29100F042D9 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E5218BC29100F042D9 /* Social.storyboard */; };
 		826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E7218BC2D500F042D9 /* Profile.storyboard */; };
 		826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E9218D107400F042D9 /* GoogleService-Info.plist */; };
-		826B40EC2191183A00F042D9 /* ProfilePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40EB2191183A00F042D9 /* ProfilePhotoViewController.swift */; };
 		82AA6EAE219B9BCF008D2FFA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EAD219B9BCF008D2FFA /* CameraViewController.swift */; };
 		82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */; };
 		82AA6EB2219B9C5A008D2FFA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */; };
@@ -80,7 +78,6 @@
 		822AB983219A947500F5C266 /* ProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoCell.xib; sourceTree = "<group>"; };
 		822AB986219A948D00F5C266 /* ProfileStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsCell.swift; sourceTree = "<group>"; };
 		822AB987219A948D00F5C266 /* ProfileStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileStatsCell.xib; sourceTree = "<group>"; };
-		8267109B219549C2005B3D0A /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		8267109E2197F19D005B3D0A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		826710A02197F7BC005B3D0A /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
 		826B408B218AEC5800F042D9 /* Passion Fruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Passion Fruit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,7 +103,6 @@
 		826B40E5218BC29100F042D9 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
 		826B40E7218BC2D500F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		826B40E9218D107400F042D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		826B40EB2191183A00F042D9 /* ProfilePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoViewController.swift; sourceTree = "<group>"; };
 		82AA6EAD219B9BCF008D2FFA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -255,8 +251,6 @@
 			children = (
 				826B40BF218BA15A00F042D9 /* SignInViewController.swift */,
 				826B40C1218BA16800F042D9 /* SignUpViewController.swift */,
-				826B40EB2191183A00F042D9 /* ProfilePhotoViewController.swift */,
-				8267109B219549C2005B3D0A /* UserInfoViewController.swift */,
 				822AB97B219A641900F5C266 /* ProfileEditViewController.swift */,
 				82AA6EB9219FE50D008D2FFA /* ProfileOptionViewController.swift */,
 				82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */,
@@ -535,7 +529,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				826B40EC2191183A00F042D9 /* ProfilePhotoViewController.swift in Sources */,
 				822AB97C219A641900F5C266 /* ProfileEditViewController.swift in Sources */,
 				82AA6EB2219B9C5A008D2FFA /* HomeViewController.swift in Sources */,
 				82AA6EBA219FE50D008D2FFA /* ProfileOptionViewController.swift in Sources */,
@@ -549,7 +542,6 @@
 				8267109F2197F19D005B3D0A /* AuthService.swift in Sources */,
 				822AB9782198122A00F5C266 /* CustomizationService.swift in Sources */,
 				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
-				8267109C219549C2005B3D0A /* UserInfoViewController.swift in Sources */,
 				826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */,
 				82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */,
 				822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */,
