@@ -259,10 +259,6 @@ class ProfileEditViewController: UIViewController {
             userReference.child("/profile").child("/user_stats").child("looking_for").child("content").setValue(selectedLookingData)
             userReference.child("/profile").child("/user_stats").child("looking_for").child("row").setValue(lastSelectedLooking)
             
-            // Navigate to MainTabBarController
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-            self.present(mainTabBarController, animated: true, completion: nil)
         }
         
         // User not signed in
@@ -273,6 +269,13 @@ class ProfileEditViewController: UIViewController {
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
         saveProfile()
+        if from == 1 {
+            // Navigate to MainTabBarController
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+            self.present(mainTabBarController, animated: true, completion: nil)
+        }
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
