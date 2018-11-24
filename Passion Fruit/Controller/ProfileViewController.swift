@@ -18,9 +18,10 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "ProfileEdit", bundle: nil)
-        let profileEditNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileEditNavigationController")
-        self.present(profileEditNavigationController, animated: true, completion: nil)
+//        let storyboard = UIStoryboard(name: "ProfileEdit", bundle: nil)
+//        let profileEditNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileEditNavigationController")
+//        self.present(profileEditNavigationController, animated: true, completion: nil)
+        performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
     }
     
     @IBAction func logOutButtonPressed(_ sender: UIButton) {

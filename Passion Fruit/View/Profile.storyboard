@@ -51,10 +51,21 @@
                         <viewLayoutGuide key="safeArea" id="6og-96-57h"/>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="BLx-fQ-T8L"/>
+                    <connections>
+                        <segue destination="d3w-rl-foS" kind="show" identifier="profileToProfileEditVC" id="4wJ-Jn-I10"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66H-DS-xdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3901.5999999999999" y="1497.7832512315272"/>
+        </scene>
+        <!--ProfileEditVC-->
+        <scene sceneID="nlA-DR-bjO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ProfileEdit" referencedIdentifier="ProfileEditVC" id="d3w-rl-foS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTe-MH-EVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4938" y="1568"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hiO-KM-qUh">

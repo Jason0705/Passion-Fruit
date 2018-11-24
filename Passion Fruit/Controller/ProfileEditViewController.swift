@@ -56,6 +56,7 @@ class ProfileEditViewController: UIViewController {
     var weightPickerData = (40...280).map {"\($0) kg"}
     var wantPickerData = ["Do Not Show", "Have A Relationship", "Have Fun", "Have Both (Require Subscription)"]
     
+    var imagePicker = UIImagePickerController()
     
     
     let imageCells = ["Image"]
@@ -94,6 +95,9 @@ class ProfileEditViewController: UIViewController {
         
         // Set UI State
         setUp()
+        
+        // imagePicker delegate
+        imagePicker.delegate = self
         
         // Call Functions
         populateTableData()
@@ -195,9 +199,57 @@ class ProfileEditViewController: UIViewController {
     
     // Pick Profile Photo
     func handleSelectProfilePhoto() {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        present(pickerController, animated: true, completion: nil)
+//        imagePicker.allowsEditing = true
+//        imagePicker.sourceType = .photoLibrary
+//
+//        present(imagePicker, animated: true, completion: nil)
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Library", style: .default, handler: { _ in
+            self.openLibrary()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        /*If you want work actionsheet on ipad
+         then you have to use popoverPresentationController to present the actionsheet,
+         otherwise app will crash on iPad */
+//        switch UIDevice.current.userInterfaceIdiom {
+//        case .pad:
+//            alert.popoverPresentationController?.sourceView = sender
+//            alert.popoverPresentationController?.sourceRect = sender.bounds
+//            alert.popoverPresentationController?.permittedArrowDirections = .up
+//        default:
+//            break
+//        }
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = true
+            present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openLibrary()
+    {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
     }
     
     // Save data to firebase
@@ -430,7 +482,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             selectedProfilePhoto = image
             updateSaveBarButton()
         }

@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="2086" y="39"/>
         </scene>
-        <!--CameraNavigationController-->
+        <!--NewPostNavigationController-->
         <scene sceneID="sBT-pI-3U0">
             <objects>
-                <viewControllerPlaceholder storyboardName="Camera" referencedIdentifier="CameraNavigationController" id="siA-2Z-zRM" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="NewPost" referencedIdentifier="NewPostNavigationController" id="siA-2Z-zRM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="tNs-gE-1ZE"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iaL-pf-tzY" userLabel="First Responder" sceneMemberID="firstResponder"/>

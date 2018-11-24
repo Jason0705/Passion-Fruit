@@ -34,15 +34,15 @@
 		826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826B40CB218BA1D300F042D9 /* ProfileViewController.swift */; };
 		826B40CE218BAB0300F042D9 /* Authentication.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40CD218BAB0300F042D9 /* Authentication.storyboard */; };
 		826B40E0218BC12200F042D9 /* NearBy.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40DF218BC12200F042D9 /* NearBy.storyboard */; };
-		826B40E2218BC1EF00F042D9 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E1218BC1EF00F042D9 /* Camera.storyboard */; };
+		826B40E2218BC1EF00F042D9 /* NewPost.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E1218BC1EF00F042D9 /* NewPost.storyboard */; };
 		826B40E6218BC29100F042D9 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E5218BC29100F042D9 /* Social.storyboard */; };
 		826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E7218BC2D500F042D9 /* Profile.storyboard */; };
 		826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E9218D107400F042D9 /* GoogleService-Info.plist */; };
-		82AA6EAE219B9BCF008D2FFA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EAD219B9BCF008D2FFA /* CameraViewController.swift */; };
 		82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */; };
 		82AA6EB2219B9C5A008D2FFA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */; };
 		82AA6EB8219CF937008D2FFA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AA6EB7219CF937008D2FFA /* Home.storyboard */; };
 		82AA6EBA219FE50D008D2FFA /* ProfileOptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EB9219FE50D008D2FFA /* ProfileOptionViewController.swift */; };
+		82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EBB21A8D6E5008D2FFA /* NewPostViewController.swift */; };
 		C21B84E231C1EEC782FEBAD3 /* Pods_Passion_FruitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -99,15 +99,15 @@
 		826B40CB218BA1D300F042D9 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		826B40CD218BAB0300F042D9 /* Authentication.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Authentication.storyboard; sourceTree = "<group>"; };
 		826B40DF218BC12200F042D9 /* NearBy.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NearBy.storyboard; sourceTree = "<group>"; };
-		826B40E1218BC1EF00F042D9 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
+		826B40E1218BC1EF00F042D9 /* NewPost.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewPost.storyboard; sourceTree = "<group>"; };
 		826B40E5218BC29100F042D9 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
 		826B40E7218BC2D500F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		826B40E9218D107400F042D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		82AA6EAD219B9BCF008D2FFA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		82AA6EB7219CF937008D2FFA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		82AA6EB9219FE50D008D2FFA /* ProfileOptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptionViewController.swift; sourceTree = "<group>"; };
+		82AA6EBB21A8D6E5008D2FFA /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_FruitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion Fruit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit.release.xcconfig"; sourceTree = "<group>"; };
 		A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_Fruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -256,7 +256,7 @@
 				82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */,
 				826B40C3218BA18C00F042D9 /* NearByViewController.swift */,
 				82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */,
-				82AA6EAD219B9BCF008D2FFA /* CameraViewController.swift */,
+				82AA6EBB21A8D6E5008D2FFA /* NewPostViewController.swift */,
 				826B40C9218BA1C300F042D9 /* SocialViewController.swift */,
 				826B40CB218BA1D300F042D9 /* ProfileViewController.swift */,
 			);
@@ -271,7 +271,7 @@
 				826B4092218AEC5800F042D9 /* Main.storyboard */,
 				82AA6EB7219CF937008D2FFA /* Home.storyboard */,
 				826B40DF218BC12200F042D9 /* NearBy.storyboard */,
-				826B40E1218BC1EF00F042D9 /* Camera.storyboard */,
+				826B40E1218BC1EF00F042D9 /* NewPost.storyboard */,
 				826B40E5218BC29100F042D9 /* Social.storyboard */,
 				826B40E7218BC2D500F042D9 /* Profile.storyboard */,
 				826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */,
@@ -397,7 +397,7 @@
 				826B40CE218BAB0300F042D9 /* Authentication.storyboard in Resources */,
 				826B4099218AEC5A00F042D9 /* LaunchScreen.storyboard in Resources */,
 				826B40E6218BC29100F042D9 /* Social.storyboard in Resources */,
-				826B40E2218BC1EF00F042D9 /* Camera.storyboard in Resources */,
+				826B40E2218BC1EF00F042D9 /* NewPost.storyboard in Resources */,
 				826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */,
 				826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */,
 				822AB97A219A61F800F5C266 /* ProfileEdit.storyboard in Resources */,
@@ -536,6 +536,7 @@
 				82AA6EBA219FE50D008D2FFA /* ProfileOptionViewController.swift in Sources */,
 				826B40C2218BA16800F042D9 /* SignUpViewController.swift in Sources */,
 				822AB984219A947500F5C266 /* ProfileInfoCell.swift in Sources */,
+				82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */,
 				822AB976219811D400F5C266 /* InputService.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				822AB980219A945D00F5C266 /* ProfileImageCell.swift in Sources */,
@@ -547,7 +548,6 @@
 				826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */,
 				82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */,
 				822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */,
-				82AA6EAE219B9BCF008D2FFA /* CameraViewController.swift in Sources */,
 				826710A12197F7BC005B3D0A /* AlertService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

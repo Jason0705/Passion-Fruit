@@ -27,12 +27,13 @@
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixd-f2-20X">
                                 <rect key="frame" x="8" y="235.5" width="35" height="35"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="ixd-f2-20X" secondAttribute="height" multiplier="1:1" id="sDL-aV-g0W"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ixd-f2-20X" firstAttribute="width" secondItem="IOY-Zz-ie8" secondAttribute="height" multiplier="35:279" id="Jtb-Zh-aml"/>
                             <constraint firstItem="IOY-Zz-ie8" firstAttribute="top" secondItem="FYU-75-bDy" secondAttribute="top" id="T3r-i6-kn1"/>
