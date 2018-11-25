@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        StaticVariables.tabBarSelected = 4
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {

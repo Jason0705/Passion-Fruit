@@ -65,7 +65,7 @@
                 <viewControllerPlaceholder storyboardName="ProfileEdit" referencedIdentifier="ProfileEditVC" id="d3w-rl-foS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTe-MH-EVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4938" y="1568"/>
+            <point key="canvasLocation" x="4569" y="1498"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hiO-KM-qUh">

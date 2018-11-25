@@ -482,8 +482,8 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            selectedProfilePhoto = image
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            selectedProfilePhoto = editedImage
             updateSaveBarButton()
         }
         dismiss(animated: true, completion: nil)

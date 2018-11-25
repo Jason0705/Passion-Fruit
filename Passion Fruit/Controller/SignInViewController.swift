@@ -52,7 +52,10 @@ class SignInViewController: UIViewController {
     // Auto Sign In
     func autoSignIn() {
         if Auth.auth().currentUser != nil {
-            performSegue(withIdentifier: "signInToMainTabBarController", sender: nil)
+//            performSegue(withIdentifier: "signInToMainTabBarController", sender: nil)
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            UIApplication.shared.keyWindow?.rootViewController = viewController
         }
     }
     

@@ -10,22 +10,22 @@ import UIKit
 
 class NewPostViewController: UIViewController {
 
-    @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var newPostTableView: UITableView!
     @IBOutlet weak var doneButtonViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var shareBarButton: UIBarButtonItem!
+    @IBOutlet weak var doneButton: UIButton!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        captionTextView.delegate = self
-//        doneButtonViewHeight.constant = 300
     }
 
-}
-
-
-
-extension NewPostViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        doneButtonViewHeight.constant = 300
+    @IBAction func cancelBarButton(_ sender: UIBarButtonItem) {
+        self.tabBarController?.selectedIndex = StaticVariables.tabBarSelected
+    }
+    @IBAction func shareBarButtonPressed(_ sender: Any) {
+    }
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
     }
 }
+

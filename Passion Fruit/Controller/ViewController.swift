@@ -1,22 +1,20 @@
 //
-//  NearByViewController.swift
+//  ViewController.swift
 //  Passion Fruit
 //
-//  Created by Jason Li on 2018-11-01.
+//  Created by Jason Li on 2018-11-23.
 //  Copyright © 2018 Jason Li. All rights reserved.
 //
 
 import UIKit
 
-class NearByViewController: UIViewController {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        StaticVariables.tabBarSelected = 1
-        
+        // Do any additional setup after loading the view.
     }
-    
 
     /*
     // MARK: - Navigation

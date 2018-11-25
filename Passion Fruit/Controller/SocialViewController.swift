@@ -13,6 +13,7 @@ class SocialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        StaticVariables.tabBarSelected = 3
         // Do any additional setup after loading the view.
     }
     
