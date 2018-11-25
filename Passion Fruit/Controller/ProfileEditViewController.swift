@@ -83,7 +83,7 @@ class ProfileEditViewController: UIViewController {
     @IBOutlet weak var pickerViewHeight: NSLayoutConstraint!
     
     
-    // MARK: - View Did Load
+    // MARK: - Override Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +103,10 @@ class ProfileEditViewController: UIViewController {
         populateTableData()
         populatePickerData()
         
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        doneButtonViewState(state: 0)
     }
     
     
@@ -193,22 +197,18 @@ class ProfileEditViewController: UIViewController {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        doneButtonViewState(state: 0)
-    }
-    
     // Pick Profile Photo
     func handleSelectProfilePhoto() {
 //        imagePicker.allowsEditing = true
 //        imagePicker.sourceType = .photoLibrary
 //
 //        present(imagePicker, animated: true, completion: nil)
-        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
             self.openCamera()
         }))
         
-        alert.addAction(UIAlertAction(title: "Library", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
             self.openLibrary()
         }))
         
@@ -376,7 +376,6 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             cell.cellDelegate = self
             cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
             cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
-            cell.placeholderLabel.textColor = UIColor.lightGray
             cell.contentTextView.text = infoCellContent[indexPath.row]
             
             if !infoCellContent[indexPath.row].isEmpty {
