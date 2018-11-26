@@ -45,6 +45,7 @@
 		82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EBB21A8D6E5008D2FFA /* NewPostViewController.swift */; };
 		82AA6EBE21A92A26008D2FFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EBD21A92A26008D2FFA /* ViewController.swift */; };
 		82AA6EC021AA2B08008D2FFA /* StaticVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EBF21AA2B08008D2FFA /* StaticVariables.swift */; };
+		82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EC121ABB100008D2FFA /* VideoService.swift */; };
 		C21B84E231C1EEC782FEBAD3 /* Pods_Passion_FruitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		82AA6EBB21A8D6E5008D2FFA /* NewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostViewController.swift; sourceTree = "<group>"; };
 		82AA6EBD21A92A26008D2FFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		82AA6EBF21AA2B08008D2FFA /* StaticVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticVariables.swift; sourceTree = "<group>"; };
+		82AA6EC121ABB100008D2FFA /* VideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
 		88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_FruitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion Fruit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit.release.xcconfig"; sourceTree = "<group>"; };
 		A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_Fruit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +193,7 @@
 				822AB975219811D400F5C266 /* InputService.swift */,
 				822AB9772198122A00F5C266 /* CustomizationService.swift */,
 				82AA6EBF21AA2B08008D2FFA /* StaticVariables.swift */,
+				82AA6EC121ABB100008D2FFA /* VideoService.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -547,6 +550,7 @@
 				822AB976219811D400F5C266 /* InputService.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				82AA6EC021AA2B08008D2FFA /* StaticVariables.swift in Sources */,
+				82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */,
 				822AB980219A945D00F5C266 /* ProfileImageCell.swift in Sources */,
 				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,
 				826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */,

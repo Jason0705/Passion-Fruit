@@ -7,15 +7,20 @@
 //
 
 import UIKit
+import AVKit
+
 
 class NewPostViewController: UIViewController {
 
     
     // Variables
+    var imagePicker = UIImagePickerController()
     
     var selectedIndexPath = IndexPath(row: 0, section: 0)
-//    var postMedia
-    var caption = ""
+    var selectedPostimage: UIImage? // save to firebase/storage
+    var selectedVideoURL: NSURL?
+    var croppedVideoURL: URL? // save to firebase/storage
+    var caption = "" // save to firebase/storage
     
     
     // MARK: - IBOutlets
@@ -29,6 +34,9 @@ class NewPostViewController: UIViewController {
     // MARK: - Override Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // imagePicker delegate
+        imagePicker.delegate = self
         
         // Register Cell.xib
         newPostTableView.register(UINib(nibName: "ProfileImageCell", bundle: nil), forCellReuseIdentifier: "profileImageCell")
@@ -93,7 +101,7 @@ class NewPostViewController: UIViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
-//            self.openLibrary()
+            self.openLibrary()
         }))
         
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
@@ -102,6 +110,13 @@ class NewPostViewController: UIViewController {
     }
     
     
+    func openLibrary() {
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        imagePicker.mediaTypes = ["public.image", "public.movie"]
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
     
     
     func handleSharePost() {
@@ -145,7 +160,6 @@ class NewPostViewController: UIViewController {
         doneButtonViewState(state: 0)
     }
     
-    
 }
 
 
@@ -169,7 +183,21 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell", for: indexPath) as! ProfileImageCell
-            
+            if selectedPostimage != nil {
+                cell.cameraIconImageView.isHidden = false
+                cell.profilePhotoImageView.isHidden = false
+                cell.profilePhotoImageView.image = selectedPostimage
+            }
+            else if selectedVideoURL != nil {
+                cell.cameraIconImageView.isHidden = true
+                cell.profilePhotoImageView.isHidden = true
+                if let videoURL = selectedVideoURL {
+                    VideoService.cropVideo(videoURL as URL) { (url) in
+                        self.croppedVideoURL = url
+                        VideoService.createAVPlayerLayer(on: cell.imageContainerView, with: url)
+                    }
+                }
+            }
             return cell
             
         case 1:
@@ -203,6 +231,30 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+}
+
+
+// MARK: - UI Image Picker Delegation
+
+extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let mediaType:String = info[UIImagePickerController.InfoKey.mediaType] as! String
+        
+        if mediaType == "public.image" {
+            if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+                selectedPostimage = editedImage
+                selectedVideoURL = nil
+            }
+        }
+        else if mediaType == "public.movie" {
+            if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
+                selectedVideoURL = videoURL
+                selectedPostimage = nil
+            }
+        }
+        dismiss(animated: true, completion: nil)
+        newPostTableView.reloadData()
+    }
 }
 
 

@@ -11,7 +11,9 @@ import UIKit
 class ProfileImageCell: UITableViewCell {
     
     
+    @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var profilePhotoImageView: UIImageView!
+    @IBOutlet weak var cameraIconImageView: UIImageView!
     
 
     override func awakeFromNib() {

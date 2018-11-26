@@ -88,6 +88,9 @@ class ProfileEditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // imagePicker delegate
+        imagePicker.delegate = self
+        
         // Register Cell.xib
         profileEditTableView.register(UINib(nibName: "ProfileImageCell", bundle: nil), forCellReuseIdentifier: "profileImageCell")
         profileEditTableView.register(UINib(nibName: "ProfileInfoCell", bundle: nil), forCellReuseIdentifier: "profileInfoCell")
@@ -95,9 +98,6 @@ class ProfileEditViewController: UIViewController {
         
         // Set UI State
         setUp()
-        
-        // imagePicker delegate
-        imagePicker.delegate = self
         
         // Call Functions
         populateTableData()
@@ -199,10 +199,6 @@ class ProfileEditViewController: UIViewController {
     
     // Pick Profile Photo
     func handleSelectProfilePhoto() {
-//        imagePicker.allowsEditing = true
-//        imagePicker.sourceType = .photoLibrary
-//
-//        present(imagePicker, animated: true, completion: nil)
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
             self.openCamera()
@@ -476,7 +472,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 
-// MARK: - Image Picker Delegation
+// MARK: - UI Image Picker Delegation
 
 extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
