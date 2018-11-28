@@ -14,12 +14,15 @@ class NewPostViewController: UIViewController {
 
     
     // Variables
+    
+    let defaults = UserDefaults.standard
+    
     var imagePicker = UIImagePickerController()
     
     var selectedIndexPath = IndexPath(row: 0, section: 0)
     var selectedPostimage: UIImage? // save to firebase/storage
-    var selectedVideoURL: NSURL?
-    var croppedVideoURL: URL? // save to firebase/storage
+    var selectedVideoURL: URL? // save to firebase/storage
+//    var croppedVideoURL: URL? // save to firebase/storage
     var caption = "" // save to firebase/storage
     
     
@@ -82,7 +85,10 @@ class NewPostViewController: UIViewController {
         let alert = UIAlertController(title: "If you go back now, yor post will be discarded.", message: nil, preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Discard", style: .destructive, handler: { _ in
-            self.tabBarController?.selectedIndex = StaticVariables.tabBarSelected
+            if VideoService.player != nil {
+                VideoService.player.pause()
+            }
+            self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
         }))
         
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
@@ -92,11 +98,7 @@ class NewPostViewController: UIViewController {
     
     func handleSelectPostMedia() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
-//            self.openCamera()
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Take Video", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
 //            self.openCamera()
         }))
         
@@ -184,18 +186,19 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell", for: indexPath) as! ProfileImageCell
             if selectedPostimage != nil {
-                cell.cameraIconImageView.isHidden = false
-                cell.profilePhotoImageView.isHidden = false
+                cell.imageContainerView.isHidden = false
+                cell.videoContainerView.isHidden = true
                 cell.profilePhotoImageView.image = selectedPostimage
             }
             else if selectedVideoURL != nil {
-                cell.cameraIconImageView.isHidden = true
-                cell.profilePhotoImageView.isHidden = true
+                cell.imageContainerView.isHidden = true
+                cell.videoContainerView.isHidden = false
                 if let videoURL = selectedVideoURL {
-                    VideoService.cropVideo(videoURL as URL) { (url) in
-                        self.croppedVideoURL = url
-                        VideoService.createAVPlayerLayer(on: cell.imageContainerView, with: url)
-                    }
+//                    VideoService.cropVideo(videoURL as URL) { (url) in
+//                        self.croppedVideoURL = url
+//                        VideoService.createAVPlayerLayer(on: cell.videoContainerView, with: url)
+//                    }
+                    VideoService.createAVPlayerLayer(on: cell.videoContainerView, with: videoURL)
                 }
             }
             return cell
@@ -247,8 +250,8 @@ extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationCo
             }
         }
         else if mediaType == "public.movie" {
-            if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
-                selectedVideoURL = videoURL
+            if let videoURL = info[UIImagePickerController.InfoKey.mediaURL] {
+                selectedVideoURL = videoURL as? URL
                 selectedPostimage = nil
             }
         }

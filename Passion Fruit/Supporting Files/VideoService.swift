@@ -11,6 +11,26 @@ import AVFoundation
 
 class VideoService {
     
+    static var player: AVPlayer!
+    
+    
+    // MARK: - Create Video Player Layer
+    static func createAVPlayerLayer(on view: UIView, with url: URL) {
+        player = AVPlayer(url: url)
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = view.frame
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        view.layer.addSublayer(playerLayer)
+        player.play()
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
+            player.seek(to: CMTime.zero)
+            player.play()
+        }
+    }
+    
+    
+    // MARK: - Crop Video
+    
     static func cropVideo( _ outputFileUrl: URL, callback: @escaping ( _ newUrl: URL ) -> () )
     {
         // Get input clip
@@ -53,18 +73,6 @@ class VideoService {
         let documentPath = NSSearchPathForDirectoriesInDomains(      .documentDirectory, .userDomainMask, true )[ 0 ] as NSString
         let outputPath = "\(documentPath)/\(name).mov"
         return outputPath
-    }
-    
-    static func createAVPlayerLayer(on view: UIView, with url: URL) {
-        let player = AVPlayer(url: url)
-        let playerLayer = AVPlayerLayer(player: player)
-        playerLayer.frame = view.frame
-        view.layer.addSublayer(playerLayer)
-        player.play()
-        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
-            player.seek(to: CMTime.zero)
-            player.play()
-        }
     }
     
     static func randomString(length: Int) -> String {

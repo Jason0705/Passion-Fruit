@@ -11,6 +11,7 @@ import UIKit
 class ProfileImageCell: UITableViewCell {
     
     
+    @IBOutlet weak var videoContainerView: UIView!
     @IBOutlet weak var imageContainerView: UIView!
     @IBOutlet weak var profilePhotoImageView: UIImageView!
     @IBOutlet weak var cameraIconImageView: UIImageView!

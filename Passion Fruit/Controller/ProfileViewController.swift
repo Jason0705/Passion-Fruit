@@ -12,9 +12,15 @@ import SVProgressHUD
 
 class ProfileViewController: UIViewController {
 
+    // MARK: - Variables
+    let defaults = UserDefaults.standard
+    
+    
+    // MARK: - Override Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        StaticVariables.tabBarSelected = 4
+        defaults.set(4, forKey: "SelectedTabBar")
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {

@@ -10,22 +10,18 @@ import UIKit
 
 class NearByViewController: UIViewController {
 
+    // MARK: - Variables
+    let defaults = UserDefaults.standard
+    
+    
+    // MARK: - Override Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        StaticVariables.tabBarSelected = 1
+        defaults.set(1, forKey: "SelectedTabBar")
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

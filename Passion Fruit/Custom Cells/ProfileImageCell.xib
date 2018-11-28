@@ -19,10 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="319.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkU-qS-i68">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="kkU-qS-i68" secondAttribute="height" multiplier="1:1" id="lhb-8W-sYN"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYU-75-bDy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-Zz-ie8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-Zz-ie8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixd-f2-20X">
@@ -47,7 +54,11 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="kkU-qS-i68" secondAttribute="trailing" id="3TD-MK-cD9"/>
                     <constraint firstItem="FYU-75-bDy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hgh-Nu-cwg"/>
+                    <constraint firstItem="kkU-qS-i68" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="J6R-wE-qyI"/>
+                    <constraint firstAttribute="bottom" secondItem="kkU-qS-i68" secondAttribute="bottom" id="L4f-eB-lyZ"/>
+                    <constraint firstItem="kkU-qS-i68" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="R4m-uk-b6a"/>
                     <constraint firstAttribute="trailing" secondItem="FYU-75-bDy" secondAttribute="trailing" id="Xf4-rP-cyP"/>
                     <constraint firstItem="FYU-75-bDy" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YsY-zo-Mmn"/>
                     <constraint firstItem="FYU-75-bDy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Yvd-Cx-yBN"/>
@@ -60,6 +71,7 @@
                 <outlet property="cameraIconImageView" destination="ixd-f2-20X" id="6tm-Pz-fCj"/>
                 <outlet property="imageContainerView" destination="FYU-75-bDy" id="eWQ-0h-iZx"/>
                 <outlet property="profilePhotoImageView" destination="IOY-Zz-ie8" id="a4X-Ju-xPn"/>
+                <outlet property="videoContainerView" destination="kkU-qS-i68" id="4dw-dq-vpP"/>
             </connections>
             <point key="canvasLocation" x="56" y="136.73163418290855"/>
         </tableViewCell>

@@ -10,9 +10,16 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    
+    // MARK: - Variables
+    let defaults = UserDefaults.standard
+    
+    
+    // MARK: - Override Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        StaticVariables.tabBarSelected = 0
+        defaults.set(0, forKey: "SelectedTabBar")
     }
     
     @IBAction func testButton(_ sender: UIButton) {

@@ -9,5 +9,4 @@
 import Foundation
 
 struct StaticVariables {
-    static var tabBarSelected = 0
 }
