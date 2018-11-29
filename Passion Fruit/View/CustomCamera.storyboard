@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="a2s-hU-a7X">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Custom Camera View Controller-->
         <scene sceneID="xFT-KP-xtN">
             <objects>
-                <viewController id="a2s-hU-a7X" customClass="CustomCameraViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomCameraVC" id="a2s-hU-a7X" customClass="CustomCameraViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zGE-QT-uUA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -24,13 +24,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-ar-ZLe">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-pV-INf">
-                                        <rect key="frame" x="143.66666666666666" y="674" width="88" height="88"/>
+                                        <rect key="frame" x="132.66666666666666" y="652" width="110" height="110"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="88" id="2cV-6O-Vcy"/>
-                                            <constraint firstAttribute="width" constant="88" id="LKY-wf-d4p"/>
+                                            <constraint firstAttribute="height" constant="110" id="2cV-6O-Vcy"/>
+                                            <constraint firstAttribute="width" constant="110" id="LKY-wf-d4p"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jFT-oO-FLc" userLabel="Back Button">
@@ -91,6 +92,17 @@
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtW-EA-DDh">
+                                        <rect key="frame" x="32" y="718" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="ao9-J8-oNM"/>
+                                            <constraint firstAttribute="height" constant="44" id="kAF-vY-WVu"/>
+                                        </constraints>
+                                        <state key="normal" image="locate_me"/>
+                                        <connections>
+                                            <action selector="locateButtonPressed:" destination="a2s-hU-a7X" eventType="touchUpInside" id="aEc-Iw-Dou"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vp5-45-0oh">
                                         <rect key="frame" x="299" y="718" width="44" height="44"/>
                                         <constraints>
@@ -104,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="88" translatesAutoresizingMaskIntoConstraints="NO" id="bvN-5K-jgW" userLabel="Capture Mode Stack View">
-                                        <rect key="frame" x="110.66666666666669" y="625" width="154" height="33"/>
+                                        <rect key="frame" x="110.66666666666669" y="603" width="154" height="33"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMY-ea-QtN">
                                                 <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
@@ -133,10 +145,10 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCv-qw-ec3">
-                                        <rect key="frame" x="143.66666666666666" y="674" width="88" height="88"/>
+                                        <rect key="frame" x="132.66666666666666" y="652" width="110" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="88" id="biS-Co-NWz"/>
-                                            <constraint firstAttribute="height" constant="88" id="d3Y-D1-V8E"/>
+                                            <constraint firstAttribute="width" constant="110" id="biS-Co-NWz"/>
+                                            <constraint firstAttribute="height" constant="110" id="d3Y-D1-V8E"/>
                                         </constraints>
                                         <color key="tintColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
@@ -145,11 +157,13 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="kVb-ar-ZLe" secondAttribute="trailing" id="0gC-Rl-QYe"/>
                                     <constraint firstAttribute="bottom" secondItem="kVb-ar-ZLe" secondAttribute="bottom" id="1HP-MR-hwO"/>
                                     <constraint firstAttribute="trailing" secondItem="5NE-5e-qRA" secondAttribute="trailing" constant="16" id="25G-Va-mF0"/>
                                     <constraint firstItem="bvN-5K-jgW" firstAttribute="centerX" secondItem="WGr-pV-INf" secondAttribute="centerX" id="5ZO-Oi-6ep"/>
+                                    <constraint firstAttribute="bottom" secondItem="vtW-EA-DDh" secondAttribute="bottom" constant="50" id="5p2-rw-iSd"/>
                                     <constraint firstItem="kVb-ar-ZLe" firstAttribute="top" secondItem="XyD-hK-pdK" secondAttribute="top" id="B3g-1W-jSS"/>
                                     <constraint firstItem="5NE-5e-qRA" firstAttribute="top" secondItem="XyD-hK-pdK" secondAttribute="top" constant="60" id="FIS-d5-aye"/>
                                     <constraint firstItem="WGr-pV-INf" firstAttribute="centerX" secondItem="XyD-hK-pdK" secondAttribute="centerX" id="GF9-yV-mJW"/>
@@ -164,6 +178,7 @@
                                     <constraint firstItem="hCv-qw-ec3" firstAttribute="centerY" secondItem="WGr-pV-INf" secondAttribute="centerY" id="ikc-Jx-L9R"/>
                                     <constraint firstItem="DFV-j0-c2x" firstAttribute="centerX" secondItem="5NE-5e-qRA" secondAttribute="centerX" id="kLB-QB-2o1"/>
                                     <constraint firstItem="jFT-oO-FLc" firstAttribute="top" secondItem="XyD-hK-pdK" secondAttribute="top" constant="60" id="ncw-pw-qQS"/>
+                                    <constraint firstItem="vtW-EA-DDh" firstAttribute="leading" secondItem="XyD-hK-pdK" secondAttribute="leading" constant="32" id="vcU-Cm-57x"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -183,6 +198,7 @@
                         <outlet property="captureModeStackView" destination="bvN-5K-jgW" id="5rg-6G-G31"/>
                         <outlet property="flashButton" destination="5NE-5e-qRA" id="qHp-wf-QoI"/>
                         <outlet property="flashModeStackView" destination="DFV-j0-c2x" id="noc-Pj-Vxi"/>
+                        <outlet property="locateButton" destination="vtW-EA-DDh" id="Xfq-l4-umg"/>
                         <outlet property="switchCameraButton" destination="vp5-45-0oh" id="FnM-kf-N9X"/>
                         <segue destination="KOO-y2-gP4" kind="show" identifier="customCameraToCapturePreviewVC" id="LCZ-ft-wjR"/>
                     </connections>
@@ -281,6 +297,7 @@
         <image name="circle" width="120" height="120"/>
         <image name="close" width="144" height="144"/>
         <image name="flash_off_filled" width="100" height="100"/>
+        <image name="locate_me" width="100" height="100"/>
         <image name="switch_camera_outline" width="100" height="100"/>
         <image name="video" width="120" height="120"/>
     </resources>

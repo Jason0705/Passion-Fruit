@@ -8,6 +8,7 @@
 
 import UIKit
 import CameraManager
+import SVProgressHUD
 
 class CustomCameraViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class CustomCameraViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     let cameraManager = CameraManager()
+    
+    var videoEnabled = true
     
     var captureMode = 0
     
@@ -30,6 +33,7 @@ class CustomCameraViewController: UIViewController {
     @IBOutlet weak var captureModeStackView: UIStackView!
     
     @IBOutlet weak var flashButton: UIButton!
+    @IBOutlet weak var locateButton: UIButton!
     @IBOutlet weak var switchCameraButton: UIButton!
     @IBOutlet weak var captureButton: UIButton!
     
@@ -40,6 +44,7 @@ class CustomCameraViewController: UIViewController {
         super.viewDidLoad()
         // Set UI State
         setUp()
+        print("\(videoEnabled)")
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -54,22 +59,57 @@ class CustomCameraViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        flashModeStackView.isHidden = true
+        captureModeStackView.isHidden = true
+    }
+    
+    
     
     // MARK: - Functions
     
     func setUp() {
         changeFlashMode(to: defaults.integer(forKey: "CameraFlashMode"))
-        changeCaptureMode(to: 0)
+//        changeCaptureMode(to: 0)
         captureModeStackView.isHidden = true
         cameraManager.addPreviewLayerToView(cameraView)
-        addLongPressGesture(to: captureButton)
+
+        if videoEnabled == true {
+            addLongPressGesture(to: captureButton)
+            addSwipeGesture(to: captureButton)
+        }
     }
     
-    func addLongPressGesture(to button: UIButton){
+    // Handle gestures
+    func addLongPressGesture(to button: UIButton) {
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(captureButtonLongPressed(gesture:)))
         longPress.minimumPressDuration = 1
         button.addGestureRecognizer(longPress)
     }
+    
+    func addSwipeGesture(to button: UIButton) {
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeLeft.direction = .left
+        button.addGestureRecognizer(swipeLeft)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe))
+        swipeRight.direction = .right
+        button.addGestureRecognizer(swipeRight)
+    }
+    
+    @objc func handleSwipe(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == UISwipeGestureRecognizer.Direction.left || gesture.direction == UISwipeGestureRecognizer.Direction.right {
+            if captureMode == 0 { // currently photo
+                changeCaptureMode(to: 1)
+            }
+            else if captureMode == 1 { // currently video
+                changeCaptureMode(to: 0)
+            }
+        }
+    }
+    
+    
+    // Camera mode functions
     
     func changeFlashMode(to mode: Int) {
         if mode == 0 { // off
@@ -87,6 +127,24 @@ class CustomCameraViewController: UIViewController {
         
         defaults.set(mode, forKey: "CameraFlashMode")
         flashModeStackView.isHidden = true
+    }
+    
+    func changeLocationService() {
+        if locateButton.tag == 0 { // currently off
+            locateButton.tag = 1
+            cameraManager.shouldUseLocationServices = true
+            locateButton.setImage(UIImage(named: "locate_me_filled"), for: .normal)
+            SVProgressHUD.show(UIImage(named: "locate_me_filled")!, status: "Location Service: ON")
+            SVProgressHUD.dismiss(withDelay: 1)
+            
+        }
+        else if locateButton.tag == 1 { // currently on
+            locateButton.tag = 0
+            cameraManager.shouldUseLocationServices = false
+            locateButton.setImage(UIImage(named: "locate_me"), for: .normal)
+            SVProgressHUD.show(UIImage(named: "locate_me")!, status: "Location Service: OFF")
+            SVProgressHUD.dismiss(withDelay: 1)
+        }
     }
     
     func changeCameraDevice() {
@@ -110,10 +168,14 @@ class CustomCameraViewController: UIViewController {
         if mode == 0 { // photo
             cameraManager.cameraOutputMode = .stillImage
             captureButton.setImage(nil, for: .normal)
+            SVProgressHUD.show(UIImage(named: "camera")!, status: nil)
+            SVProgressHUD.dismiss(withDelay: 1)
         }
         else if mode == 1 { // video
             cameraManager.cameraOutputMode = .videoWithMic
             captureButton.setImage(UIImage(named: "record_filled"), for: .normal)
+            SVProgressHUD.show(UIImage(named: "video")!, status: nil)
+            SVProgressHUD.dismiss(withDelay: 1)
         }
         captureMode = mode
         captureModeStackView.isHidden = true
@@ -178,6 +240,10 @@ class CustomCameraViewController: UIViewController {
     
     @IBAction func fleshOffButtonPressed(_ sender: UIButton) {
         changeFlashMode(to: 0)
+    }
+    
+    @IBAction func locateButtonPressed(_ sender: UIButton) {
+        changeLocationService()
     }
     
     @IBAction func switchCameraButtonPressed(_ sender: UIButton) {

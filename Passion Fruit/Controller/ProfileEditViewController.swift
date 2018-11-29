@@ -200,7 +200,7 @@ class ProfileEditViewController: UIViewController {
     // Pick Profile Photo
     func handleSelectProfilePhoto() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: { _ in
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
             self.openCamera()
         }))
         
@@ -227,18 +227,22 @@ class ProfileEditViewController: UIViewController {
     
     func openCamera()
     {
-        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
-        {
-            imagePicker.sourceType = .camera
-            imagePicker.allowsEditing = true
-            present(imagePicker, animated: true, completion: nil)
-        }
-        else
-        {
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-        }
+//        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+//        {
+//            imagePicker.sourceType = .camera
+//            imagePicker.allowsEditing = true
+//            present(imagePicker, animated: true, completion: nil)
+//        }
+//        else
+//        {
+//            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            present(alert, animated: true, completion: nil)
+//        }
+        let storyboard = UIStoryboard(name: "CustomCamera", bundle: nil)
+        let customCameraVC = storyboard.instantiateViewController(withIdentifier: "CustomCameraVC") as! CustomCameraViewController
+        customCameraVC.videoEnabled = false
+        self.present(customCameraVC, animated: true, completion: nil)
     }
     
     func openLibrary()

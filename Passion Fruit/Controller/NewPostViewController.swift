@@ -99,7 +99,7 @@ class NewPostViewController: UIViewController {
     func handleSelectPostMedia() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-//            self.openCamera()
+            self.openCamera()
         }))
         
         alert.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { _ in
@@ -109,6 +109,14 @@ class NewPostViewController: UIViewController {
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func openCamera() {
+        let storyboard = UIStoryboard(name: "CustomCamera", bundle: nil)
+        let customCameraVC = storyboard.instantiateViewController(withIdentifier: "CustomCameraVC") as! CustomCameraViewController
+        customCameraVC.videoEnabled = true
+        self.present(customCameraVC, animated: true, completion: nil)
     }
     
     
@@ -278,5 +286,23 @@ extension NewPostViewController: InfoCell {
         newPostTableView.scrollToRow(at: selectedIndexPath, at: .bottom, animated: false)
         UIView.setAnimationsEnabled(true)
     }
+    
+}
+
+
+extension NewPostViewController: CaptureReceived {
+    func photoReceived(image: UIImage) {
+        selectedPostimage = image
+        selectedVideoURL = nil
+        newPostTableView.reloadData()
+    }
+    
+    func videoURLReceived(url: URL) {
+        selectedVideoURL = url
+        selectedPostimage = nil
+        newPostTableView.reloadData()
+    }
+    
+    
     
 }
