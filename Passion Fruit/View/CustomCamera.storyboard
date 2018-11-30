@@ -21,12 +21,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XyD-hK-pdK" userLabel="Camera Container View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-ar-ZLe">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-ar-ZLe">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-pV-INf">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-pV-INf">
                                         <rect key="frame" x="132.66666666666666" y="652" width="110" height="110"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -257,14 +257,27 @@
                                             <action selector="yesButtonPressed:" destination="KOO-y2-gP4" eventType="touchUpInside" id="x8v-gi-FdO"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KTE-c4-TMc">
+                                        <rect key="frame" x="32" y="718" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="0AV-ag-Sc5"/>
+                                            <constraint firstAttribute="height" constant="44" id="T2r-sa-410"/>
+                                        </constraints>
+                                        <state key="normal" image="sound_off"/>
+                                        <connections>
+                                            <action selector="audioButtonPressed:" destination="KOO-y2-gP4" eventType="touchUpInside" id="V7Y-WI-pg8"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="mMR-xr-NbA" secondAttribute="trailing" constant="16" id="GLm-Ex-xoM"/>
                                     <constraint firstItem="P1l-JG-SXT" firstAttribute="top" secondItem="thw-7t-A3N" secondAttribute="top" constant="60" id="IhZ-tX-bW6"/>
                                     <constraint firstItem="IsF-kG-XqB" firstAttribute="leading" secondItem="thw-7t-A3N" secondAttribute="leading" id="KFz-Wu-q1V"/>
+                                    <constraint firstAttribute="bottom" secondItem="KTE-c4-TMc" secondAttribute="bottom" constant="50" id="Pcr-uP-zTa"/>
                                     <constraint firstAttribute="bottom" secondItem="IsF-kG-XqB" secondAttribute="bottom" id="Whp-mI-vxA"/>
                                     <constraint firstItem="IsF-kG-XqB" firstAttribute="top" secondItem="thw-7t-A3N" secondAttribute="top" id="bnO-bG-hYX"/>
+                                    <constraint firstItem="KTE-c4-TMc" firstAttribute="leading" secondItem="thw-7t-A3N" secondAttribute="leading" constant="32" id="ec2-zT-jKc"/>
                                     <constraint firstItem="P1l-JG-SXT" firstAttribute="leading" secondItem="thw-7t-A3N" secondAttribute="leading" constant="16" id="g65-pf-KhR"/>
                                     <constraint firstItem="mMR-xr-NbA" firstAttribute="top" secondItem="thw-7t-A3N" secondAttribute="top" constant="60" id="o0Q-q6-TdV"/>
                                     <constraint firstAttribute="trailing" secondItem="IsF-kG-XqB" secondAttribute="trailing" id="oBw-nf-h5q"/>
@@ -281,6 +294,7 @@
                         <viewLayoutGuide key="safeArea" id="57h-JK-dMC"/>
                     </view>
                     <connections>
+                        <outlet property="audioButton" destination="KTE-c4-TMc" id="LD6-qj-tiW"/>
                         <outlet property="previewImageView" destination="Ok3-Y7-2Gv" id="sEP-pK-IYI"/>
                         <outlet property="previewView" destination="IsF-kG-XqB" id="DEK-Z3-fPh"/>
                         <segue destination="JNO-R7-Oxg" kind="unwind" identifier="unwind" unwindAction="unwind:" id="mV3-0j-PXc"/>
@@ -300,6 +314,7 @@
         <image name="close" width="144" height="144"/>
         <image name="flash_off_filled" width="100" height="100"/>
         <image name="locate_me" width="100" height="100"/>
+        <image name="sound_off" width="100" height="100"/>
         <image name="switch_camera_outline" width="100" height="100"/>
         <image name="video" width="120" height="120"/>
     </resources>

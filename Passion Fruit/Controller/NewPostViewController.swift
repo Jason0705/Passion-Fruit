@@ -209,6 +209,7 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell", for: indexPath) as! ProfileImageCell
+            cell.cellDelegate = self
             if selectedPostimage != nil {
                 cell.imageContainerView.isHidden = false
                 cell.videoContainerView.isHidden = true
@@ -217,13 +218,14 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
             else if selectedVideoURL != nil {
                 cell.imageContainerView.isHidden = true
                 cell.videoContainerView.isHidden = false
-                if let videoURL = selectedVideoURL {
+                VideoService.createAVPlayerLayer(on: cell.videoPreviewView, with: selectedVideoURL!)
+                VideoService.player.isMuted = true
+//                if let videoURL = selectedVideoURL {
 //                    VideoService.cropVideo(videoURL as URL) { (url) in
 //                        self.croppedVideoURL = url
 //                        VideoService.createAVPlayerLayer(on: cell.videoContainerView, with: url)
 //                    }
-                    VideoService.createAVPlayerLayer(on: cell.videoContainerView, with: videoURL)
-                }
+//                }
             }
             return cell
             
@@ -305,3 +307,18 @@ extension NewPostViewController: InfoCell {
     
 }
 
+
+extension NewPostViewController: imageVideoCellProtocal {
+    func audioOn() {
+        if selectedVideoURL != nil {
+            VideoService.player.isMuted = false
+        }
+    }
+    
+    func audioOff() {
+        if selectedVideoURL != nil {
+            VideoService.player.isMuted = true
+        }
+    }
+    
+}

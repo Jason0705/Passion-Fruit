@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class CapturePreviewViewController: UIViewController {
 
@@ -15,12 +16,13 @@ class CapturePreviewViewController: UIViewController {
     var photo: UIImage!
     var videoURL: URL!
     
-    var option = 0
+    var pause = 0
     
     // MARK: - IBOutlets
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var previewImageView: UIImageView!
+    @IBOutlet weak var audioButton: UIButton!
     
     
     // MARK: - Override Functions
@@ -36,7 +38,7 @@ class CapturePreviewViewController: UIViewController {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        optionControl()
+        playControl()
     }
     
     // MARK: - Functions
@@ -44,25 +46,49 @@ class CapturePreviewViewController: UIViewController {
     func showPreview() {
         if photo != nil { // show photo
             previewImageView.isHidden = false
+            audioButton.isHidden = true
             previewImageView.image = photo
         }
         else if videoURL != nil { // show video
             previewImageView.isHidden = true
+            audioButton.isHidden = false
             VideoService.createAVPlayerLayer(on: previewView, with: videoURL!)
+            VideoService.player.isMuted = true
         }
     }
     
-    func optionControl() {
+    func playControl() {
         if videoURL != nil {
-            switch option  {
+            switch pause  {
             case 0:
-                VideoService.player.isMuted = true
-                option = 1
+                pause = 1
+                VideoService.player.pause()
+                SVProgressHUD.show(UIImage(named: "pause")!, status: nil)
+                SVProgressHUD.dismiss(withDelay: 1)
+                
             case 1:
-                VideoService.player.isMuted = false
-                option = 0
+                pause = 0
+                VideoService.player.play()
+                SVProgressHUD.show(UIImage(named: "play")!, status: nil)
+                SVProgressHUD.dismiss(withDelay: 1)
+                
             default:
                 break
+            }
+        }
+    }
+    
+    func audioControl() {
+        if videoURL != nil {
+            if audioButton.tag == 0 { // sound off
+                audioButton.tag = 1
+                VideoService.player.isMuted = false
+                audioButton.setImage(UIImage(named: "sound_on"), for: .normal)
+            }
+            else if audioButton.tag == 1 { // sound on
+                audioButton.tag = 0
+                VideoService.player.isMuted = true
+                audioButton.setImage(UIImage(named: "sound_off"), for: .normal)
             }
         }
     }
@@ -85,5 +111,10 @@ class CapturePreviewViewController: UIViewController {
 //        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
         
     }
+    
+    @IBAction func audioButtonPressed(_ sender: UIButton) {
+        audioControl()
+    }
+    
     
 }

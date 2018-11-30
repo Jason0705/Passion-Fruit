@@ -21,9 +21,32 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kkU-qS-i68">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OHm-QO-C4i">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AD5-z9-iXR">
+                                <rect key="frame" x="8" y="268.5" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="NIG-Wx-1nH"/>
+                                    <constraint firstAttribute="height" constant="44" id="l5f-wd-VhS"/>
+                                </constraints>
+                                <state key="normal" image="sound_off"/>
+                                <connections>
+                                    <action selector="audioButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BZc-ho-Ph3"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="OHm-QO-C4i" firstAttribute="leading" secondItem="kkU-qS-i68" secondAttribute="leading" id="MDP-Dz-cLn"/>
+                            <constraint firstAttribute="trailing" secondItem="OHm-QO-C4i" secondAttribute="trailing" id="T02-P2-dnL"/>
+                            <constraint firstItem="OHm-QO-C4i" firstAttribute="top" secondItem="kkU-qS-i68" secondAttribute="top" id="Wgw-Zr-VkE"/>
                             <constraint firstAttribute="width" secondItem="kkU-qS-i68" secondAttribute="height" multiplier="1:1" id="lhb-8W-sYN"/>
+                            <constraint firstAttribute="bottom" secondItem="OHm-QO-C4i" secondAttribute="bottom" id="r9u-Af-gmR"/>
+                            <constraint firstItem="AD5-z9-iXR" firstAttribute="leading" secondItem="kkU-qS-i68" secondAttribute="leading" constant="8" id="tOe-qg-eQa"/>
+                            <constraint firstAttribute="bottom" secondItem="AD5-z9-iXR" secondAttribute="bottom" constant="8" id="zCH-cx-xhz"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYU-75-bDy">
@@ -33,7 +56,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="ixd-f2-20X">
-                                <rect key="frame" x="8" y="268" width="44" height="44"/>
+                                <rect key="frame" x="8" y="268.5" width="44" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="4is-0d-Ohn"/>
@@ -45,7 +68,7 @@
                         <constraints>
                             <constraint firstItem="IOY-Zz-ie8" firstAttribute="top" secondItem="FYU-75-bDy" secondAttribute="top" id="T3r-i6-kn1"/>
                             <constraint firstAttribute="width" secondItem="FYU-75-bDy" secondAttribute="height" multiplier="1:1" id="WLk-Xn-sB7"/>
-                            <constraint firstAttribute="bottom" secondItem="ixd-f2-20X" secondAttribute="bottom" constant="8.5" id="cFx-k1-Hf8"/>
+                            <constraint firstAttribute="bottom" secondItem="ixd-f2-20X" secondAttribute="bottom" constant="8" id="cFx-k1-Hf8"/>
                             <constraint firstItem="ixd-f2-20X" firstAttribute="leading" secondItem="FYU-75-bDy" secondAttribute="leading" constant="8" id="iqv-dF-q2Z"/>
                             <constraint firstItem="IOY-Zz-ie8" firstAttribute="leading" secondItem="FYU-75-bDy" secondAttribute="leading" id="ogb-hm-gwF"/>
                             <constraint firstAttribute="bottom" secondItem="IOY-Zz-ie8" secondAttribute="bottom" id="tiR-2v-kJ9"/>
@@ -68,15 +91,18 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="audioButton" destination="AD5-z9-iXR" id="l2A-0W-pad"/>
                 <outlet property="cameraIconImageView" destination="ixd-f2-20X" id="6tm-Pz-fCj"/>
                 <outlet property="imageContainerView" destination="FYU-75-bDy" id="eWQ-0h-iZx"/>
                 <outlet property="profilePhotoImageView" destination="IOY-Zz-ie8" id="a4X-Ju-xPn"/>
-                <outlet property="videoContainerView" destination="kkU-qS-i68" id="4dw-dq-vpP"/>
+                <outlet property="videoContainerView" destination="kkU-qS-i68" id="kCK-HU-WBR"/>
+                <outlet property="videoPreviewView" destination="OHm-QO-C4i" id="kJe-3Y-HW0"/>
             </connections>
             <point key="canvasLocation" x="56" y="136.73163418290855"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="camera" width="90" height="90"/>
+        <image name="sound_off" width="75" height="75"/>
     </resources>
 </document>
