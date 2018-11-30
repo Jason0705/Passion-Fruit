@@ -17,6 +17,8 @@ class NewPostViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
+    let defaultPostImage = UIImage(named: "add")
+    
     var imagePicker = UIImagePickerController()
     
     var selectedIndexPath = IndexPath(row: 0, section: 0)
@@ -59,6 +61,17 @@ class NewPostViewController: UIViewController {
         doneButtonViewHeight.constant = 0
         doneButton.isHidden = true
         newPostTableView.separatorStyle = .none
+        
+        updateShareBarButton()
+    }
+    
+    func updateShareBarButton() {
+        if selectedPostimage != nil || selectedVideoURL != nil || !caption.isEmpty {
+            shareBarButton.isEnabled = true
+        }
+        else {
+            shareBarButton.isEnabled = false
+        }
     }
 
     func doneButtonViewState(state: Int){
@@ -91,6 +104,7 @@ class NewPostViewController: UIViewController {
             self.selectedPostimage = nil
             self.selectedVideoURL = nil
             self.caption = ""
+            self.newPostTableView.reloadData()
             self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
         }))
         
@@ -185,7 +199,7 @@ class NewPostViewController: UIViewController {
             }
             
             newPostTableView.reloadData()
-            // Do something with the data
+            updateShareBarButton()
         }
     }
     
@@ -230,6 +244,11 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
 //                    }
 //                }
             }
+            else if selectedPostimage == nil && selectedVideoURL == nil {
+                cell.imageContainerView.isHidden = false
+                cell.videoContainerView.isHidden = true
+                cell.profilePhotoImageView.image = defaultPostImage
+            }
             return cell
             
         case 1:
@@ -237,6 +256,11 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
             cell.cellDelegate = self
             cell.titleLabel.text = "Caption"
             cell.placeholderLabel.text = "Write a caption..."
+            
+            if caption.isEmpty {
+                cell.placeholderLabel.isHidden = false
+                cell.contentTextView.text = ""
+            }
             
             return cell
             
@@ -286,6 +310,7 @@ extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationCo
         }
         dismiss(animated: true, completion: nil)
         newPostTableView.reloadData()
+        updateShareBarButton()
     }
 }
 
@@ -296,7 +321,7 @@ extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationCo
 extension NewPostViewController: KeyboardInputCellProtocal {
     func infoCellContentReceived(content: String) {
         caption = content
-//        updateSaveBarButton()
+        updateShareBarButton()
     }
     
     
