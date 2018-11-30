@@ -8,19 +8,12 @@
 
 import UIKit
 
-protocol CaptureReceived {
-    func photoReceived(image: UIImage)
-    func videoURLReceived(url: URL)
-}
-
 class CapturePreviewViewController: UIViewController {
 
     // MARK: - Variables
     
-    var delegate: CaptureReceived?
-    
-    var photo: UIImage?
-    var videoURL: URL?
+    var photo: UIImage!
+    var videoURL: URL!
     
     var option = 0
     
@@ -60,25 +53,17 @@ class CapturePreviewViewController: UIViewController {
     }
     
     func optionControl() {
-        switch option  {
-        case 0:
-            if photo != nil {
-                previewImageView.contentMode = .scaleAspectFit
-            }
-            else if videoURL != nil {
+        if videoURL != nil {
+            switch option  {
+            case 0:
                 VideoService.player.isMuted = true
-            }
-            option = 1
-        case 1:
-            if photo != nil {
-                previewImageView.contentMode = .scaleAspectFill
-            }
-            else if videoURL != nil {
+                option = 1
+            case 1:
                 VideoService.player.isMuted = false
+                option = 0
+            default:
+                break
             }
-            option = 0
-        default:
-            break
         }
     }
     
@@ -93,13 +78,12 @@ class CapturePreviewViewController: UIViewController {
     }
     
     @IBAction func yesButtonPressed(_ sender: UIButton) {
-        if photo != nil {
-            delegate?.photoReceived(image: photo!)
+        if VideoService.player != nil {
+            VideoService.player.pause()
         }
-        else if videoURL != nil {
-            delegate?.videoURLReceived(url: videoURL!)
-        }
-        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        performSegue(withIdentifier: "unwind", sender: nil)
+//        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        
     }
     
 }

@@ -170,6 +170,22 @@ class NewPostViewController: UIViewController {
         doneButtonViewState(state: 0)
     }
     
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        if let origin = segue.source as? CapturePreviewViewController {
+            if origin.photo != nil {
+                selectedPostimage = origin.photo
+                selectedVideoURL = nil
+            }
+            else if origin.videoURL != nil {
+                selectedVideoURL = origin.videoURL
+                selectedPostimage = nil
+            }
+            
+            newPostTableView.reloadData()
+            // Do something with the data
+        }
+    }
+    
 }
 
 
@@ -289,20 +305,3 @@ extension NewPostViewController: InfoCell {
     
 }
 
-
-extension NewPostViewController: CaptureReceived {
-    func photoReceived(image: UIImage) {
-        selectedPostimage = image
-        selectedVideoURL = nil
-        newPostTableView.reloadData()
-    }
-    
-    func videoURLReceived(url: URL) {
-        selectedVideoURL = url
-        selectedPostimage = nil
-        newPostTableView.reloadData()
-    }
-    
-    
-    
-}

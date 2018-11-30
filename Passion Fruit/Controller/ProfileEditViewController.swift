@@ -342,6 +342,18 @@ class ProfileEditViewController: UIViewController {
         doneButtonViewState(state: 0)
     }
     
+    
+    @IBAction func unwind(_ segue: UIStoryboardSegue) {
+        if let origin = segue.source as? CapturePreviewViewController {
+            if origin.photo != nil {
+                selectedProfilePhoto = origin.photo
+            }
+            
+            profileEditTableView.reloadData()
+            // Do something with the data
+        }
+    }
+    
 
 }
 

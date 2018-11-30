@@ -21,12 +21,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XyD-hK-pdK" userLabel="Camera Container View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-ar-ZLe">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kVb-ar-ZLe">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <gestureRecognizers/>
                                     </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-pV-INf">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="circle" translatesAutoresizingMaskIntoConstraints="NO" id="WGr-pV-INf">
                                         <rect key="frame" x="132.66666666666666" y="652" width="110" height="110"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -221,7 +221,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IsF-kG-XqB" userLabel="Preview View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ok3-Y7-2Gv">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ok3-Y7-2Gv">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                             </imageView>
                                         </subviews>
@@ -283,9 +283,11 @@
                     <connections>
                         <outlet property="previewImageView" destination="Ok3-Y7-2Gv" id="sEP-pK-IYI"/>
                         <outlet property="previewView" destination="IsF-kG-XqB" id="DEK-Z3-fPh"/>
+                        <segue destination="JNO-R7-Oxg" kind="unwind" identifier="unwind" unwindAction="unwind:" id="mV3-0j-PXc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWk-Rs-PXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JNO-R7-Oxg" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1124" y="91"/>
         </scene>

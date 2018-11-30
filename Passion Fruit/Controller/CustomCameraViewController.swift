@@ -260,9 +260,6 @@ class CustomCameraViewController: UIViewController {
     @IBAction func captureButtonPressed(_ sender: UIButton) {
         capture()
         
-//        if myPhoto != nil || myVideoURL != nil {
-//            performSegue(withIdentifier: "customCameraToCapturePreviewVC", sender: self)
-//        }
     }
     
     

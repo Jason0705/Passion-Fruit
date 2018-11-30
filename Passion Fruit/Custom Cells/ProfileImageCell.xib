@@ -29,20 +29,20 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FYU-75-bDy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-Zz-ie8">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IOY-Zz-ie8">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="320.5"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ixd-f2-20X">
-                                <rect key="frame" x="8" y="271.5" width="40" height="40.5"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera" translatesAutoresizingMaskIntoConstraints="NO" id="ixd-f2-20X">
+                                <rect key="frame" x="8" y="268" width="44" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ixd-f2-20X" secondAttribute="height" multiplier="1:1" id="sDL-aV-g0W"/>
+                                    <constraint firstAttribute="width" constant="44" id="4is-0d-Ohn"/>
+                                    <constraint firstAttribute="height" constant="44" id="ItV-A7-6Q1"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ixd-f2-20X" firstAttribute="width" secondItem="IOY-Zz-ie8" secondAttribute="height" multiplier="35:279" id="Jtb-Zh-aml"/>
                             <constraint firstItem="IOY-Zz-ie8" firstAttribute="top" secondItem="FYU-75-bDy" secondAttribute="top" id="T3r-i6-kn1"/>
                             <constraint firstAttribute="width" secondItem="FYU-75-bDy" secondAttribute="height" multiplier="1:1" id="WLk-Xn-sB7"/>
                             <constraint firstAttribute="bottom" secondItem="ixd-f2-20X" secondAttribute="bottom" constant="8.5" id="cFx-k1-Hf8"/>
@@ -76,4 +76,7 @@
             <point key="canvasLocation" x="56" y="136.73163418290855"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="camera" width="90" height="90"/>
+    </resources>
 </document>
