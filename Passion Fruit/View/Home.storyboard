@@ -40,7 +40,7 @@
         <scene sceneID="YuM-sX-xLM">
             <objects>
                 <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="6cT-mp-Xug" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="hpG-MX-b4d">
+                    <tabBarItem key="tabBarItem" title="" image="home" selectedImage="home" id="hpG-MX-b4d">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -60,6 +60,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_feeling_btn" width="19" height="19"/>
+        <image name="home" width="144" height="144"/>
     </resources>
 </document>

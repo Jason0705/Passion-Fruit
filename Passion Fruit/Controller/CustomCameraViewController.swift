@@ -73,7 +73,7 @@ class CustomCameraViewController: UIViewController {
 //        changeCaptureMode(to: 0)
         captureModeStackView.isHidden = true
         cameraManager.addPreviewLayerToView(cameraView)
-
+        cameraManager.shouldFlipFrontCameraImage = true
         if videoEnabled == true {
             addLongPressGesture(to: captureButton)
             addSwipeGesture(to: captureButton)

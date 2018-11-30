@@ -65,6 +65,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a0b-jw-QpU">
                                                 <rect key="frame" x="0.0" y="0.0" width="32" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Auto">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -74,6 +75,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeM-cM-aRl">
                                                 <rect key="frame" x="0.0" y="46" width="32" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="On">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -83,6 +85,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f1c-26-sJg">
                                                 <rect key="frame" x="0.0" y="92" width="32" height="30"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Off">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -98,6 +101,7 @@
                                             <constraint firstAttribute="width" constant="44" id="ao9-J8-oNM"/>
                                             <constraint firstAttribute="height" constant="44" id="kAF-vY-WVu"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="locate_me"/>
                                         <connections>
                                             <action selector="locateButtonPressed:" destination="a2s-hU-a7X" eventType="touchUpInside" id="aEc-Iw-Dou"/>
@@ -263,6 +267,7 @@
                                             <constraint firstAttribute="width" constant="44" id="0AV-ag-Sc5"/>
                                             <constraint firstAttribute="height" constant="44" id="T2r-sa-410"/>
                                         </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="sound_off"/>
                                         <connections>
                                             <action selector="audioButtonPressed:" destination="KOO-y2-gP4" eventType="touchUpInside" id="V7Y-WI-pg8"/>

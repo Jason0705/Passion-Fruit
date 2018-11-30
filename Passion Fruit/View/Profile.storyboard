@@ -71,7 +71,7 @@
         <scene sceneID="hiO-KM-qUh">
             <objects>
                 <navigationController storyboardIdentifier="ProfileNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="dlr-Pp-ceX" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="add_feeling_btn" selectedImage="add_feeling_btn" id="7et-gu-0c7">
+                    <tabBarItem key="tabBarItem" title="" image="person" selectedImage="person" id="7et-gu-0c7">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -91,6 +91,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add_feeling_btn" width="19" height="19"/>
+        <image name="person" width="144" height="144"/>
     </resources>
 </document>

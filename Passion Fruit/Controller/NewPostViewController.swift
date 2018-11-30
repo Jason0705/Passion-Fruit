@@ -42,8 +42,8 @@ class NewPostViewController: UIViewController {
         imagePicker.delegate = self
         
         // Register Cell.xib
-        newPostTableView.register(UINib(nibName: "ProfileImageCell", bundle: nil), forCellReuseIdentifier: "profileImageCell")
-        newPostTableView.register(UINib(nibName: "ProfileInfoCell", bundle: nil), forCellReuseIdentifier: "profileInfoCell")
+        newPostTableView.register(UINib(nibName: "ImageVideoCell", bundle: nil), forCellReuseIdentifier: "imageVideoCell")
+        newPostTableView.register(UINib(nibName: "KeyboardInputCell", bundle: nil), forCellReuseIdentifier: "keyboardInputCell")
         
         // Set UI State
         setUp()
@@ -88,6 +88,9 @@ class NewPostViewController: UIViewController {
             if VideoService.player != nil {
                 VideoService.player.pause()
             }
+            self.selectedPostimage = nil
+            self.selectedVideoURL = nil
+            self.caption = ""
             self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
         }))
         
@@ -208,7 +211,7 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell", for: indexPath) as! ProfileImageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "imageVideoCell", for: indexPath) as! ImageVideoCell
             cell.cellDelegate = self
             if selectedPostimage != nil {
                 cell.imageContainerView.isHidden = false
@@ -230,7 +233,7 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
             
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "profileInfoCell", for: indexPath) as! ProfileInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "keyboardInputCell", for: indexPath) as! KeyboardInputCell
             cell.cellDelegate = self
             cell.titleLabel.text = "Caption"
             cell.placeholderLabel.text = "Write a caption..."
@@ -252,7 +255,7 @@ extension NewPostViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else if indexPath.section == 1 {
             doneButtonViewState(state: 1)
-            if let cell = newPostTableView.cellForRow(at: indexPath) as? ProfileInfoCell {
+            if let cell = newPostTableView.cellForRow(at: indexPath) as? KeyboardInputCell {
                 cell.contentTextView.becomeFirstResponder()
             }
         }
@@ -290,7 +293,7 @@ extension NewPostViewController: UIImagePickerControllerDelegate, UINavigationCo
 // MARK: - Protocols
 
 // Update Custom cell
-extension NewPostViewController: InfoCell {
+extension NewPostViewController: KeyboardInputCellProtocal {
     func infoCellContentReceived(content: String) {
         caption = content
 //        updateSaveBarButton()
@@ -308,7 +311,7 @@ extension NewPostViewController: InfoCell {
 }
 
 
-extension NewPostViewController: imageVideoCellProtocal {
+extension NewPostViewController: ImageVideoCellProtocal {
     func audioOn() {
         if selectedVideoURL != nil {
             VideoService.player.isMuted = false

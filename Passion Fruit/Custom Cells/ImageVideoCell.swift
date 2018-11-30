@@ -1,5 +1,5 @@
 //
-//  ProfileImageCell.swift
+//  ImageVideoCell.swift
 //  Passion Fruit
 //
 //  Created by Jason Li on 2018-11-12.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol imageVideoCellProtocal {
+protocol ImageVideoCellProtocal {
     func audioOn()
     func audioOff()
 }
 
-class ProfileImageCell: UITableViewCell {
+class ImageVideoCell: UITableViewCell {
     
-    var cellDelegate: imageVideoCellProtocal?
+    var cellDelegate: ImageVideoCellProtocal?
     
     @IBOutlet weak var videoContainerView: UIView!
     @IBOutlet weak var videoPreviewView: UIView!

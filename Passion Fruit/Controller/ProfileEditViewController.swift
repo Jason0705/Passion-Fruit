@@ -37,7 +37,7 @@ class ProfileEditViewController: UIViewController {
     var selectedProfilePhoto: UIImage?
     var selectedProfilePhotoCompare: UIImage?
         // section 1
-    var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold ProfileInfoCell().contentTextView.text
+    var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold KeyboardInputCell().contentTextView.text
     var infoCellContentCompare: Array<String> = Array(repeating: "", count: 4)
         // section 2 row 0 ~ 7
     var statsCellContent: Array<String> = Array(repeating: "", count: 8) // hold ProfileStatsCell().contentTextView.text
@@ -92,8 +92,8 @@ class ProfileEditViewController: UIViewController {
         imagePicker.delegate = self
         
         // Register Cell.xib
-        profileEditTableView.register(UINib(nibName: "ProfileImageCell", bundle: nil), forCellReuseIdentifier: "profileImageCell")
-        profileEditTableView.register(UINib(nibName: "ProfileInfoCell", bundle: nil), forCellReuseIdentifier: "profileInfoCell")
+        profileEditTableView.register(UINib(nibName: "ImageVideoCell", bundle: nil), forCellReuseIdentifier: "imageVideoCell")
+        profileEditTableView.register(UINib(nibName: "KeyboardInputCell", bundle: nil), forCellReuseIdentifier: "keyboardInputCell")
         profileEditTableView.register(UINib(nibName: "ProfileStatsCell", bundle: nil), forCellReuseIdentifier: "profileStatsCell")
         
         // Set UI State
@@ -378,13 +378,13 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
         
         switch indexPath.section {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "profileImageCell", for: indexPath) as! ProfileImageCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "imageVideoCell", for: indexPath) as! ImageVideoCell
             cell.profilePhotoImageView.image = selectedProfilePhoto
             
             return cell
 
         case 1:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "profileInfoCell", for: indexPath) as! ProfileInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "keyboardInputCell", for: indexPath) as! KeyboardInputCell
             cell.cellDelegate = self
             cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
             cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
@@ -429,7 +429,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
         }
         else if indexPath.section == 1 {
             doneButtonViewState(state: 1)
-            if let cell = profileEditTableView.cellForRow(at: indexPath) as? ProfileInfoCell {
+            if let cell = profileEditTableView.cellForRow(at: indexPath) as? KeyboardInputCell {
                 cell.contentTextView.becomeFirstResponder()
             }
         }
@@ -543,7 +543,7 @@ extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 // MARK: - Protocols
 
 // Update Custom cell
-extension ProfileEditViewController: InfoCell {
+extension ProfileEditViewController: KeyboardInputCellProtocal {
     func infoCellContentReceived(content: String) {
         infoCellContent[selectedIndexPath.row] = content
         updateSaveBarButton()

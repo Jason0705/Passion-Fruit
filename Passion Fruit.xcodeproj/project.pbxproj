@@ -13,10 +13,10 @@
 		822AB9782198122A00F5C266 /* CustomizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB9772198122A00F5C266 /* CustomizationService.swift */; };
 		822AB97A219A61F800F5C266 /* ProfileEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 822AB979219A61F800F5C266 /* ProfileEdit.storyboard */; };
 		822AB97C219A641900F5C266 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB97B219A641900F5C266 /* ProfileEditViewController.swift */; };
-		822AB980219A945D00F5C266 /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB97E219A945D00F5C266 /* ProfileImageCell.swift */; };
-		822AB981219A945D00F5C266 /* ProfileImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB97F219A945D00F5C266 /* ProfileImageCell.xib */; };
-		822AB984219A947500F5C266 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB982219A947500F5C266 /* ProfileInfoCell.swift */; };
-		822AB985219A947500F5C266 /* ProfileInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB983219A947500F5C266 /* ProfileInfoCell.xib */; };
+		822AB980219A945D00F5C266 /* ImageVideoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB97E219A945D00F5C266 /* ImageVideoCell.swift */; };
+		822AB981219A945D00F5C266 /* ImageVideoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB97F219A945D00F5C266 /* ImageVideoCell.xib */; };
+		822AB984219A947500F5C266 /* KeyboardInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB982219A947500F5C266 /* KeyboardInputCell.swift */; };
+		822AB985219A947500F5C266 /* KeyboardInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB983219A947500F5C266 /* KeyboardInputCell.xib */; };
 		822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB986219A948D00F5C266 /* ProfileStatsCell.swift */; };
 		822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB987219A948D00F5C266 /* ProfileStatsCell.xib */; };
 		8267109F2197F19D005B3D0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109E2197F19D005B3D0A /* AuthService.swift */; };
@@ -77,10 +77,10 @@
 		822AB9772198122A00F5C266 /* CustomizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationService.swift; sourceTree = "<group>"; };
 		822AB979219A61F800F5C266 /* ProfileEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileEdit.storyboard; sourceTree = "<group>"; };
 		822AB97B219A641900F5C266 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
-		822AB97E219A945D00F5C266 /* ProfileImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageCell.swift; sourceTree = "<group>"; };
-		822AB97F219A945D00F5C266 /* ProfileImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileImageCell.xib; sourceTree = "<group>"; };
-		822AB982219A947500F5C266 /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
-		822AB983219A947500F5C266 /* ProfileInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileInfoCell.xib; sourceTree = "<group>"; };
+		822AB97E219A945D00F5C266 /* ImageVideoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVideoCell.swift; sourceTree = "<group>"; };
+		822AB97F219A945D00F5C266 /* ImageVideoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageVideoCell.xib; sourceTree = "<group>"; };
+		822AB982219A947500F5C266 /* KeyboardInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputCell.swift; sourceTree = "<group>"; };
+		822AB983219A947500F5C266 /* KeyboardInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardInputCell.xib; sourceTree = "<group>"; };
 		822AB986219A948D00F5C266 /* ProfileStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsCell.swift; sourceTree = "<group>"; };
 		822AB987219A948D00F5C266 /* ProfileStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileStatsCell.xib; sourceTree = "<group>"; };
 		8267109E2197F19D005B3D0A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -179,10 +179,10 @@
 		822AB97D219A93D900F5C266 /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
-				822AB97E219A945D00F5C266 /* ProfileImageCell.swift */,
-				822AB97F219A945D00F5C266 /* ProfileImageCell.xib */,
-				822AB982219A947500F5C266 /* ProfileInfoCell.swift */,
-				822AB983219A947500F5C266 /* ProfileInfoCell.xib */,
+				822AB97E219A945D00F5C266 /* ImageVideoCell.swift */,
+				822AB97F219A945D00F5C266 /* ImageVideoCell.xib */,
+				822AB982219A947500F5C266 /* KeyboardInputCell.swift */,
+				822AB983219A947500F5C266 /* KeyboardInputCell.xib */,
 				822AB986219A948D00F5C266 /* ProfileStatsCell.swift */,
 				822AB987219A948D00F5C266 /* ProfileStatsCell.xib */,
 			);
@@ -419,9 +419,9 @@
 				822AB97A219A61F800F5C266 /* ProfileEdit.storyboard in Resources */,
 				82AA6EB8219CF937008D2FFA /* Home.storyboard in Resources */,
 				826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */,
-				822AB981219A945D00F5C266 /* ProfileImageCell.xib in Resources */,
+				822AB981219A945D00F5C266 /* ImageVideoCell.xib in Resources */,
 				826B4094218AEC5800F042D9 /* Main.storyboard in Resources */,
-				822AB985219A947500F5C266 /* ProfileInfoCell.xib in Resources */,
+				822AB985219A947500F5C266 /* KeyboardInputCell.xib in Resources */,
 				826B40E0218BC12200F042D9 /* NearBy.storyboard in Resources */,
 				822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */,
 			);
@@ -555,13 +555,13 @@
 				82AA6EBA219FE50D008D2FFA /* ProfileOptionViewController.swift in Sources */,
 				82AA6EC621ACD3B9008D2FFA /* CustomCameraViewController.swift in Sources */,
 				826B40C2218BA16800F042D9 /* SignUpViewController.swift in Sources */,
-				822AB984219A947500F5C266 /* ProfileInfoCell.swift in Sources */,
+				822AB984219A947500F5C266 /* KeyboardInputCell.swift in Sources */,
 				82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */,
 				822AB976219811D400F5C266 /* InputService.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				82AA6EC021AA2B08008D2FFA /* StaticVariables.swift in Sources */,
 				82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */,
-				822AB980219A945D00F5C266 /* ProfileImageCell.swift in Sources */,
+				822AB980219A945D00F5C266 /* ImageVideoCell.swift in Sources */,
 				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,
 				826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */,
 				8267109F2197F19D005B3D0A /* AuthService.swift in Sources */,

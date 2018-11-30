@@ -1,5 +1,5 @@
 //
-//  ProfileInfoCell.swift
+//  KeyboardInputCell.swift
 //  Passion Fruit
 //
 //  Created by Jason Li on 2018-11-12.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-protocol InfoCell {
+protocol KeyboardInputCellProtocal {
     func infoCellContentReceived(content: String)
     func updateTableView()
 }
 
-class ProfileInfoCell: UITableViewCell {
+class KeyboardInputCell: UITableViewCell {
 
-    var cellDelegate: InfoCell?
+    var cellDelegate: KeyboardInputCellProtocal?
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var wordCountLabel: UILabel!
@@ -37,7 +37,7 @@ class ProfileInfoCell: UITableViewCell {
     
 }
 
-extension ProfileInfoCell: UITextViewDelegate {
+extension KeyboardInputCell: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         placeholderLabel.isHidden = true
     }

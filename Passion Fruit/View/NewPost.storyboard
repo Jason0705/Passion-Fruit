@@ -94,7 +94,7 @@
         <scene sceneID="0yl-aK-qig">
             <objects>
                 <navigationController storyboardIdentifier="NewPostNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="UnB-oC-J1y" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="camera" selectedImage="camera" id="ROI-gp-XKc">
+                    <tabBarItem key="tabBarItem" title="" image="add" selectedImage="add" id="ROI-gp-XKc">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -114,6 +114,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera" width="120" height="120"/>
+        <image name="add" width="120" height="120"/>
     </resources>
 </document>
