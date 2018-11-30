@@ -33,7 +33,7 @@
                                     <constraint firstAttribute="height" constant="44" id="l5f-wd-VhS"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" image="sound_off"/>
+                                <state key="normal" image="audio_off"/>
                                 <connections>
                                     <action selector="audioButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BZc-ho-Ph3"/>
                                 </connections>
@@ -104,7 +104,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="audio_off" width="75" height="75"/>
         <image name="camera" width="90" height="90"/>
-        <image name="sound_off" width="75" height="75"/>
     </resources>
 </document>

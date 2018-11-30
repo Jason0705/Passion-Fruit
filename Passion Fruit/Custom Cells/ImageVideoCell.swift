@@ -40,15 +40,15 @@ class ImageVideoCell: UITableViewCell {
     }
     
     func audioControl() {
-        if audioButton.tag == 0 { // sound off
+        if audioButton.tag == 0 { // audio off
             audioButton.tag = 1
             cellDelegate?.audioOn()
-            audioButton.setImage(UIImage(named: "sound_on"), for: .normal)
+            audioButton.setImage(UIImage(named: "audio_on"), for: .normal)
         }
-        else if audioButton.tag == 1 { // sound on
+        else if audioButton.tag == 1 { // aduio on
             audioButton.tag = 0
             cellDelegate?.audioOff()
-            audioButton.setImage(UIImage(named: "sound_off"), for: .normal)
+            audioButton.setImage(UIImage(named: "audio_off"), for: .normal)
         }
     }
     

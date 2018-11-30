@@ -268,7 +268,7 @@
                                             <constraint firstAttribute="height" constant="44" id="T2r-sa-410"/>
                                         </constraints>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="sound_off"/>
+                                        <state key="normal" image="audio_off"/>
                                         <connections>
                                             <action selector="audioButtonPressed:" destination="KOO-y2-gP4" eventType="touchUpInside" id="V7Y-WI-pg8"/>
                                         </connections>
@@ -313,13 +313,13 @@
     </scenes>
     <resources>
         <image name="arrow_back" width="144" height="144"/>
+        <image name="audio_off" width="100" height="100"/>
         <image name="camera" width="120" height="120"/>
         <image name="check" width="144" height="144"/>
         <image name="circle" width="120" height="120"/>
         <image name="close" width="144" height="144"/>
         <image name="flash_off_filled" width="100" height="100"/>
         <image name="locate_me" width="100" height="100"/>
-        <image name="sound_off" width="100" height="100"/>
         <image name="switch_camera_outline" width="100" height="100"/>
         <image name="video" width="120" height="120"/>
     </resources>

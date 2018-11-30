@@ -80,15 +80,15 @@ class CapturePreviewViewController: UIViewController {
     
     func audioControl() {
         if videoURL != nil {
-            if audioButton.tag == 0 { // sound off
+            if audioButton.tag == 0 { // audio off
                 audioButton.tag = 1
                 VideoService.player.isMuted = false
-                audioButton.setImage(UIImage(named: "sound_on"), for: .normal)
+                audioButton.setImage(UIImage(named: "audio_on"), for: .normal)
             }
-            else if audioButton.tag == 1 { // sound on
+            else if audioButton.tag == 1 { // audio on
                 audioButton.tag = 0
                 VideoService.player.isMuted = true
-                audioButton.setImage(UIImage(named: "sound_off"), for: .normal)
+                audioButton.setImage(UIImage(named: "audio_off"), for: .normal)
             }
         }
     }
