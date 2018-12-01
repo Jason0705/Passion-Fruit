@@ -75,7 +75,10 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonPressed(_ sender: UIButton) {
         view.endEditing(true)
+        SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.none)
+        
         // Sign up user using email and password input.
         if passwordTextField.text != confirmPasswordTextField.text {
             AlertService.alertService.presentErrorAlert(message: "Password does not match the confirm password! Please check again.", vc: self)

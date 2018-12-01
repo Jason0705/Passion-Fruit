@@ -8,6 +8,10 @@
 
 import UIKit
 import AVFoundation
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseDatabase
+import SVProgressHUD
 
 
 class NewPostViewController: UIViewController {
@@ -105,6 +109,7 @@ class NewPostViewController: UIViewController {
             self.selectedVideoURL = nil
             self.caption = ""
             self.newPostTableView.reloadData()
+            self.updateShareBarButton()
             self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
         }))
         
@@ -150,11 +155,11 @@ class NewPostViewController: UIViewController {
         let alert = UIAlertController(title: "Share as:", message: nil, preferredStyle: .actionSheet)
 
         alert.addAction(UIAlertAction(title: "Public Post", style: .default, handler: { _ in
-            self.savePublic()
+            self.savePost(as: "public")
         }))
         
         alert.addAction(UIAlertAction(title: "Private Post", style: .default, handler: { _ in
-            self.savePrivate()
+            self.savePost(as: "private")
         }))
         
         alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
@@ -163,12 +168,95 @@ class NewPostViewController: UIViewController {
     }
     
     // Save as public post
-    func savePublic() {
+    func savePost(as state: String) {
         
-    }
-    
-    // Save as private post
-    func savePrivate() {
+        if Auth.auth().currentUser != nil { // user signed in
+            
+            SVProgressHUD.setDefaultMaskType(.clear)
+            SVProgressHUD.show()
+            SVProgressHUD.setDefaultMaskType(.none)
+            
+            let user = Auth.auth().currentUser
+            let uid = user?.uid
+            let databaseRefernce = Database.database().reference()
+            let storageReference = Storage.storage().reference()
+            
+            let postReference = databaseRefernce.child("posts").child(state)
+            let newPostID = postReference.childByAutoId().key
+            let newPostReference = postReference.child(newPostID!)
+            
+            let imageVideoID = NSUUID().uuidString
+            let imageReference = storageReference.child("posts").child(state).child("\(imageVideoID).jpg")
+            let videoReference = storageReference.child("posts").child(state).child("\(imageVideoID).mp4")
+            
+            if selectedPostimage != nil {
+                let imageData = selectedPostimage!.jpegData(compressionQuality: 0.1)
+                imageReference.putData(imageData!, metadata: nil) { (storageMetadata, error) in
+                    if error != nil { // error
+                        print("Save profile photo error: \(error!)")
+                        SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                        SVProgressHUD.dismiss(withDelay: 2)
+                        return
+                    }
+                    // no error
+                    imageReference.downloadURL(completion: { (url, error) in
+                        if error != nil { // error
+                            print("Get profile photo URL error: \(error!)")
+                            SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                            SVProgressHUD.dismiss(withDelay: 2)
+                            return
+                        }
+                        // no error
+                        let postImageURL = url?.absoluteString
+                        newPostReference.child("/image_url").setValue(postImageURL)
+                    })
+                }
+            }
+            
+            else if selectedVideoURL != nil {
+                videoReference.putFile(from: selectedVideoURL!, metadata: nil) { (storageMetadata, error) in
+                    if error != nil { // error
+                        print("Save profile photo error: \(error!)")
+                        SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")
+                        SVProgressHUD.dismiss(withDelay: 2)
+                        return
+                    }
+                    // no error
+                    videoReference.downloadURL(completion: { (url, error) in
+                        if error != nil { // error
+                            print("Get profile photo URL error: \(error!)")
+                            SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")
+                            SVProgressHUD.dismiss(withDelay: 2)
+                            return
+                        }
+                        // no error
+                        let postVideoURL = url?.absoluteString
+                        newPostReference.child("/video_url").setValue(postVideoURL)
+                    })
+                }
+            }
+            
+            newPostReference.child("/caption").setValue(caption)
+            newPostReference.child("/uid").setValue(uid)
+            
+            SVProgressHUD.showSuccess(withStatus: "Post Shared")
+            SVProgressHUD.dismiss(withDelay: 1)
+            
+            if VideoService.player != nil {
+                VideoService.player.pause()
+            }
+            self.selectedPostimage = nil
+            self.selectedVideoURL = nil
+            self.caption = ""
+            self.newPostTableView.reloadData()
+            self.updateShareBarButton()
+            self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
+        }
+        
+        else { // user authentication error
+            SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")
+            SVProgressHUD.dismiss(withDelay: 2)
+        }
         
     }
     

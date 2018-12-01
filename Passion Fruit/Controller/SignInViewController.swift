@@ -86,7 +86,9 @@ class SignInViewController: UIViewController {
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         
         view.endEditing(true)
+        SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.none)
         
         // Sign in user using email and password input.
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {

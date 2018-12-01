@@ -254,31 +254,33 @@ class ProfileEditViewController: UIViewController {
     
     // Save data to firebase
     func saveProfile() {
+        SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.show()
+        SVProgressHUD.setDefaultMaskType(.none)
         
-        if Auth.auth().currentUser != nil {
-            // User signed in
+        if Auth.auth().currentUser != nil { // User signed in
             let user = Auth.auth().currentUser
             let uid = user?.uid
             let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
-            let userReference = databaseReference.child("users").child(uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
-            
             let storageReference = Storage.storage().reference()
+            
+            let userReference = databaseReference.child("users").child(uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
             let profilePhotoReference = storageReference.child("profile_images").child("\(uid!).jpg")
             
             // Save profile photo
             if let profilePhoto = selectedProfilePhoto, let imageData = profilePhoto.jpegData(compressionQuality: 0.1) {
                 profilePhotoReference.putData(imageData, metadata: nil) { (storageMetadata, error) in
-                    if error != nil {
+                    if error != nil { // error
                         print("Save profile photo error: \(error!)")
-                        SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                        SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")
                         SVProgressHUD.dismiss(withDelay: 2)
                         return
                     }
                     // no error
                     profilePhotoReference.downloadURL(completion: { (url, error) in
-                        if error != nil {
+                        if error != nil { // error
                             print("Get profile photo URL error: \(error!)")
-                            SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                            SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")
                             SVProgressHUD.dismiss(withDelay: 2)
                             return
                         }
@@ -319,8 +321,10 @@ class ProfileEditViewController: UIViewController {
             SVProgressHUD.showSuccess(withStatus: "Changes Saved")
             SVProgressHUD.dismiss(withDelay: 1)
         }
-        
-        // User not signed in
+        else { // user authenticatin error
+            SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")
+            SVProgressHUD.dismiss(withDelay: 2)
+        }
     }
     
 
