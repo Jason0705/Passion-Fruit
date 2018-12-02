@@ -29,28 +29,41 @@ class ProfileEditViewController: UIViewController {
     
     
     var tableData = [tableSection]()
-    var pickerData = [picker]()
+    var statsPickerData = [picker]()
+    var sexualityPickerData = [picker]()
     
     var from = 0
     
+    var selectedIndexPath = IndexPath(row: 0, section: 0)
+    
         // section 0
     var selectedProfilePhoto: UIImage?
-    var selectedProfilePhotoCompare: UIImage?
+    var selectedProfilePhotoSaved: UIImage?
         // section 1
     var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold KeyboardInputCell().contentTextView.text
-    var infoCellContentCompare: Array<String> = Array(repeating: "", count: 4)
+    var infoCellContentSaved: Array<String> = Array(repeating: "", count: 4)
         // section 2 row 0 ~ 7
-    var statsCellContent: Array<String> = Array(repeating: "", count: 8) // hold ProfileStatsCell().contentTextView.text
-    var statsCellContentCompare: Array<String> = Array(repeating: "", count: 8)
-    var statsCellPickerRow: Array<Int> = Array(repeating: 0, count: 8) // hold all pickerData.row
-        // section 2 row 8 (last row)
-    var statsCellPickerRowCompare: Array<Int> = Array(repeating: 0, count: 8)
+    var statsCellContent: Array<String> = Array(repeating: "", count: 6) // hold ProfileStatsCell().contentTextView.text
+    var statsCellContentSaved: Array<String> = Array(repeating: "", count: 6)
+    var statsCellPickerRow: Array<Int> = Array(repeating: 0, count: 6) // hold all pickerData.row
+    var statsCellPickerRowSaved: Array<Int> = Array(repeating: 0, count: 6)
+    // section 2 row 8 (last row)
     var selectedLookingData = ""
-    var selectedLookingDataCompare = ""
+    var selectedLookingDataSaved = ""
     var lastSelectedLooking = [Int]()
-    var lastSelectedLookingCompare = [Int]()
+    var lastSelectedLookingSaved = [Int]()
+    // section 3
+    var genderData = ""
+    var genderDataSaved = ""
+    var genderPickerRow = 0
+    var genderPickerRowSaved = 0
+    var selectedInterestedData = ""
+    var selectedInterestedDataSaved = ""
+    var lastSelectedInterested = [Int]()
+    var lastSelectedInterestedSaved = [Int]()
     
-    var selectedIndexPath = IndexPath(row: 0, section: 0)
+    
+    
     var agePickerData = (18...100).map {"\($0)"}
     var heightPickerData = (100...250).map {"\($0) cm"}
     var weightPickerData = (40...280).map {"\($0) kg"}
@@ -61,14 +74,17 @@ class ProfileEditViewController: UIViewController {
     
     let imageCells = ["Image"]
     let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
-    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Gender", "Preference", "Relationship Status", "I Want To", "I'm Looking For"] // hold statsCell displaying title
+    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Relationship Status", "I Want To", "I'm Looking For"] // hold statsCell displaying title
+    let sexualityCells = ["Gender", "Interested In"] // hold sexualityCell displaying title
+    
     let infoCellPlaceholders = ["This will be displayed on your profile...", "Let people know about you...", "Let people know what you like...", "Let people know what you expect..."]
     
     let ethnicityPickerData = ["Do Not Show", "Asian", "African", "Latino", "Middle Eastern", "Native American", "White", "South Asian", "Mixed", "Other"]
-    let genderPickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
-    let preferencePickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
     let relationshipPickerData = ["Do Not Show", "Single", "Dating", "Exclusive", "Committed", "Engaged", "Partnered", "Married", "Open Relationship", "Separated", "Divorced"]
     let lookingData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
+    
+    let genderPickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
+    let interestedData = ["Male", "Female", "Trans Male", "Trans Female"]
     
     
     // MARK: - IBOutlets
@@ -101,7 +117,8 @@ class ProfileEditViewController: UIViewController {
         
         // Call Functions
         populateTableData()
-        populatePickerData()
+        populateStatsPickerData()
+        populateSexualityPickerData()
         
     }
     
@@ -118,24 +135,26 @@ class ProfileEditViewController: UIViewController {
         tableData.append(tableSection(header: "IMAGE", cell: imageCells, showHeader: false))
         tableData.append(tableSection(header: "INFO", cell: infoCells, showHeader: true))
         tableData.append(tableSection(header: "STATS", cell: statsCells, showHeader: true))
+        tableData.append(tableSection(header: "SEXUALITY", cell: sexualityCells, showHeader: true))
     }
     
     // Populate picker data
-    func populatePickerData() {
-        pickerData.removeAll()
+    func populateStatsPickerData() {
+        statsPickerData.removeAll()
         agePickerData.insert("Do Not Show", at: 0)
         heightPickerData.insert("Do Not Show", at: 0)
         weightPickerData.insert("Do Not Show", at: 0)
-        pickerData.append(picker(data: agePickerData))
-        pickerData.append(picker(data: heightPickerData))
-        pickerData.append(picker(data: weightPickerData))
-        pickerData.append(picker(data: ethnicityPickerData))
-        pickerData.append(picker(data: genderPickerData))
-        pickerData.append(picker(data: preferencePickerData))
-        pickerData.append(picker(data: relationshipPickerData))
-        pickerData.append(picker(data: wantPickerData))
-        
-
+        statsPickerData.append(picker(data: agePickerData))
+        statsPickerData.append(picker(data: heightPickerData))
+        statsPickerData.append(picker(data: weightPickerData))
+        statsPickerData.append(picker(data: ethnicityPickerData))
+        statsPickerData.append(picker(data: relationshipPickerData))
+        statsPickerData.append(picker(data: wantPickerData))
+    }
+    
+    func populateSexualityPickerData() {
+        sexualityPickerData.removeAll()
+        sexualityPickerData.append(picker(data: genderPickerData))
     }
     
     
@@ -183,7 +202,7 @@ class ProfileEditViewController: UIViewController {
     
     // Update save bar button state
     func updateSaveBarButton() {
-        if selectedProfilePhoto != selectedProfilePhotoCompare || infoCellContent != infoCellContentCompare || statsCellContent != statsCellContentCompare || statsCellPickerRow != statsCellPickerRowCompare || selectedLookingData != selectedLookingDataCompare || lastSelectedLooking != lastSelectedLookingCompare {
+        if selectedProfilePhoto != selectedProfilePhotoSaved || infoCellContent != infoCellContentSaved || statsCellContent != statsCellContentSaved || statsCellPickerRow != statsCellPickerRowSaved || selectedLookingData != selectedLookingDataSaved || lastSelectedLooking != lastSelectedLookingSaved || genderData != genderDataSaved || genderPickerRow != genderPickerRowSaved || selectedInterestedData != selectedInterestedDataSaved || lastSelectedInterested != lastSelectedInterestedSaved {
             saveBarButton.isEnabled = true
             saveBarButton.title = "Save"
         }
@@ -307,16 +326,18 @@ class ProfileEditViewController: UIViewController {
             userReference.child("/profile").child("/user_stats").child("weight").child("row").setValue(statsCellPickerRow[2])
             userReference.child("/profile").child("/user_stats").child("ethnicity").child("content").setValue(statsCellContent[3])
             userReference.child("/profile").child("/user_stats").child("ethnicity").child("row").setValue(statsCellPickerRow[3])
-            userReference.child("/profile").child("/user_stats").child("gender").child("content").setValue(statsCellContent[4])
-            userReference.child("/profile").child("/user_stats").child("gender").child("row").setValue(statsCellPickerRow[4])
-            userReference.child("/profile").child("/user_stats").child("preference").child("content").setValue(statsCellContent[5])
-            userReference.child("/profile").child("/user_stats").child("preference").child("row").setValue(statsCellPickerRow[5])
-            userReference.child("/profile").child("/user_stats").child("relationship_status").child("content").setValue(statsCellContent[6])
-            userReference.child("/profile").child("/user_stats").child("relationship_status").child("row").setValue(statsCellPickerRow[6])
-            userReference.child("/profile").child("/user_stats").child("want_to").child("content").setValue(statsCellContent[7])
-            userReference.child("/profile").child("/user_stats").child("want_to").child("row").setValue(statsCellPickerRow[7])
+            userReference.child("/profile").child("/user_stats").child("relationship_status").child("content").setValue(statsCellContent[4])
+            userReference.child("/profile").child("/user_stats").child("relationship_status").child("row").setValue(statsCellPickerRow[4])
+            userReference.child("/profile").child("/user_stats").child("want_to").child("content").setValue(statsCellContent[5])
+            userReference.child("/profile").child("/user_stats").child("want_to").child("row").setValue(statsCellPickerRow[5])
             userReference.child("/profile").child("/user_stats").child("looking_for").child("content").setValue(selectedLookingData)
             userReference.child("/profile").child("/user_stats").child("looking_for").child("row").setValue(lastSelectedLooking)
+            
+            // Save sexuality data
+            userReference.child("/profile").child("/user_sexuality").child("gender").child("content").setValue(genderData)
+            userReference.child("/profile").child("/user_sexuality").child("gender").child("row").setValue(genderPickerRow)
+            userReference.child("/profile").child("/user_sexuality").child("interested").child("content").setValue(selectedInterestedData)
+            userReference.child("/profile").child("/user_sexuality").child("interested").child("row").setValue(lastSelectedInterested)
             
             SVProgressHUD.showSuccess(withStatus: "Changes Saved")
             SVProgressHUD.dismiss(withDelay: 1)
@@ -338,6 +359,7 @@ class ProfileEditViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
             self.present(mainTabBarController, animated: true, completion: nil)
+            return
         }
         self.dismiss(animated: true, completion: nil)
     }
@@ -418,6 +440,21 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             
             return cell
             
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "profileStatsCell", for: indexPath) as! ProfileStatsCell
+            cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
+            // if last row
+            if indexPath.row == tableData[indexPath.section].cell.count - 1 {
+                cell.accessoryType = .disclosureIndicator
+                cell.contentTextView.text = selectedInterestedData
+                return cell
+            }
+            // not last row
+            cell.accessoryType = .none
+            cell.contentTextView.text = genderData
+            
+            return cell
+            
         default:
             break
         }
@@ -427,17 +464,19 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     // Select Row
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        if indexPath.section == 0 {
+        
+        switch indexPath.section {
+        case 0:
             doneButtonViewState(state: 0)
             handleSelectProfilePhoto()
-        }
-        else if indexPath.section == 1 {
+            
+        case 1:
             doneButtonViewState(state: 1)
             if let cell = profileEditTableView.cellForRow(at: indexPath) as? KeyboardInputCell {
                 cell.contentTextView.becomeFirstResponder()
             }
-        }
-        else if indexPath.section == 2 {
+            
+        case 2:
             // if last row selected
             if indexPath.row == tableData[indexPath.section].cell.count - 1 {
                 performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
@@ -448,7 +487,44 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
                 pickerView.selectRow(statsCellPickerRow[indexPath.row], inComponent: 0, animated: false)
                 doneButtonViewState(state: 2)
             }
+            
+        case 3:
+            // if last row selected
+            if indexPath.row == tableData[indexPath.section].cell.count - 1 {
+                performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+            }
+                // not last row selected
+            else {
+                pickerView.reloadAllComponents()
+                pickerView.selectRow(genderPickerRow, inComponent: 0, animated: false)
+                doneButtonViewState(state: 2)
+            }
+            
+        default:
+            break
         }
+//        if indexPath.section == 0 {
+//            doneButtonViewState(state: 0)
+//            handleSelectProfilePhoto()
+//        }
+//        else if indexPath.section == 1 {
+//            doneButtonViewState(state: 1)
+//            if let cell = profileEditTableView.cellForRow(at: indexPath) as? KeyboardInputCell {
+//                cell.contentTextView.becomeFirstResponder()
+//            }
+//        }
+//        else if indexPath.section == 2 {
+//            // if last row selected
+//            if indexPath.row == tableData[indexPath.section].cell.count - 1 {
+//                performSegue(withIdentifier: "profileEditToProfileOptionVC", sender: self)
+//            }
+//                // not last row selected
+//            else {
+//                pickerView.reloadAllComponents()
+//                pickerView.selectRow(statsCellPickerRow[indexPath.row], inComponent: 0, animated: false)
+//                doneButtonViewState(state: 2)
+//            }
+//        }
         tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
     
@@ -457,9 +533,16 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "profileEditToProfileOptionVC" {
             let destinationVC = segue.destination as! ProfileOptionViewController
-            destinationVC.optionsData = lookingData
-            destinationVC.lastSelected = lastSelectedLooking
             destinationVC.delegate = self
+            destinationVC.fromSection = selectedIndexPath.section
+            if selectedIndexPath.section == 2 {
+                destinationVC.optionsData = lookingData
+                destinationVC.lastSelected = lastSelectedLooking
+            }
+            else if selectedIndexPath.section == 3 {
+                destinationVC.optionsData = interestedData
+                destinationVC.lastSelected = lastSelectedInterested
+            }
         }
     }
     
@@ -517,28 +600,53 @@ extension ProfileEditViewController: UIPickerViewDelegate, UIPickerViewDataSourc
 
     // Number of rows
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData[selectedIndexPath.row].data.count
+        if selectedIndexPath.section == 2 {
+            return statsPickerData[selectedIndexPath.row].data.count
+        }
+        else if selectedIndexPath.section == 3 {
+            return sexualityPickerData[selectedIndexPath.row].data.count
+        }
+        
+        return 0
     }
 
     // Populate picker
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[selectedIndexPath.row].data[row]
+        if selectedIndexPath.section == 2 {
+            return statsPickerData[selectedIndexPath.row].data[row]
+        }
+        else if selectedIndexPath.section == 3 {
+            return sexualityPickerData[selectedIndexPath.row].data[row]
+        }
+        return ""
     }
 
     // Select row
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        statsCellPickerRow[selectedIndexPath.row] = row
-        
-        if row == 0 {
-            statsCellContent[selectedIndexPath.row] = ""
+        if selectedIndexPath.section == 2 {
+            statsCellPickerRow[selectedIndexPath.row] = row
+            
+            if row == 0 {
+                statsCellContent[selectedIndexPath.row] = ""
+            }
+            else {
+                statsCellContent[selectedIndexPath.row] = statsPickerData[selectedIndexPath.row].data[row]
+            }
+            updateSection(section: 2)
         }
-        else {
-            statsCellContent[selectedIndexPath.row] = pickerData[selectedIndexPath.row].data[row]
+        else if selectedIndexPath.section == 3 {
+            genderPickerRow = row
+            
+            if row == 0 {
+                genderData = ""
+            }
+            else {
+                genderData = sexualityPickerData[selectedIndexPath.row].data[row]
+            }
+            updateSection(section: 3)
         }
         
-        // Update section data
-        updateSection(section: 2)
         updateSaveBarButton()
     }
 }
@@ -569,8 +677,14 @@ extension ProfileEditViewController: KeyboardInputCellProtocal {
 extension ProfileEditViewController: ProfileOptionReceive {
     
     func optionReceived(option: String, lastSelected: [Int]) {
-        selectedLookingData = option
-        lastSelectedLooking = lastSelected
+        if selectedIndexPath.section == 2 {
+            selectedLookingData = option
+            lastSelectedLooking = lastSelected
+        }
+        else if selectedIndexPath.section == 3 {
+            selectedInterestedData = option
+            lastSelectedInterested = lastSelected
+        }
         updateSaveBarButton()
     }
     

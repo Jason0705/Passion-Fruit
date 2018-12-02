@@ -21,7 +21,10 @@ class ProfileOptionViewController: UIViewController {
     // MMARK: - Variables
     
     var delegate: ProfileOptionReceive?
+    
     var optionsData = [String]()
+    var fromSection = Int()
+    
     var lastSelected = [Int]()
     var selectedOptionsArray = [String]()
     var selectedOptions = ""
@@ -48,7 +51,12 @@ class ProfileOptionViewController: UIViewController {
             saveSelectedOptions()
             selectedOptions = selectedOptionsArray.joined(separator: ", ")
             delegate?.optionReceived(option: selectedOptions, lastSelected: lastSelected)
-            delegate?.updateSection(section: 2)
+            if fromSection == 2 {
+                delegate?.updateSection(section: 2)
+            }
+            else if fromSection == 3 {
+                delegate?.updateSection(section: 3)
+            }
         }
     }
     
