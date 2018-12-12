@@ -67,20 +67,20 @@ class ProfileEditViewController: UIViewController {
     var agePickerData = (18...100).map {"\($0)"}
     var heightPickerData = (100...250).map {"\($0) cm"}
     var weightPickerData = (40...280).map {"\($0) kg"}
-    var wantPickerData = ["Do Not Show", "Have A Relationship", "Have Fun", "Have Both (Require Subscription)"]
     
     var imagePicker = UIImagePickerController()
     
     
     let imageCells = ["Image"]
     let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
-    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Relationship Status", "I Want To", "I'm Looking For"] // hold statsCell displaying title
+    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Relationship Status", "I Want", "I'm Looking For"] // hold statsCell displaying title
     let sexualityCells = ["Gender", "Interested In"] // hold sexualityCell displaying title
     
     let infoCellPlaceholders = ["This will be displayed on your profile...", "Let people know about you...", "Let people know what you like...", "Let people know what you expect..."]
     
     let ethnicityPickerData = ["Do Not Show", "Asian", "African", "Latino", "Middle Eastern", "Native American", "White", "South Asian", "Mixed", "Other"]
     let relationshipPickerData = ["Do Not Show", "Single", "Dating", "Exclusive", "Committed", "Engaged", "Partnered", "Married", "Open Relationship", "Separated", "Divorced"]
+    let wantPickerData = ["Do Not Show", "Relationship", "Fun", "Both"]
     let lookingData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
     
     let genderPickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
