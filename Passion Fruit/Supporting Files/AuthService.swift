@@ -41,7 +41,8 @@ class AuthService {
         let usersReference = databaseReference.child("users") // : https://passion-fruit-39bda.firebaseio.com/users
         let newUserReference = usersReference.child(uid) // : https://passion-fruit-39bda.firebaseio.com/users/uid
         
-        newUserReference.setValue(["email": email])
+        newUserReference.setValue(["email": email,
+                                   "uid": uid])
     
         onSuccess()
     }

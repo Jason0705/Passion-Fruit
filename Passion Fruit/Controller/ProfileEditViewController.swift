@@ -63,28 +63,7 @@ class ProfileEditViewController: UIViewController {
     var lastSelectedInterestedSaved = [Int]()
     
     
-    
-    var agePickerData = (18...100).map {"\($0)"}
-    var heightPickerData = (100...250).map {"\($0) cm"}
-    var weightPickerData = (40...280).map {"\($0) kg"}
-    
     var imagePicker = UIImagePickerController()
-    
-    
-    let imageCells = ["Image"]
-    let infoCells = ["User Name", "I AM", "I Like", "My Date Would"] // hold infoCell displaying title
-    let statsCells = ["Age", "Height", "Weight", "Ethnicity", "Relationship Status", "I Want", "I'm Looking For"] // hold statsCell displaying title
-    let sexualityCells = ["Gender", "Interested In"] // hold sexualityCell displaying title
-    
-    let infoCellPlaceholders = ["This will be displayed on your profile...", "Let people know about you...", "Let people know what you like...", "Let people know what you expect..."]
-    
-    let ethnicityPickerData = ["Do Not Show", "Asian", "African", "Latino", "Middle Eastern", "Native American", "White", "South Asian", "Mixed", "Other"]
-    let relationshipPickerData = ["Do Not Show", "Single", "Dating", "Exclusive", "Committed", "Engaged", "Partnered", "Married", "Open Relationship", "Separated", "Divorced"]
-    let wantPickerData = ["Do Not Show", "Relationship", "Fun", "Both"]
-    let lookingData = ["Love", "Friends", "Dates", "Chat", "Networking", "NSA", "Right Now", "Discreet Fun", "Kinks"]
-    
-    let genderPickerData = ["Do Not Show", "Male", "Female", "Trans Male", "Trans Female"]
-    let interestedData = ["Male", "Female", "Trans Male", "Trans Female"]
     
     
     // MARK: - IBOutlets
@@ -132,29 +111,29 @@ class ProfileEditViewController: UIViewController {
     // Populate table data
     func populateTableData() {
         tableData.removeAll()
-        tableData.append(tableSection(header: "IMAGE", cell: imageCells, showHeader: false))
-        tableData.append(tableSection(header: "INFO", cell: infoCells, showHeader: true))
-        tableData.append(tableSection(header: "STATS", cell: statsCells, showHeader: true))
-        tableData.append(tableSection(header: "SEXUALITY", cell: sexualityCells, showHeader: true))
+        tableData.append(tableSection(header: "IMAGE", cell: StaticVariables.imageCells, showHeader: false))
+        tableData.append(tableSection(header: "INFO", cell: StaticVariables.infoCells, showHeader: true))
+        tableData.append(tableSection(header: "STATS", cell: StaticVariables.statsCells, showHeader: true))
+        tableData.append(tableSection(header: "SEXUALITY", cell: StaticVariables.sexualityCells, showHeader: true))
     }
     
     // Populate picker data
     func populateStatsPickerData() {
         statsPickerData.removeAll()
-        agePickerData.insert("Do Not Show", at: 0)
-        heightPickerData.insert("Do Not Show", at: 0)
-        weightPickerData.insert("Do Not Show", at: 0)
-        statsPickerData.append(picker(data: agePickerData))
-        statsPickerData.append(picker(data: heightPickerData))
-        statsPickerData.append(picker(data: weightPickerData))
-        statsPickerData.append(picker(data: ethnicityPickerData))
-        statsPickerData.append(picker(data: relationshipPickerData))
-        statsPickerData.append(picker(data: wantPickerData))
+        StaticVariables.agePickerData.insert("Do Not Show", at: 0)
+        StaticVariables.heightPickerData.insert("Do Not Show", at: 0)
+        StaticVariables.weightPickerData.insert("Do Not Show", at: 0)
+        statsPickerData.append(picker(data: StaticVariables.agePickerData))
+        statsPickerData.append(picker(data: StaticVariables.heightPickerData))
+        statsPickerData.append(picker(data: StaticVariables.weightPickerData))
+        statsPickerData.append(picker(data: StaticVariables.ethnicityPickerData))
+        statsPickerData.append(picker(data: StaticVariables.relationshipPickerData))
+        statsPickerData.append(picker(data: StaticVariables.wantPickerData))
     }
     
     func populateSexualityPickerData() {
         sexualityPickerData.removeAll()
-        sexualityPickerData.append(picker(data: genderPickerData))
+        sexualityPickerData.append(picker(data: StaticVariables.genderPickerData))
     }
     
     
@@ -305,39 +284,61 @@ class ProfileEditViewController: UIViewController {
                         }
                         // no error
                         let profilePhotoURL = url?.absoluteString
-                        userReference.child("/profile").child("/profile_photo_url").setValue(profilePhotoURL)
+//                        userReference.child("/profile").child("/profile_photo_url").setValue(profilePhotoURL)
+                        userReference.child("/profile_photo_url").setValue(profilePhotoURL)
                     })
                 }
             }
-            userReference.child("/profile").child("/profile_photo_url").setValue("")
+//            userReference.child("/profile").child("/profile_photo_url").setValue("")
+            userReference.child("/profile_photo_url").setValue("")
+            
+//            // Save info data
+//            userReference.child("/profile").child("/user_info").child("user_name").setValue(infoCellContent[0])
+//            userReference.child("/profile").child("/user_info").child("i_am").setValue(infoCellContent[1])
+//            userReference.child("/profile").child("/user_info").child("i_like").setValue(infoCellContent[2])
+//            userReference.child("/profile").child("/user_info").child("my_date_would").setValue(infoCellContent[3])
+//
+//            // Save stats data
+//            userReference.child("/profile").child("/user_stats").child("age").child("content").setValue(statsCellContent[0])
+//            userReference.child("/profile").child("/user_stats").child("age").child("row").setValue(statsCellPickerRow[0])
+//            userReference.child("/profile").child("/user_stats").child("height").child("content").setValue(statsCellContent[1])
+//            userReference.child("/profile").child("/user_stats").child("height").child("row").setValue(statsCellPickerRow[1])
+//            userReference.child("/profile").child("/user_stats").child("weight").child("content").setValue(statsCellContent[2])
+//            userReference.child("/profile").child("/user_stats").child("weight").child("row").setValue(statsCellPickerRow[2])
+//            userReference.child("/profile").child("/user_stats").child("ethnicity").child("content").setValue(statsCellContent[3])
+//            userReference.child("/profile").child("/user_stats").child("ethnicity").child("row").setValue(statsCellPickerRow[3])
+//            userReference.child("/profile").child("/user_stats").child("relationship_status").child("content").setValue(statsCellContent[4])
+//            userReference.child("/profile").child("/user_stats").child("relationship_status").child("row").setValue(statsCellPickerRow[4])
+//            userReference.child("/profile").child("/user_stats").child("want").child("content").setValue(statsCellContent[5])
+//            userReference.child("/profile").child("/user_stats").child("want").child("row").setValue(statsCellPickerRow[5])
+//            userReference.child("/profile").child("/user_stats").child("looking_for").child("content").setValue(selectedLookingData)
+//            userReference.child("/profile").child("/user_stats").child("looking_for").child("row").setValue(lastSelectedLooking)
+//
+//            // Save sexuality data
+//            userReference.child("/profile").child("/user_sexuality").child("gender").child("content").setValue(genderData)
+//            userReference.child("/profile").child("/user_sexuality").child("gender").child("row").setValue(genderPickerRow)
+//            userReference.child("/profile").child("/user_sexuality").child("interested").child("content").setValue(selectedInterestedData)
+//            userReference.child("/profile").child("/user_sexuality").child("interested").child("row").setValue(lastSelectedInterested)
             
             // Save info data
-            userReference.child("/profile").child("/user_info").child("user_name").setValue(infoCellContent[0])
-            userReference.child("/profile").child("/user_info").child("i_am").setValue(infoCellContent[1])
-            userReference.child("/profile").child("/user_info").child("i_like").setValue(infoCellContent[2])
-            userReference.child("/profile").child("/user_info").child("my_date_would").setValue(infoCellContent[3])
+            userReference.child("user_name").setValue(infoCellContent[0])
+            userReference.child("i_am").setValue(infoCellContent[1])
+            userReference.child("i_like").setValue(infoCellContent[2])
+            userReference.child("my_date_would").setValue(infoCellContent[3])
             
             // Save stats data
-            userReference.child("/profile").child("/user_stats").child("age").child("content").setValue(statsCellContent[0])
-            userReference.child("/profile").child("/user_stats").child("age").child("row").setValue(statsCellPickerRow[0])
-            userReference.child("/profile").child("/user_stats").child("height").child("content").setValue(statsCellContent[1])
-            userReference.child("/profile").child("/user_stats").child("height").child("row").setValue(statsCellPickerRow[1])
-            userReference.child("/profile").child("/user_stats").child("weight").child("content").setValue(statsCellContent[2])
-            userReference.child("/profile").child("/user_stats").child("weight").child("row").setValue(statsCellPickerRow[2])
-            userReference.child("/profile").child("/user_stats").child("ethnicity").child("content").setValue(statsCellContent[3])
-            userReference.child("/profile").child("/user_stats").child("ethnicity").child("row").setValue(statsCellPickerRow[3])
-            userReference.child("/profile").child("/user_stats").child("relationship_status").child("content").setValue(statsCellContent[4])
-            userReference.child("/profile").child("/user_stats").child("relationship_status").child("row").setValue(statsCellPickerRow[4])
-            userReference.child("/profile").child("/user_stats").child("want_to").child("content").setValue(statsCellContent[5])
-            userReference.child("/profile").child("/user_stats").child("want_to").child("row").setValue(statsCellPickerRow[5])
-            userReference.child("/profile").child("/user_stats").child("looking_for").child("content").setValue(selectedLookingData)
-            userReference.child("/profile").child("/user_stats").child("looking_for").child("row").setValue(lastSelectedLooking)
+            
+            userReference.child("age").setValue(statsCellPickerRow[0])
+            userReference.child("height").setValue(statsCellPickerRow[1])
+            userReference.child("weight").setValue(statsCellPickerRow[2])
+            userReference.child("ethnicity").setValue(statsCellPickerRow[3])
+            userReference.child("relationship_status").setValue(statsCellPickerRow[4])
+            userReference.child("want").setValue(statsCellPickerRow[5])
+            userReference.child("looking_for").setValue(lastSelectedLooking)
             
             // Save sexuality data
-            userReference.child("/profile").child("/user_sexuality").child("gender").child("content").setValue(genderData)
-            userReference.child("/profile").child("/user_sexuality").child("gender").child("row").setValue(genderPickerRow)
-            userReference.child("/profile").child("/user_sexuality").child("interested").child("content").setValue(selectedInterestedData)
-            userReference.child("/profile").child("/user_sexuality").child("interested").child("row").setValue(lastSelectedInterested)
+            userReference.child("gender").setValue(genderPickerRow)
+            userReference.child("interested").setValue(lastSelectedInterested)
             
             SVProgressHUD.showSuccess(withStatus: "Changes Saved")
             SVProgressHUD.dismiss(withDelay: 1)
@@ -413,7 +414,7 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             let cell = tableView.dequeueReusableCell(withIdentifier: "keyboardInputCell", for: indexPath) as! KeyboardInputCell
             cell.cellDelegate = self
             cell.titleLabel.text = tableData[indexPath.section].cell[indexPath.row]
-            cell.placeholderLabel.text = infoCellPlaceholders[indexPath.row]
+            cell.placeholderLabel.text = StaticVariables.infoCellPlaceholders[indexPath.row]
             cell.contentTextView.text = infoCellContent[indexPath.row]
             
             if !infoCellContent[indexPath.row].isEmpty {
@@ -536,11 +537,11 @@ extension ProfileEditViewController: UITableViewDelegate, UITableViewDataSource 
             destinationVC.delegate = self
             destinationVC.fromSection = selectedIndexPath.section
             if selectedIndexPath.section == 2 {
-                destinationVC.optionsData = lookingData
+                destinationVC.optionsData = StaticVariables.lookingData
                 destinationVC.lastSelected = lastSelectedLooking
             }
             else if selectedIndexPath.section == 3 {
-                destinationVC.optionsData = interestedData
+                destinationVC.optionsData = StaticVariables.interestedData
                 destinationVC.lastSelected = lastSelectedInterested
             }
         }

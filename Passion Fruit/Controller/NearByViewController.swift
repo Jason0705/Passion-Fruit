@@ -16,6 +16,8 @@ class NearByViewController: UIViewController {
     // MARK: - Variables
     let defaults = UserDefaults.standard
     
+    var users = [User]()
+    
 //    var mode: Int! {
 //        // 0: Do Not Show, 1: Relationship, 2: Fun, 3: Both
 //        didSet {
@@ -55,12 +57,51 @@ class NearByViewController: UIViewController {
         
         
         getMode()
+        
+        fetchUser()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         
     }
     
+    
+    func fetchUser() {
+        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+//            let user = User()
+//
+//            user.email = snapshot.childSnapshot(forPath: "email").value as? String
+//            user.uid = snapshot.childSnapshot(forPath: "uid").value as? String
+//
+////            user.profile.profile_photo_url = snapshot.childSnapshot(forPath: "profile/profile_photo_url").value as? String
+//
+//            user.profile?.profile_photo_url = "1234567890"
+//
+//            self.users.append(user)
+//
+//            print("\(user.email) || \(user.uid) || \(user.profile?.profile_photo_url)")
+//
+//            print("-------------------")
+//            print("\(self.users[0].email)")
+            
+            
+//            if let dictionary = snapshot.value as? [String: Any] {
+//                // if dictionary... append dictionary["uid"]
+//                let user = User()
+////                user.setValuesForKeys(dictionary)
+//                user.email = dictionary["email"] as? String
+//                user.uid = dictionary["uid"] as? String
+//
+//                user.profile?.profile_photo_url = dictionary["profile/profile_photo_url"] as? String
+////                user.profile = dictionary["profile"] as? Profile
+//
+//                self.users.append(user)
+//
+//                print("\(user.email) || \(user.uid) || \(user.profile?.profile_photo_url)")
+////                print("\(dictionary)")
+//            }
+        }, withCancel: nil)
+    }
     
     
     // MARK: - Functions
@@ -105,6 +146,20 @@ class NearByViewController: UIViewController {
                 }
             }
             
+//            if let mode = snapshot.childSnapshot(forPath: "row").value {
+//                if mode as! Int == 0 {
+//                    self.changeView(to: 0)
+//                }
+//                else if mode as! Int == 1 {
+//                    self.changeView(to: 1)
+//                }
+//                else if mode as! Int == 2 {
+//                    self.changeView(to: 2)
+//                }
+//                else if mode as! Int == 3 {
+//                    self.changeView(to: 3)
+//                }
+//            }
         }, withCancel: nil)
         
     }
