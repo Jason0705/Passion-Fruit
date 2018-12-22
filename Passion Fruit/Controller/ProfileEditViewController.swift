@@ -354,15 +354,38 @@ class ProfileEditViewController: UIViewController {
     
     @IBAction func saveBarButtonPressed(_ sender: UIBarButtonItem) {
         doneButtonViewState(state: 0)
-        saveProfile()
-        if from == 1 {
-            // Navigate to MainTabBarController
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-            self.present(mainTabBarController, animated: true, completion: nil)
-            return
+        if genderPickerRow == 0 { // not to show gender
+            let alert = UIAlertController(title: "Attention", message: "Not showing your gender makes it hard for others to find your profile. Are you sure you want to continue without showing your gender?", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (AlertAction) in
+                alert.dismiss(animated: true, completion: nil)
+                self.saveProfile()
+                if self.from == 1 {
+                    // Navigate to MainTabBarController
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                    self.present(mainTabBarController, animated: true, completion: nil)
+                    return
+                }
+            }
+            let noAction = UIAlertAction(title: "No", style: .default) { (AlertAction) in
+                alert.dismiss(animated: true, completion: nil)
+            }
+            
+            alert.addAction(noAction)
+            alert.addAction(yesAction)
+            self.present(alert, animated: true, completion: nil)
         }
-        self.dismiss(animated: true, completion: nil)
+        else {
+            saveProfile()
+            if from == 1 {
+                // Navigate to MainTabBarController
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                self.present(mainTabBarController, animated: true, completion: nil)
+                return
+            }
+        }
+//        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {

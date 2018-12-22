@@ -16,7 +16,8 @@ class NearByViewController: UIViewController {
     // MARK: - Variables
     let defaults = UserDefaults.standard
     
-    var users = [User]()
+    var relationshipUsers = [User]()
+    var funUers = [User]()
     
 //    var mode: Int! {
 //        // 0: Do Not Show, 1: Relationship, 2: Fun, 3: Both
@@ -56,18 +57,64 @@ class NearByViewController: UIViewController {
         setUp()
         
         
-        getMode()
-        
-        fetchUser()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        getCurrentUserData()
         
     }
     
     
-    func fetchUser() {
+    func fetchUsers(gender: Int, interested: [Int]) {
+        print("\(gender), \(interested)")
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: Any] {
+                let user = User()
+
+                user.uid = dictionary["uid"] as? String
+                user.email = dictionary["email"] as? String
+                
+                user.profile_photo_url = dictionary["profile_photo_url"] as? String
+                
+                user.user_name = dictionary["user_name"] as? String
+                user.i_am = dictionary["i_am"] as? String
+                user.i_like = dictionary["i_like"] as? String
+                user.my_date_would = dictionary["my_date_would"] as? String
+                
+                user.age = dictionary["age"] as? Int
+                user.height = dictionary["height"] as? Int
+                user.weight = dictionary["weight"] as? Int
+                user.ethnicity = dictionary["ethnicity"] as? Int
+                user.relationship_status = dictionary["relationship_status"] as? Int
+                user.want = dictionary["want"] as? Int
+                user.looking_for = dictionary["looking_for"] as? [Int]
+                
+                user.gender = dictionary["gender"] as? Int
+                user.interested = dictionary["interested"] as? [Int]
+                
+                
+                if user.interested == nil { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
+                    if interested.contains(user.gender! - 1) {
+                        if user.want == 1 { // target user wants relationship
+                            self.relationshipUsers.append(user)
+                        }
+                        else if user.want == 2 { // target user wants fun
+                            self.funUers.append(user)
+                        }
+                    }
+                }
+                else if user.interested != nil { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
+                    if user.interested!.contains(gender - 1) && interested.contains(user.gender! - 1) {
+                        if user.want == 1 { // target user wants relationship
+                            self.relationshipUsers.append(user)
+                        }
+                        else if user.want == 2 { // target user wants fun
+                            self.funUers.append(user)
+                        }
+                    }
+                }
+                
+            }
+            
+            
 //            let user = User()
 //
 //            user.email = snapshot.childSnapshot(forPath: "email").value as? String
@@ -125,41 +172,30 @@ class NearByViewController: UIViewController {
         relationshipFunSegmentedControl.selectedSegmentIndex = 1
     }
     
-    func getMode() {
+    func getCurrentUserData() {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let databaseReference = Database.database().reference()
         
-        databaseReference.child("users").child(uid!).child("profile").child("user_stats").child("want_to").observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any], let mode = dictionary["row"] as? Int {
-                if mode == 0 {
-                    self.changeView(to: 0)
+        databaseReference.child("users").child(uid!).observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any], let want = dictionary["want"] as? Int, let gender = dictionary["gender"] as? Int {
+                
+                self.changeView(to: want)
+                
+                if (dictionary["interested"] as? [Int]) != nil { // grab users based on gender and interested
+                    let interested = dictionary["interested"] as? [Int]
+                    
+                    self.fetchUsers(gender: gender, interested: interested!)
+                    
                 }
-                else if mode == 1 {
-                    self.changeView(to: 1)
-                }
-                else if mode == 2 {
-                    self.changeView(to: 2)
-                }
-                else if mode == 3 {
-                    self.changeView(to: 3)
+                else { // grab users based on gender, assume interested in all
+                    let numberOfInterestedOptions = StaticVariables.interestedData.count
+                    let interested = [Int](0...numberOfInterestedOptions - 1)
+                    
+                    self.fetchUsers(gender: gender, interested: interested)
                 }
             }
             
-//            if let mode = snapshot.childSnapshot(forPath: "row").value {
-//                if mode as! Int == 0 {
-//                    self.changeView(to: 0)
-//                }
-//                else if mode as! Int == 1 {
-//                    self.changeView(to: 1)
-//                }
-//                else if mode as! Int == 2 {
-//                    self.changeView(to: 2)
-//                }
-//                else if mode as! Int == 3 {
-//                    self.changeView(to: 3)
-//                }
-//            }
         }, withCancel: nil)
         
     }
@@ -198,15 +234,14 @@ class NearByViewController: UIViewController {
     
     
     
-    func updateProfileWant(content: String, row: Int) {
+    func updateProfileWant(to want: Int) {
         let user = Auth.auth().currentUser
         let uid = user?.uid
         let databaseReference = Database.database().reference()
         
         let userReference = databaseReference.child("users").child(uid!)
         
-        userReference.child("/profile").child("/user_stats").child("want_to").child("content").setValue(content)
-        userReference.child("/profile").child("/user_stats").child("want_to").child("row").setValue(row)
+        userReference.child("want").setValue(want)
     }
     
     
@@ -230,13 +265,13 @@ class NearByViewController: UIViewController {
     
     @IBAction func optionsButtonsPressed(_ sender: UIButton) {
         if sender.tag == 0 {
-            updateProfileWant(content: "Relationship", row: 1)
+            updateProfileWant(to: 1)
         }
         else if sender.tag == 1 {
-            updateProfileWant(content: "Fun", row: 2)
+            updateProfileWant(to: 2)
         }
         else if sender.tag == 2 {
-            updateProfileWant(content: "Both", row: 3)
+            updateProfileWant(to: 3)
         }
     }
     
