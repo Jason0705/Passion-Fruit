@@ -129,6 +129,9 @@ class ProfileEditViewController: UIViewController {
         statsPickerData.append(picker(data: StaticVariables.ethnicityPickerData))
         statsPickerData.append(picker(data: StaticVariables.relationshipPickerData))
         statsPickerData.append(picker(data: StaticVariables.wantPickerData))
+        StaticVariables.agePickerData.remove(at: 0)
+        StaticVariables.heightPickerData.remove(at: 0)
+        StaticVariables.weightPickerData.remove(at: 0)
     }
     
     func populateSexualityPickerData() {
@@ -166,13 +169,15 @@ class ProfileEditViewController: UIViewController {
             else if state == 1 {
                 self.doneButtonViewHeight.constant = 258 + 44 + 44 // keyboard height + sugest text view height + visable dont button view height
                 self.doneButton.isHidden = false
+                self.pickerViewHeight.constant = 0 // picker view height
             }
                 
                 // picker editing state
             else if state == 2 {
-                self.pickerViewHeight.constant = 216 // picker view height
                 self.doneButtonViewHeight.constant = 216 + 44 // picker view height + visable done button view height
                 self.doneButton.isHidden = false
+                self.pickerViewHeight.constant = 216 // picker view height
+                self.view.endEditing(true)
             }
             self.view.layoutIfNeeded()
         }
@@ -254,7 +259,6 @@ class ProfileEditViewController: UIViewController {
     func saveProfile() {
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.none)
         
         if Auth.auth().currentUser != nil { // User signed in
             let user = Auth.auth().currentUser

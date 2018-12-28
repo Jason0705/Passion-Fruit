@@ -77,10 +77,10 @@ class SignUpViewController: UIViewController {
         view.endEditing(true)
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.none)
         
         // Sign up user using email and password input.
         if passwordTextField.text != confirmPasswordTextField.text {
+            SVProgressHUD.dismiss()
             AlertService.alertService.presentErrorAlert(message: "Password does not match the confirm password! Please check again.", vc: self)
             return
         }
@@ -88,6 +88,7 @@ class SignUpViewController: UIViewController {
             SVProgressHUD.dismiss()
             self.performSegue(withIdentifier: "signUpToProfileEditNavigationController", sender: nil)
         }, onFail: { (error) in
+            SVProgressHUD.dismiss()
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })
     }

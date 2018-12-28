@@ -107,6 +107,10 @@ class NearByViewController: UIViewController {
                         else if user.want == 2 { // target user wants fun
                             self.funUers.append(user)
                         }
+                        else if user.want == 3 { // target user wants both
+                            self.relationshipUsers.append(user)
+                            self.funUers.append(user)
+                        }
                     }
                 }
                 else if user.interested != nil { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
@@ -115,6 +119,10 @@ class NearByViewController: UIViewController {
                             self.relationshipUsers.append(user)
                         }
                         else if user.want == 2 { // target user wants fun
+                            self.funUers.append(user)
+                        }
+                        else if user.want == 3 { // target user wants both
+                            self.relationshipUsers.append(user)
                             self.funUers.append(user)
                         }
                     }

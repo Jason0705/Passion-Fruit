@@ -88,7 +88,6 @@ class SignInViewController: UIViewController {
         view.endEditing(true)
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.show()
-        SVProgressHUD.setDefaultMaskType(.none)
         
         // Sign in user using email and password input.
         AuthService.signInUser(email: emailTextField.text!, password: passwordTextField.text!, onSuccess: {
@@ -98,6 +97,8 @@ class SignInViewController: UIViewController {
             SVProgressHUD.dismiss()
             AlertService.alertService.presentErrorAlert(message: error!, vc: self)
         })
+        
+//        SVProgressHUD.dismiss()
     }
     
 }
