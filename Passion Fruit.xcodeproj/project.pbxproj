@@ -19,6 +19,8 @@
 		822AB985219A947500F5C266 /* KeyboardInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB983219A947500F5C266 /* KeyboardInputCell.xib */; };
 		822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB986219A948D00F5C266 /* ProfileStatsCell.swift */; };
 		822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB987219A948D00F5C266 /* ProfileStatsCell.xib */; };
+		823982A321D5A7AC008112B1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823982A121D5A7AC008112B1 /* UserCell.swift */; };
+		823982A421D5A7AC008112B1 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823982A221D5A7AC008112B1 /* UserCell.xib */; };
 		825BC03E21C201F000376F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BC03D21C201F000376F0B /* User.swift */; };
 		8267109F2197F19D005B3D0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109E2197F19D005B3D0A /* AuthService.swift */; };
 		826710A12197F7BC005B3D0A /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826710A02197F7BC005B3D0A /* AlertService.swift */; };
@@ -84,6 +86,8 @@
 		822AB983219A947500F5C266 /* KeyboardInputCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyboardInputCell.xib; sourceTree = "<group>"; };
 		822AB986219A948D00F5C266 /* ProfileStatsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStatsCell.swift; sourceTree = "<group>"; };
 		822AB987219A948D00F5C266 /* ProfileStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileStatsCell.xib; sourceTree = "<group>"; };
+		823982A121D5A7AC008112B1 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		823982A221D5A7AC008112B1 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		825BC03D21C201F000376F0B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8267109E2197F19D005B3D0A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		826710A02197F7BC005B3D0A /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				822AB983219A947500F5C266 /* KeyboardInputCell.xib */,
 				822AB986219A948D00F5C266 /* ProfileStatsCell.swift */,
 				822AB987219A948D00F5C266 /* ProfileStatsCell.xib */,
+				823982A121D5A7AC008112B1 /* UserCell.swift */,
+				823982A221D5A7AC008112B1 /* UserCell.xib */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -424,6 +430,7 @@
 				826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */,
 				822AB981219A945D00F5C266 /* ImageVideoCell.xib in Resources */,
 				826B4094218AEC5800F042D9 /* Main.storyboard in Resources */,
+				823982A421D5A7AC008112B1 /* UserCell.xib in Resources */,
 				822AB985219A947500F5C266 /* KeyboardInputCell.xib in Resources */,
 				826B40E0218BC12200F042D9 /* NearBy.storyboard in Resources */,
 				822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */,
@@ -562,6 +569,7 @@
 				826B40C2218BA16800F042D9 /* SignUpViewController.swift in Sources */,
 				822AB984219A947500F5C266 /* KeyboardInputCell.swift in Sources */,
 				82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */,
+				823982A321D5A7AC008112B1 /* UserCell.swift in Sources */,
 				822AB976219811D400F5C266 /* InputService.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				82AA6EC021AA2B08008D2FFA /* StaticVariables.swift in Sources */,

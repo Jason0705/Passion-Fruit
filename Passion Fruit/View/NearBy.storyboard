@@ -71,6 +71,10 @@
                                                 </view>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Zcz-uM-2Vr" id="x3f-OY-0G3"/>
+                                            <outlet property="delegate" destination="Zcz-uM-2Vr" id="Fhr-Ea-Xgi"/>
+                                        </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -102,6 +106,10 @@
                                                 </view>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Zcz-uM-2Vr" id="gf7-FO-xPq"/>
+                                            <outlet property="delegate" destination="Zcz-uM-2Vr" id="C6D-dQ-iUG"/>
+                                        </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -228,11 +236,13 @@
                     </navigationItem>
                     <connections>
                         <outlet property="defaultView" destination="rfK-4G-yWc" id="uQn-s8-uYk"/>
+                        <outlet property="funCollectionView" destination="Xqt-oP-k0e" id="Cyk-ng-y2Q"/>
                         <outlet property="funView" destination="tGL-DM-LiJ" id="j9f-aN-3k3"/>
                         <outlet property="funViewWidth" destination="HoF-RV-K8Q" id="xQR-LF-S5B"/>
                         <outlet property="messageView" destination="yFO-9D-oXC" id="ujr-A8-fAX"/>
                         <outlet property="modeImageView" destination="8fs-JQ-xaP" id="55D-1z-x0q"/>
                         <outlet property="modeView" destination="OC7-ec-M5c" id="VwB-GX-R72"/>
+                        <outlet property="relationshipCollectionView" destination="ABW-gE-wgH" id="Hgh-ak-q1Z"/>
                         <outlet property="relationshipFunSegmentedControl" destination="xZG-Lf-Qux" id="ZfD-QK-NXF"/>
                         <outlet property="relationshipView" destination="ppx-y9-rdD" id="VGR-6W-gVg"/>
                         <outlet property="relationshipViewWidth" destination="Z5E-bn-1PO" id="X3N-3u-2eI"/>

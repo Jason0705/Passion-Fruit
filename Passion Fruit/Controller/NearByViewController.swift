@@ -41,9 +41,12 @@ class NearByViewController: UIViewController {
     
     @IBOutlet weak var relationshipView: UIView!
     @IBOutlet weak var relationshipViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var relationshipCollectionView: UICollectionView!
+    
     
     @IBOutlet weak var funView: UIView!
     @IBOutlet weak var funViewWidth: NSLayoutConstraint!
+    @IBOutlet weak var funCollectionView: UICollectionView!
     
     
     // MARK: - Override Functions
@@ -52,6 +55,10 @@ class NearByViewController: UIViewController {
         super.viewDidLoad()
 
         defaults.set(1, forKey: "SelectedTabBar")
+        
+        // Register CustomBookCell.xib
+        relationshipCollectionView.register(UINib(nibName: "UserCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
+        funCollectionView.register(UINib(nibName: "UserCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
         
         // UI set up
         setUp()
@@ -62,8 +69,9 @@ class NearByViewController: UIViewController {
     }
     
     
+    // MARK: - Functions
+    
     func fetchUsers(gender: Int, interested: [Int]) {
-        print("\(gender), \(interested)")
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
@@ -112,9 +120,14 @@ class NearByViewController: UIViewController {
                     }
                 }
                 
+                self.relationshipCollectionView.reloadData()
+                self.funCollectionView.reloadData()
+                
             }
             
-            
+            print(self.relationshipUsers)
+            print("----------------")
+            print(self.funUers)
 //            let user = User()
 //
 //            user.email = snapshot.childSnapshot(forPath: "email").value as? String
@@ -151,7 +164,9 @@ class NearByViewController: UIViewController {
     }
     
     
-    // MARK: - Functions
+    func fetchPhoto(from url: String) {
+        
+    }
     
     func setUp() {
         relationshipView.backgroundColor = FlatWhite()
@@ -185,6 +200,8 @@ class NearByViewController: UIViewController {
                 if (dictionary["interested"] as? [Int]) != nil { // grab users based on gender and interested
                     let interested = dictionary["interested"] as? [Int]
                     
+                    self.relationshipUsers.removeAll()
+                    self.funUers.removeAll()
                     self.fetchUsers(gender: gender, interested: interested!)
                     
                 }
@@ -192,6 +209,8 @@ class NearByViewController: UIViewController {
                     let numberOfInterestedOptions = StaticVariables.interestedData.count
                     let interested = [Int](0...numberOfInterestedOptions - 1)
                     
+                    self.relationshipUsers.removeAll()
+                    self.funUers.removeAll()
                     self.fetchUsers(gender: gender, interested: interested)
                 }
             }
@@ -274,5 +293,39 @@ class NearByViewController: UIViewController {
             updateProfileWant(to: 3)
         }
     }
+    
+}
+
+
+
+// MARK: - Collection View Delegation, Data Source
+
+extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        var count = 0
+        if collectionView == relationshipCollectionView {
+            count = relationshipUsers.count
+        }
+        else if collectionView == funCollectionView {
+            count = funUers.count
+        }
+        return count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UserCell
+        
+        if collectionView == relationshipCollectionView {
+            let cellData = relationshipUsers[indexPath.row]
+            cell.userNameLabel.text = cellData.user_name
+        }
+        else if collectionView == funCollectionView {
+            let cellData = funUers[indexPath.row]
+            cell.userNameLabel.text = cellData.user_name
+        }
+        
+        return cell
+    }
+    
     
 }
