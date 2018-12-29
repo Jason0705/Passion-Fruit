@@ -18,4 +18,16 @@ class CustomizationService {
         bottomLayer.backgroundColor = UIColor.gray.cgColor
         textField.layer.addSublayer(bottomLayer)
     }
+    
+    
+    func threeCellPerRowStyle(view: UIView, spacing: CGFloat, inset: UIEdgeInsets, heightMultiplier: CGFloat) -> UICollectionViewFlowLayout {
+        let cellSize = (view.frame.size.width - (spacing * 4)) / 3
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = inset
+        layout.itemSize = CGSize(width: cellSize, height: cellSize * heightMultiplier)
+        layout.minimumInteritemSpacing = spacing
+        layout.minimumLineSpacing = spacing
+        
+        return layout
+    }
 }

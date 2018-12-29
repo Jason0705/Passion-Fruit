@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		54E088A7BFCFA3EF0A103583 /* Pods_Passion_FruitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */; };
 		731DC1023F3A8909ED8BFEE9 /* Pods_Passion_Fruit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */; };
-		822AB976219811D400F5C266 /* InputService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB975219811D400F5C266 /* InputService.swift */; };
 		822AB9782198122A00F5C266 /* CustomizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB9772198122A00F5C266 /* CustomizationService.swift */; };
 		822AB97A219A61F800F5C266 /* ProfileEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 822AB979219A61F800F5C266 /* ProfileEdit.storyboard */; };
 		822AB97C219A641900F5C266 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB97B219A641900F5C266 /* ProfileEditViewController.swift */; };
@@ -21,6 +20,7 @@
 		822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 822AB987219A948D00F5C266 /* ProfileStatsCell.xib */; };
 		823982A321D5A7AC008112B1 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823982A121D5A7AC008112B1 /* UserCell.swift */; };
 		823982A421D5A7AC008112B1 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823982A221D5A7AC008112B1 /* UserCell.xib */; };
+		823982A621D70FC6008112B1 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823982A521D70FC6008112B1 /* Extentions.swift */; };
 		825BC03E21C201F000376F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BC03D21C201F000376F0B /* User.swift */; };
 		8267109F2197F19D005B3D0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109E2197F19D005B3D0A /* AuthService.swift */; };
 		826710A12197F7BC005B3D0A /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826710A02197F7BC005B3D0A /* AlertService.swift */; };
@@ -76,7 +76,6 @@
 		4B10AF26A7B833155EF6EEE8 /* Pods-Passion FruitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		51B9F83310D14DA0EE780D58 /* Pods-Passion FruitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitUITests/Pods-Passion FruitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		80CD88FE5281F8805A5FF6D5 /* Pods-Passion FruitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.release.xcconfig"; sourceTree = "<group>"; };
-		822AB975219811D400F5C266 /* InputService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputService.swift; sourceTree = "<group>"; };
 		822AB9772198122A00F5C266 /* CustomizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationService.swift; sourceTree = "<group>"; };
 		822AB979219A61F800F5C266 /* ProfileEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileEdit.storyboard; sourceTree = "<group>"; };
 		822AB97B219A641900F5C266 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +87,7 @@
 		822AB987219A948D00F5C266 /* ProfileStatsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileStatsCell.xib; sourceTree = "<group>"; };
 		823982A121D5A7AC008112B1 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		823982A221D5A7AC008112B1 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		823982A521D70FC6008112B1 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		825BC03D21C201F000376F0B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8267109E2197F19D005B3D0A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		826710A02197F7BC005B3D0A /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
@@ -202,9 +202,9 @@
 			children = (
 				8267109E2197F19D005B3D0A /* AuthService.swift */,
 				826710A02197F7BC005B3D0A /* AlertService.swift */,
-				822AB975219811D400F5C266 /* InputService.swift */,
 				822AB9772198122A00F5C266 /* CustomizationService.swift */,
 				82AA6EC121ABB100008D2FFA /* VideoService.swift */,
+				823982A521D70FC6008112B1 /* Extentions.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -234,8 +234,8 @@
 		826B408D218AEC5800F042D9 /* Passion Fruit */ = {
 			isa = PBXGroup;
 			children = (
-				8267109D2197F16D005B3D0A /* Supporting Files */,
 				826B408E218AEC5800F042D9 /* AppDelegate.swift */,
+				8267109D2197F16D005B3D0A /* Supporting Files */,
 				826B40BE218BA13000F042D9 /* Model */,
 				826B40BD218BA12800F042D9 /* View */,
 				826B40BC218BA11A00F042D9 /* Controller */,
@@ -570,7 +570,6 @@
 				822AB984219A947500F5C266 /* KeyboardInputCell.swift in Sources */,
 				82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */,
 				823982A321D5A7AC008112B1 /* UserCell.swift in Sources */,
-				822AB976219811D400F5C266 /* InputService.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
 				82AA6EC021AA2B08008D2FFA /* StaticVariables.swift in Sources */,
 				82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */,
@@ -582,6 +581,7 @@
 				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
 				826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */,
 				82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */,
+				823982A621D70FC6008112B1 /* Extentions.swift in Sources */,
 				822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */,
 				826710A12197F7BC005B3D0A /* AlertService.swift in Sources */,
 				825BC03E21C201F000376F0B /* User.swift in Sources */,

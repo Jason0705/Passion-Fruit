@@ -19,14 +19,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kuC-zb-pwh" userLabel="Default Image View">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="kuC-zb-pwh" userLabel="Default Image View">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RtM-1x-fi5" userLabel="Profile Image View">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RtM-1x-fi5" userLabel="Profile Image View">
                         <rect key="frame" x="0.0" y="0.0" width="225" height="225"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jve-8h-JHY" userLabel="User Name Label">
-                        <rect key="frame" x="20" y="184" width="42" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jve-8h-JHY" userLabel="User Name Label">
+                        <rect key="frame" x="4" y="200" width="85.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -37,13 +37,13 @@
                 <constraint firstAttribute="bottom" secondItem="RtM-1x-fi5" secondAttribute="bottom" id="4tt-K3-1OF"/>
                 <constraint firstAttribute="trailing" secondItem="RtM-1x-fi5" secondAttribute="trailing" id="5Ix-H5-7y2"/>
                 <constraint firstItem="RtM-1x-fi5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="BuB-sA-sx4"/>
-                <constraint firstItem="Jve-8h-JHY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="GjV-VQ-hem"/>
+                <constraint firstItem="Jve-8h-JHY" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="4" id="GjV-VQ-hem"/>
                 <constraint firstAttribute="bottom" secondItem="kuC-zb-pwh" secondAttribute="bottom" id="SeB-xw-j0o"/>
                 <constraint firstItem="RtM-1x-fi5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="TIe-gL-KQ6"/>
                 <constraint firstAttribute="trailing" secondItem="kuC-zb-pwh" secondAttribute="trailing" id="cfR-nF-EkF"/>
                 <constraint firstItem="kuC-zb-pwh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cjw-vp-X3Y"/>
                 <constraint firstItem="kuC-zb-pwh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="v63-hj-K6X"/>
-                <constraint firstAttribute="bottom" secondItem="Jve-8h-JHY" secondAttribute="bottom" constant="20" id="wAV-73-Qzp"/>
+                <constraint firstAttribute="bottom" secondItem="Jve-8h-JHY" secondAttribute="bottom" constant="4" id="wAV-73-Qzp"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="221" height="212"/>
@@ -55,4 +55,7 @@
             <point key="canvasLocation" x="76" y="125"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="person" width="96" height="96"/>
+    </resources>
 </document>

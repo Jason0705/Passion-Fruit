@@ -180,6 +180,10 @@ class NearByViewController: UIViewController {
         relationshipView.backgroundColor = FlatWhite()
         funView.backgroundColor = FlatBlack()
         showRelationshipView()
+        
+        relationshipCollectionView.collectionViewLayout = CustomizationService().threeCellPerRowStyle(view: relationshipView, spacing: 4, inset: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4), heightMultiplier: 1)
+        funCollectionView.collectionViewLayout = CustomizationService().threeCellPerRowStyle(view: relationshipView, spacing: 4, inset: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4), heightMultiplier: 1)
+        
     }
     
     
@@ -324,12 +328,20 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UserCell
         
         if collectionView == relationshipCollectionView {
-            let cellData = relationshipUsers[indexPath.row]
-            cell.userNameLabel.text = cellData.user_name
+            let user = relationshipUsers[indexPath.row]
+            cell.userNameLabel.text = user.user_name
+            
+            if let profileImageURL = user.profile_photo_url {
+                cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
+            }
         }
         else if collectionView == funCollectionView {
-            let cellData = funUers[indexPath.row]
-            cell.userNameLabel.text = cellData.user_name
+            let user = funUers[indexPath.row]
+            cell.userNameLabel.text = user.user_name
+            
+            if let profileImageURL = user.profile_photo_url {
+                cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
+            }
         }
         
         return cell
