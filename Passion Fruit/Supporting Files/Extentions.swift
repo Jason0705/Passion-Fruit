@@ -12,6 +12,14 @@ import UIKit
 let imageCache = NSCache<AnyObject, AnyObject>()
 
 
+class Cache {
+    func clearCache() {
+        imageCache.removeAllObjects()
+        print("CACHE CLEARED")
+    }
+}
+
+
 extension UIImageView {
     
     func loadImageUsingCacheWithURL(urlString: String) {

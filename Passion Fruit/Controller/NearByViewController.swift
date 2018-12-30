@@ -19,14 +19,6 @@ class NearByViewController: UIViewController {
     var relationshipUsers = [User]()
     var funUers = [User]()
     
-//    var mode: Int! {
-//        // 0: Do Not Show, 1: Relationship, 2: Fun, 3: Both
-//        didSet {
-//            changeView()
-//            print("\(mode)")
-//        }
-//    }
-    
     
     // MARK: - IBOutlets
     
@@ -39,14 +31,8 @@ class NearByViewController: UIViewController {
     
     @IBOutlet weak var relationshipFunSegmentedControl: UISegmentedControl!
     
-    @IBOutlet weak var relationshipView: UIView!
-    @IBOutlet weak var relationshipViewWidth: NSLayoutConstraint!
-    @IBOutlet weak var relationshipCollectionView: UICollectionView!
-    
-    
-    @IBOutlet weak var funView: UIView!
-    @IBOutlet weak var funViewWidth: NSLayoutConstraint!
-    @IBOutlet weak var funCollectionView: UICollectionView!
+   
+    @IBOutlet weak var usersCollectionView: UICollectionView!
     
     
     // MARK: - Override Functions
@@ -57,21 +43,56 @@ class NearByViewController: UIViewController {
         defaults.set(1, forKey: "SelectedTabBar")
         
         // Register CustomBookCell.xib
-        relationshipCollectionView.register(UINib(nibName: "UserCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
-        funCollectionView.register(UINib(nibName: "UserCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
+        usersCollectionView.register(UINib(nibName: "UserCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
         
         // UI set up
         setUp()
         
         
-        getCurrentUserData()
+        fetchCurrentUserData()
         
     }
     
     
+    
     // MARK: - Functions
     
+    func fetchCurrentUserData() {
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
+        let databaseReference = Database.database().reference()
+        
+        databaseReference.child("users").child(uid!).observe(.value , with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: Any], let want = dictionary["want"] as? Int, let gender = dictionary["gender"] as? Int {
+                
+                self.changeView(to: want)
+                
+                if dictionary["interested"] as? [Int] != nil { // grab users based on gender and interested
+                    let interested = dictionary["interested"] as? [Int]
+                    
+                    self.fetchUsers(gender: gender, interested: interested!)
+                    
+                }
+                else { // grab users based on gender, assume interested in all
+                    let numberOfInterestedOptions = StaticVariables.interestedData.count
+                    let interested = [Int](0...numberOfInterestedOptions - 1)
+                    
+                    self.fetchUsers(gender: gender, interested: interested)
+                }
+            }
+            
+        }, withCancel: nil)
+        
+    }
+    
+    
+    
     func fetchUsers(gender: Int, interested: [Int]) {
+        
+        relationshipUsers.removeAll()
+        funUers.removeAll()
+        
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
@@ -111,124 +132,67 @@ class NearByViewController: UIViewController {
                             self.relationshipUsers.append(user)
                             self.funUers.append(user)
                         }
+                        
                     }
                 }
                 else if user.interested != nil { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
-                    if user.interested!.contains(gender - 1) && interested.contains(user.gender! - 1) {
+                    if interested.contains(user.gender! - 1) && user.interested!.contains(gender - 1) {
                         if user.want == 1 { // target user wants relationship
                             self.relationshipUsers.append(user)
+                            
+                            print("Self: \(interested) || \(gender)")
+                            print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
                         }
                         else if user.want == 2 { // target user wants fun
                             self.funUers.append(user)
+                            
+                            print("Self: \(interested) || \(gender)")
+                            print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
                         }
                         else if user.want == 3 { // target user wants both
                             self.relationshipUsers.append(user)
                             self.funUers.append(user)
+                            
+                            print("Self: \(interested) || \(gender)")
+                            print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
                         }
+                        
                     }
                 }
                 
-                self.relationshipCollectionView.reloadData()
-                self.funCollectionView.reloadData()
+                print("Relationship count: \(self.relationshipUsers.count) || Fun count: \(self.funUers.count)")
+                print("----------------\n")
+                
+                self.usersCollectionView.reloadData()
+                self.usersCollectionView.collectionViewLayout.invalidateLayout()
                 
             }
-            
-            print(self.relationshipUsers)
-            print("----------------")
-            print(self.funUers)
-//            let user = User()
-//
-//            user.email = snapshot.childSnapshot(forPath: "email").value as? String
-//            user.uid = snapshot.childSnapshot(forPath: "uid").value as? String
-//
-////            user.profile.profile_photo_url = snapshot.childSnapshot(forPath: "profile/profile_photo_url").value as? String
-//
-//            user.profile?.profile_photo_url = "1234567890"
-//
-//            self.users.append(user)
-//
-//            print("\(user.email) || \(user.uid) || \(user.profile?.profile_photo_url)")
-//
-//            print("-------------------")
-//            print("\(self.users[0].email)")
-            
-            
-//            if let dictionary = snapshot.value as? [String: Any] {
-//                // if dictionary... append dictionary["uid"]
-//                let user = User()
-////                user.setValuesForKeys(dictionary)
-//                user.email = dictionary["email"] as? String
-//                user.uid = dictionary["uid"] as? String
-//
-//                user.profile?.profile_photo_url = dictionary["profile/profile_photo_url"] as? String
-////                user.profile = dictionary["profile"] as? Profile
-//
-//                self.users.append(user)
-//
-//                print("\(user.email) || \(user.uid) || \(user.profile?.profile_photo_url)")
-////                print("\(dictionary)")
-//            }
         }, withCancel: nil)
     }
     
     
-    func fetchPhoto(from url: String) {
-        
-    }
     
     func setUp() {
-        relationshipView.backgroundColor = FlatWhite()
-        funView.backgroundColor = FlatBlack()
         showRelationshipView()
         
-        relationshipCollectionView.collectionViewLayout = CustomizationService().threeCellPerRowStyle(view: relationshipView, spacing: 4, inset: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4), heightMultiplier: 1)
-        funCollectionView.collectionViewLayout = CustomizationService().threeCellPerRowStyle(view: relationshipView, spacing: 4, inset: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4), heightMultiplier: 1)
-        
+        usersCollectionView.collectionViewLayout = CustomizationService().threeCellPerRowStyle(view: self.view, spacing: 4, inset: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4), heightMultiplier: 1)
     }
     
     
     func showRelationshipView() {
-        relationshipViewWidth.constant = self.view.frame.width
-        funViewWidth.constant = 0
+        usersCollectionView.backgroundColor = FlatWhite()
         relationshipFunSegmentedControl.selectedSegmentIndex = 0
+        
+        usersCollectionView.reloadData()
+        usersCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     func showFunView() {
-        relationshipViewWidth.constant = 0
-        funViewWidth.constant = self.view.frame.width
+        usersCollectionView.backgroundColor = FlatBlack()
         relationshipFunSegmentedControl.selectedSegmentIndex = 1
-    }
-    
-    func getCurrentUserData() {
-        let user = Auth.auth().currentUser
-        let uid = user?.uid
-        let databaseReference = Database.database().reference()
         
-        databaseReference.child("users").child(uid!).observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any], let want = dictionary["want"] as? Int, let gender = dictionary["gender"] as? Int {
-                
-                self.changeView(to: want)
-                
-                if (dictionary["interested"] as? [Int]) != nil { // grab users based on gender and interested
-                    let interested = dictionary["interested"] as? [Int]
-                    
-                    self.relationshipUsers.removeAll()
-                    self.funUers.removeAll()
-                    self.fetchUsers(gender: gender, interested: interested!)
-                    
-                }
-                else { // grab users based on gender, assume interested in all
-                    let numberOfInterestedOptions = StaticVariables.interestedData.count
-                    let interested = [Int](0...numberOfInterestedOptions - 1)
-                    
-                    self.relationshipUsers.removeAll()
-                    self.funUers.removeAll()
-                    self.fetchUsers(gender: gender, interested: interested)
-                }
-            }
-            
-        }, withCancel: nil)
-        
+        usersCollectionView.reloadData()
+        usersCollectionView.collectionViewLayout.invalidateLayout()
     }
     
     func changeView(to mode: Int) {
@@ -263,8 +227,6 @@ class NearByViewController: UIViewController {
     
     
     
-    
-    
     func updateProfileWant(to want: Int) {
         let user = Auth.auth().currentUser
         let uid = user?.uid
@@ -280,18 +242,14 @@ class NearByViewController: UIViewController {
     // MARK: - IBActions
     
     @IBAction func relationshipFunSegmentedControlSwitched(_ sender: UISegmentedControl) {
+        
         if sender.selectedSegmentIndex == 0 {
-            UIView.animate(withDuration: 0.25) {
-                self.showRelationshipView()
-                self.view.layoutIfNeeded()
-            }
+            showRelationshipView()
         }
         else if sender.selectedSegmentIndex == 1 {
-            UIView.animate(withDuration: 0.25) {
-                self.showFunView()
-                self.view.layoutIfNeeded()
-            }
+            showFunView()
         }
+        
     }
     
     @IBAction func optionsButtonsPressed(_ sender: UIButton) {
@@ -306,6 +264,8 @@ class NearByViewController: UIViewController {
         }
     }
     
+    
+    
 }
 
 
@@ -313,39 +273,83 @@ class NearByViewController: UIViewController {
 // MARK: - Collection View Delegation, Data Source
 
 extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        var count = 0
-        if collectionView == relationshipCollectionView {
-            count = relationshipUsers.count
+        switch relationshipFunSegmentedControl.selectedSegmentIndex {
+        case 0:
+            return relationshipUsers.count
+        case 1:
+            return funUers.count
+        default:
+            return relationshipUsers.count
         }
-        else if collectionView == funCollectionView {
-            count = funUers.count
-        }
-        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UserCell
         
-        if collectionView == relationshipCollectionView {
+        switch relationshipFunSegmentedControl.selectedSegmentIndex {
+        case 0:
             let user = relationshipUsers[indexPath.row]
             cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
                 cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
             }
-        }
-        else if collectionView == funCollectionView {
+
+        case 1:
             let user = funUers[indexPath.row]
             cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
                 cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
             }
+
+        default:
+            break
         }
         
         return cell
     }
     
     
+    
 }
+
+
+
+
+
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
