@@ -64,21 +64,22 @@ class NearByViewController: UIViewController {
         
         databaseReference.child("users").child(uid!).observe(.value , with: { (snapshot) in
             
-            if let dictionary = snapshot.value as? [String: Any], let want = dictionary["want"] as? Int, let gender = dictionary["gender"] as? Int {
+            if let dictionary = snapshot.value as? [String: Any], let want = dictionary["want"] as? [String: Any], let wantChoice = want["choice"] as? Int, let gender = dictionary["gender"] as? [String: Any], let genderChoice = gender["choice"] as? Int {
                 
-                self.changeView(to: want)
+                self.changeView(to: wantChoice)
                 
-                if dictionary["interested"] as? [Int] != nil { // grab users based on gender and interested
-                    let interested = dictionary["interested"] as? [Int]
-                    
-                    self.fetchUsers(gender: gender, interested: interested!)
-                    
+                
+                if dictionary["interested"] as? [String: Any] != nil { // grab users based on gender and interested
+                    let interested = dictionary["interested"]as? [String: Any]
+                    let interestedChoice = interested!["choice"] as? [Int]
+                    self.fetchUsers(gender: genderChoice, interested: interestedChoice!)
+
                 }
                 else { // grab users based on gender, assume interested in all
                     let numberOfInterestedOptions = StaticVariables.interestedData.count
-                    let interested = [Int](0...numberOfInterestedOptions - 1)
+                    let interestedChoice = [Int](0...numberOfInterestedOptions - 1)
                     
-                    self.fetchUsers(gender: gender, interested: interested)
+                    self.fetchUsers(gender: genderChoice, interested: interestedChoice)
                 }
             }
             
@@ -89,83 +90,89 @@ class NearByViewController: UIViewController {
     
     
     func fetchUsers(gender: Int, interested: [Int]) {
-        
+
         relationshipUsers.removeAll()
         funUers.removeAll()
-        
+
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
-            
+
             if let dictionary = snapshot.value as? [String: Any] {
                 let user = User()
 
                 user.uid = dictionary["uid"] as? String
                 user.email = dictionary["email"] as? String
-                
+
                 user.profile_photo_url = dictionary["profile_photo_url"] as? String
-                
+
                 user.user_name = dictionary["user_name"] as? String
                 user.i_am = dictionary["i_am"] as? String
                 user.i_like = dictionary["i_like"] as? String
                 user.my_date_would = dictionary["my_date_would"] as? String
-                
-                user.age = dictionary["age"] as? Int
-                user.height = dictionary["height"] as? Int
-                user.weight = dictionary["weight"] as? Int
-                user.ethnicity = dictionary["ethnicity"] as? Int
-                user.relationship_status = dictionary["relationship_status"] as? Int
-                user.want = dictionary["want"] as? Int
-                user.looking_for = dictionary["looking_for"] as? [Int]
-                
-                user.gender = dictionary["gender"] as? Int
-                user.interested = dictionary["interested"] as? [Int]
-                
-                
-                if user.interested == nil { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
-                    if interested.contains(user.gender! - 1) {
-                        if user.want == 1 { // target user wants relationship
-                            self.relationshipUsers.append(user)
+
+                user.age = dictionary["age"] as? [String: Any]
+                user.height = dictionary["height"] as? [String: Any]
+                user.weight = dictionary["weight"] as? [String: Any]
+                user.ethnicity = dictionary["ethnicity"] as? [String: Any]
+                user.relationship_status = dictionary["relationship_status"] as? [String: Any]
+                user.want = dictionary["want"] as? [String: Any]
+                user.looking_for = dictionary["looking_for"] as? [String: Any]
+
+                user.gender = dictionary["gender"] as? [String: Any]
+                user.interested = dictionary["interested"] as? [String: Any]
+
+                if user.interested == nil && user.gender != nil { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
+                    if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
+                        if interested.contains(userGenderChoice - 1) {
+                            if userWantChoice == 1 { // target user wants relationship
+                                self.relationshipUsers.append(user)
+                            }
+                            else if userWantChoice == 2 { // target user wants fun
+                                self.funUers.append(user)
+                            }
+                            else if userWantChoice == 3 { // target user wants both
+                                self.relationshipUsers.append(user)
+                                self.funUers.append(user)
+                            }
+                            
                         }
-                        else if user.want == 2 { // target user wants fun
-                            self.funUers.append(user)
-                        }
-                        else if user.want == 3 { // target user wants both
-                            self.relationshipUsers.append(user)
-                            self.funUers.append(user)
+                    }
+                    
+                }
+                else if user.interested != nil && user.gender != nil { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
+                    if let userInterestedChoice = user.interested!["choice"] as? [Int], let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
+                        
+                        if interested.contains(userGenderChoice - 1) && userInterestedChoice.contains(gender - 1) {
+                            if userWantChoice == 1 { // target user wants relationship
+                                self.relationshipUsers.append(user)
+                                
+                                print("Self: \(interested) || \(gender)")
+                                print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
+                            }
+                            else if userWantChoice == 2 { // target user wants fun
+                                self.funUers.append(user)
+                                
+                                print("Self: \(interested) || \(gender)")
+                                print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
+                            }
+                            else if userWantChoice == 3 { // target user wants both
+                                self.relationshipUsers.append(user)
+                                self.funUers.append(user)
+                                
+                                print("Self: \(interested) || \(gender)")
+                                print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
+                            }
+                            
                         }
                         
                     }
                 }
-                else if user.interested != nil { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
-                    if interested.contains(user.gender! - 1) && user.interested!.contains(gender - 1) {
-                        if user.want == 1 { // target user wants relationship
-                            self.relationshipUsers.append(user)
-                            
-                            print("Self: \(interested) || \(gender)")
-                            print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
-                        }
-                        else if user.want == 2 { // target user wants fun
-                            self.funUers.append(user)
-                            
-                            print("Self: \(interested) || \(gender)")
-                            print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
-                        }
-                        else if user.want == 3 { // target user wants both
-                            self.relationshipUsers.append(user)
-                            self.funUers.append(user)
-                            
-                            print("Self: \(interested) || \(gender)")
-                            print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
-                        }
-                        
-                    }
-                }
-                
+
                 print("Relationship count: \(self.relationshipUsers.count) || Fun count: \(self.funUers.count)")
                 print("----------------\n")
-                
+
                 self.usersCollectionView.reloadData()
                 self.usersCollectionView.collectionViewLayout.invalidateLayout()
-                
+
             }
         }, withCancel: nil)
     }
@@ -316,40 +323,4 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
 }
 
-
-
-
-
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 

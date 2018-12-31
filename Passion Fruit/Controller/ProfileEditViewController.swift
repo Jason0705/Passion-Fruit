@@ -42,12 +42,12 @@ class ProfileEditViewController: UIViewController {
         // section 1
     var infoCellContent: Array<String> = Array(repeating: "", count: 4) // hold KeyboardInputCell().contentTextView.text
     var infoCellContentSaved: Array<String> = Array(repeating: "", count: 4)
-        // section 2 row 0 ~ 7
+        // section 2 row 0 ~ 5
     var statsCellContent: Array<String> = Array(repeating: "", count: 6) // hold ProfileStatsCell().contentTextView.text
     var statsCellContentSaved: Array<String> = Array(repeating: "", count: 6)
     var statsCellPickerRow: Array<Int> = Array(repeating: 0, count: 6) // hold all pickerData.row
     var statsCellPickerRowSaved: Array<Int> = Array(repeating: 0, count: 6)
-    // section 2 row 8 (last row)
+    // section 2 row 6 (last row)
     var selectedLookingData = ""
     var selectedLookingDataSaved = ""
     var lastSelectedLooking = [Int]()
@@ -99,6 +99,9 @@ class ProfileEditViewController: UIViewController {
         populateStatsPickerData()
         populateSexualityPickerData()
         
+        fetchCurrentUserData()
+        
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -107,6 +110,126 @@ class ProfileEditViewController: UIViewController {
     
     
     // MARK: - Functions
+    
+    func fetchCurrentUserData() {
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
+        let databaseReference = Database.database().reference()
+        
+        
+        databaseReference.child("users").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                
+                // section 0
+                if let profileImageURL = dictionary["profile_photo_url"] as? String, let url = URL(string: profileImageURL) {
+
+                    URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                        // download error, return out
+                        if error != nil {
+                            print(error!)
+                            return
+                        }
+                        
+                        DispatchQueue.main.async {
+                            
+                            self.selectedProfilePhoto = UIImage(data: data!)
+                            self.selectedProfilePhotoSaved = self.selectedProfilePhoto
+                            
+                            self.profileEditTableView.reloadData()
+                        }
+                        
+                    }).resume()
+
+                }
+                
+                // section 1
+                if let userName = dictionary["user_name"] as? String {
+                    self.infoCellContent[0] = userName
+                }
+                
+                if let iAm = dictionary["i_am"] as? String {
+                    self.infoCellContent[1] = iAm
+                }
+                
+                if let iLike = dictionary["i_like"] as? String {
+                    self.infoCellContent[2] = iLike
+                }
+                
+                if let myDateWould = dictionary["my_date_would"] as? String {
+                    self.infoCellContent[3] = myDateWould
+                }
+                
+                // section 2 row 0 ~ 5
+                if let age = dictionary["age"] as? [String: Any], let ageContent = age["content"] as? String, let ageChoice = age["choice"] as? Int {
+                    self.statsCellContent[0] = ageContent
+                    self.statsCellPickerRow[0] = ageChoice
+                }
+                
+//                if let ageContent = snapshot.childSnapshot(forPath: "age/content").value as? String, let ageChoice = snapshot.childSnapshot(forPath: "age/choice").value as? Int {
+//                    self.statsCellContent[0] = ageContent
+//                    self.statsCellPickerRow[0] = ageChoice
+//                }
+                
+                if let height = dictionary["height"] as? [String: Any], let heightContent = height["content"] as? String, let heightChoice = height["choice"] as? Int {
+                    self.statsCellContent[1] = heightContent
+                    self.statsCellPickerRow[1] = heightChoice
+                }
+                
+                if let weight = dictionary["weight"] as? [String: Any], let weightContent = weight["content"] as? String, let weightChoice = weight["choice"] as? Int {
+                    self.statsCellContent[2] = weightContent
+                    self.statsCellPickerRow[2] = weightChoice
+                }
+                
+                if let ethnicity = dictionary["ethnicity"] as? [String: Any], let ethnicityContent = ethnicity["content"] as? String, let ethnicityChoice = ethnicity["choice"] as? Int {
+                    self.statsCellContent[3] = ethnicityContent
+                    self.statsCellPickerRow[3] = ethnicityChoice
+                }
+                
+                if let relationship = dictionary["relationship_status"] as? [String: Any], let relationshipContent = relationship["content"] as? String, let relationshipChoice = relationship["choice"] as? Int {
+                    self.statsCellContent[4] = relationshipContent
+                    self.statsCellPickerRow[4] = relationshipChoice
+                }
+                
+                if let want = dictionary["want"] as? [String: Any], let wantContent = want["content"] as? String, let wantChoice = want["choice"] as? Int {
+                    self.statsCellContent[5] = wantContent
+                    self.statsCellPickerRow[5] = wantChoice
+                }
+                
+                // section 2 row 6
+                if let lookingFor = dictionary["looking_for"] as? [String: Any], let lookingForContent = lookingFor["content"] as? String, let lookingForChoice = lookingFor["choice"] as? [Int] {
+                    self.selectedLookingData = lookingForContent
+                    self.lastSelectedLooking = lookingForChoice
+                }
+                
+                // section 3
+                
+                if let gender = dictionary["gender"] as? [String: Any], let genderContent = gender["content"] as? String, let genderChoice = gender["choice"] as? Int {
+                    self.genderData = genderContent
+                    self.genderPickerRow = genderChoice
+                }
+                
+                if let interested = dictionary["interested"] as? [String: Any], let interestedContent = interested["content"] as? String, let interestedChoice = interested["choice"] as? [Int] {
+                    self.selectedInterestedData = interestedContent
+                    self.lastSelectedInterested = interestedChoice
+                }
+                
+                print(self.infoCellContent)
+                self.infoCellContentSaved = self.infoCellContent
+                self.statsCellContentSaved = self.statsCellContent
+                self.statsCellPickerRowSaved = self.statsCellPickerRow
+                self.selectedLookingDataSaved = self.selectedLookingData
+                self.lastSelectedLookingSaved = self.lastSelectedLooking
+                self.genderDataSaved = self.genderData
+                self.genderPickerRowSaved = self.genderPickerRow
+                self.selectedInterestedDataSaved = self.selectedInterestedData
+                self.lastSelectedInterestedSaved = self.lastSelectedInterested
+                
+                self.profileEditTableView.reloadData()
+            }
+        }, withCancel: nil)
+        
+    }
+    
     
     // Populate table data
     func populateTableData() {
@@ -331,18 +454,40 @@ class ProfileEditViewController: UIViewController {
             userReference.child("my_date_would").setValue(infoCellContent[3])
             
             // Save stats data
-            
-            userReference.child("age").setValue(statsCellPickerRow[0])
-            userReference.child("height").setValue(statsCellPickerRow[1])
-            userReference.child("weight").setValue(statsCellPickerRow[2])
-            userReference.child("ethnicity").setValue(statsCellPickerRow[3])
-            userReference.child("relationship_status").setValue(statsCellPickerRow[4])
-            userReference.child("want").setValue(statsCellPickerRow[5])
-            userReference.child("looking_for").setValue(lastSelectedLooking)
+            userReference.child("age").child("content").setValue(statsCellContent[0])
+            userReference.child("age").child("choice").setValue(statsCellPickerRow[0])
+            userReference.child("height").child("content").setValue(statsCellContent[1])
+            userReference.child("height").child("choice").setValue(statsCellPickerRow[1])
+            userReference.child("weight").child("content").setValue(statsCellContent[2])
+            userReference.child("weight").child("choice").setValue(statsCellPickerRow[2])
+            userReference.child("ethnicity").child("content").setValue(statsCellContent[3])
+            userReference.child("ethnicity").child("choice").setValue(statsCellPickerRow[3])
+            userReference.child("relationship_status").child("content").setValue(statsCellContent[4])
+            userReference.child("relationship_status").child("choice").setValue(statsCellPickerRow[4])
+            userReference.child("want").child("content").setValue(statsCellContent[5])
+            userReference.child("want").child("choice").setValue(statsCellPickerRow[5])
+            userReference.child("looking_for").child("content").setValue(selectedLookingData)
+            userReference.child("looking_for").child("choice").setValue(lastSelectedLooking)
             
             // Save sexuality data
-            userReference.child("gender").setValue(genderPickerRow)
-            userReference.child("interested").setValue(lastSelectedInterested)
+            userReference.child("gender").child("content").setValue(genderData)
+            userReference.child("gender").child("choice").setValue(genderPickerRow)
+            userReference.child("interested").child("content").setValue(selectedInterestedData)
+            userReference.child("interested").child("choice").setValue(lastSelectedInterested)
+
+//            // Save stats data
+//
+//            userReference.child("age").setValue(statsCellPickerRow[0])
+//            userReference.child("height").setValue(statsCellPickerRow[1])
+//            userReference.child("weight").setValue(statsCellPickerRow[2])
+//            userReference.child("ethnicity").setValue(statsCellPickerRow[3])
+//            userReference.child("relationship_status").setValue(statsCellPickerRow[4])
+//            userReference.child("want").setValue(statsCellPickerRow[5])
+//            userReference.child("looking_for").setValue(lastSelectedLooking)
+//
+//            // Save sexuality data
+//            userReference.child("gender").setValue(genderPickerRow)
+//            userReference.child("interested").setValue(lastSelectedInterested)
             
             SVProgressHUD.showSuccess(withStatus: "Changes Saved")
             SVProgressHUD.dismiss(withDelay: 1)
