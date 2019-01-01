@@ -68,17 +68,12 @@ class NearByViewController: UIViewController {
                 
                 self.changeView(to: wantChoice)
                 
-                
-                if dictionary["interested"] as? [String: Any] != nil { // grab users based on gender and interested
-                    let interested = dictionary["interested"]as? [String: Any]
-                    let interestedChoice = interested!["choice"] as? [Int]
-                    self.fetchUsers(gender: genderChoice, interested: interestedChoice!)
-
+                if let interestedChoice = snapshot.childSnapshot(forPath: "interested").childSnapshot(forPath: "choice").value as? [Int] { // grab users based on gender and interested
+                    self.fetchUsers(gender: genderChoice, interested: interestedChoice)
                 }
                 else { // grab users based on gender, assume interested in all
                     let numberOfInterestedOptions = StaticVariables.interestedData.count
                     let interestedChoice = [Int](0...numberOfInterestedOptions - 1)
-                    
                     self.fetchUsers(gender: genderChoice, interested: interestedChoice)
                 }
             }
@@ -120,48 +115,50 @@ class NearByViewController: UIViewController {
                 user.gender = dictionary["gender"] as? [String: Any]
                 user.interested = dictionary["interested"] as? [String: Any]
 
-                if user.interested == nil && user.gender != nil { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
-                    if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
-                        if interested.contains(userGenderChoice - 1) {
-                            if userWantChoice == 1 { // target user wants relationship
-                                self.relationshipUsers.append(user)
+                if user.interested != nil && user.gender != nil && user.want != nil {
+                    if let userInterestedChoice = user.interested!["choice"] as? [Int] { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
+                        if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
+                            if interested.contains(userGenderChoice - 1) && userInterestedChoice.contains(gender - 1) {
+                                if userWantChoice == 1 { // target user wants relationship
+                                    self.relationshipUsers.append(user)
+                                    
+                                    print("Self: \(interested) || \(gender)")
+                                    print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
+                                }
+                                else if userWantChoice == 2 { // target user wants fun
+                                    self.funUers.append(user)
+                                    
+                                    print("Self: \(interested) || \(gender)")
+                                    print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
+                                }
+                                else if userWantChoice == 3 { // target user wants both
+                                    self.relationshipUsers.append(user)
+                                    self.funUers.append(user)
+                                    
+                                    print("Self: \(interested) || \(gender)")
+                                    print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
+                                }
+                                
                             }
-                            else if userWantChoice == 2 { // target user wants fun
-                                self.funUers.append(user)
-                            }
-                            else if userWantChoice == 3 { // target user wants both
-                                self.relationshipUsers.append(user)
-                                self.funUers.append(user)
-                            }
-                            
                         }
+                        
                     }
                     
-                }
-                else if user.interested != nil && user.gender != nil { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
-                    if let userInterestedChoice = user.interested!["choice"] as? [Int], let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
-                        
-                        if interested.contains(userGenderChoice - 1) && userInterestedChoice.contains(gender - 1) {
-                            if userWantChoice == 1 { // target user wants relationship
-                                self.relationshipUsers.append(user)
+                    else { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
+                        if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
+                            if interested.contains(userGenderChoice - 1) {
+                                if userWantChoice == 1 { // target user wants relationship
+                                    self.relationshipUsers.append(user)
+                                }
+                                else if userWantChoice == 2 { // target user wants fun
+                                    self.funUers.append(user)
+                                }
+                                else if userWantChoice == 3 { // target user wants both
+                                    self.relationshipUsers.append(user)
+                                    self.funUers.append(user)
+                                }
                                 
-                                print("Self: \(interested) || \(gender)")
-                                print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
                             }
-                            else if userWantChoice == 2 { // target user wants fun
-                                self.funUers.append(user)
-                                
-                                print("Self: \(interested) || \(gender)")
-                                print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
-                            }
-                            else if userWantChoice == 3 { // target user wants both
-                                self.relationshipUsers.append(user)
-                                self.funUers.append(user)
-                                
-                                print("Self: \(interested) || \(gender)")
-                                print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
-                            }
-                            
                         }
                         
                     }
@@ -241,7 +238,21 @@ class NearByViewController: UIViewController {
         
         let userReference = databaseReference.child("users").child(uid!)
         
-        userReference.child("want").setValue(want)
+        userReference.child("want").child("choice").setValue(want)
+        
+        switch want {
+        case 0:
+            userReference.child("want").child("content").setValue("")
+        case 1:
+            userReference.child("want").child("content").setValue("Relationship")
+        case 2:
+            userReference.child("want").child("content").setValue("Fun")
+        case 3:
+            userReference.child("want").child("content").setValue("Both")
+        default:
+            break
+        }
+        
     }
     
     
