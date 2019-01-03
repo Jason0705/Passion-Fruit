@@ -26,6 +26,9 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+        
         // Textfields Customization
         textFieldsUnderline()
         
@@ -99,6 +102,24 @@ class SignInViewController: UIViewController {
         })
         
 //        SVProgressHUD.dismiss()
+    }
+    
+}
+
+
+
+extension SignInViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // Try to find next responder
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        } else {
+            // Not found, so remove keyboard.
+            textField.resignFirstResponder()
+        }
+        
+        return false
     }
     
 }
