@@ -19,6 +19,13 @@ class CustomizationService {
         textField.layer.addSublayer(bottomLayer)
     }
     
+    func labelUnderline(label: UILabel) {
+        let bottomLayer = CALayer()
+        bottomLayer.frame = CGRect(x: 0, y: label.frame.height - 1, width: label.frame.width, height: 0.6)
+        bottomLayer.backgroundColor = UIColor.gray.cgColor
+        label.layer.addSublayer(bottomLayer)
+    }
+    
     
     func threeCellPerRowStyle(view: UIView, spacing: CGFloat, inset: UIEdgeInsets, heightMultiplier: CGFloat) -> UICollectionViewFlowLayout {
         let cellSize = (view.frame.size.width - (spacing * 4)) / 3

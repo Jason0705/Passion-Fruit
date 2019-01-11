@@ -121,24 +121,26 @@ class ProfileEditViewController: UIViewController {
             if let dictionary = snapshot.value as? [String: Any] {
                 
                 // section 0
-                if let profileImageURL = dictionary["profile_photo_url"] as? String, let url = URL(string: profileImageURL) {
+                if let profileImageURL = dictionary["profile_photo_url"] as? String /*, let url = URL(string: profileImageURL)*/ {
 
-                    URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                        // download error, return out
-                        if error != nil {
-                            print(error!)
-                            return
-                        }
-                        
-                        DispatchQueue.main.async {
-                            
-                            self.selectedProfilePhoto = UIImage(data: data!)
-                            self.selectedProfilePhotoSaved = self.selectedProfilePhoto
-                            
-                            self.profileEditTableView.reloadData()
-                        }
-                        
-                    }).resume()
+//                    URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+//                        // download error, return out
+//                        if error != nil {
+//                            print(error!)
+//                            return
+//                        }
+//
+//                        DispatchQueue.main.async {
+//
+//                            self.selectedProfilePhoto = UIImage(data: data!)
+//                            self.selectedProfilePhotoSaved = self.selectedProfilePhoto
+//
+//                            self.profileEditTableView.reloadData()
+//                        }
+//
+//                    }).resume()
+                    self.selectedProfilePhoto = ImageService().getImageUsingCacheWithURL(urlString: profileImageURL)
+                    self.selectedProfilePhotoSaved = self.selectedProfilePhoto
 
                 }
                 

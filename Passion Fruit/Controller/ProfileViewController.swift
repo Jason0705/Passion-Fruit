@@ -20,13 +20,14 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         defaults.set(4, forKey: "SelectedTabBar")
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
-//        let storyboard = UIStoryboard(name: "ProfileEdit", bundle: nil)
-//        let profileEditNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileEditNavigationController")
-//        self.present(profileEditNavigationController, animated: true, completion: nil)
         performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
     }
     

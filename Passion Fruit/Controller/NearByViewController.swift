@@ -39,8 +39,6 @@ class NearByViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        defaults.set(1, forKey: "SelectedTabBar")
         
         // Register CustomBookCell.xib
         usersCollectionView.register(UINib(nibName: "UserCell", bundle: nil), forCellWithReuseIdentifier: "userCell")
@@ -51,6 +49,11 @@ class NearByViewController: UIViewController {
         
         fetchCurrentUserData()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        defaults.set(1, forKey: "SelectedTabBar")
     }
     
     
@@ -88,6 +91,9 @@ class NearByViewController: UIViewController {
 
         relationshipUsers.removeAll()
         funUers.removeAll()
+        
+        let user = Auth.auth().currentUser
+        let uid = user?.uid
 
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
 
@@ -115,55 +121,59 @@ class NearByViewController: UIViewController {
                 user.gender = dictionary["gender"] as? [String: Any]
                 user.interested = dictionary["interested"] as? [String: Any]
 
-                if user.interested != nil && user.gender != nil && user.want != nil {
-                    if let userInterestedChoice = user.interested!["choice"] as? [Int] { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
-                        if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
-                            if interested.contains(userGenderChoice - 1) && userInterestedChoice.contains(gender - 1) {
-                                if userWantChoice == 1 { // target user wants relationship
-                                    self.relationshipUsers.append(user)
-                                    
-                                    print("Self: \(interested) || \(gender)")
-                                    print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
-                                }
-                                else if userWantChoice == 2 { // target user wants fun
-                                    self.funUers.append(user)
-                                    
-                                    print("Self: \(interested) || \(gender)")
-                                    print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
-                                }
-                                else if userWantChoice == 3 { // target user wants both
-                                    self.relationshipUsers.append(user)
-                                    self.funUers.append(user)
-                                    
-                                    print("Self: \(interested) || \(gender)")
-                                    print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
-                                }
-                                
-                            }
-                        }
-                        
-                    }
+                if user.uid != nil && uid != user.uid {
                     
-                    else { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
-                        if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
-                            if interested.contains(userGenderChoice - 1) {
-                                if userWantChoice == 1 { // target user wants relationship
-                                    self.relationshipUsers.append(user)
+                    if user.interested != nil && user.gender != nil && user.want != nil {
+                        if let userInterestedChoice = user.interested!["choice"] as? [Int] { // Target user has a preference. Query based on cross match of current user's gender and interested and target user's gender and interested.
+                            if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
+                                if interested.contains(userGenderChoice - 1) && userInterestedChoice.contains(gender - 1) {
+                                    if userWantChoice == 1 { // target user wants relationship
+                                        self.relationshipUsers.append(user)
+                                        
+                                        print("Self: \(interested) || \(gender)")
+                                        print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
+                                    }
+                                    else if userWantChoice == 2 { // target user wants fun
+                                        self.funUers.append(user)
+                                        
+                                        print("Self: \(interested) || \(gender)")
+                                        print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
+                                    }
+                                    else if userWantChoice == 3 { // target user wants both
+                                        self.relationshipUsers.append(user)
+                                        self.funUers.append(user)
+                                        
+                                        print("Self: \(interested) || \(gender)")
+                                        print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
+                                    }
+                                    
                                 }
-                                else if userWantChoice == 2 { // target user wants fun
-                                    self.funUers.append(user)
-                                }
-                                else if userWantChoice == 3 { // target user wants both
-                                    self.relationshipUsers.append(user)
-                                    self.funUers.append(user)
-                                }
-                                
                             }
+                            
                         }
-                        
+                            
+                        else { // target user has no preference, assumming target user likes all gender. Query based only on current user's interested and target user's gender.
+                            if let userGenderChoice = user.gender!["choice"] as? Int, let userWantChoice = user.want!["choice"] as? Int {
+                                if interested.contains(userGenderChoice - 1) {
+                                    if userWantChoice == 1 { // target user wants relationship
+                                        self.relationshipUsers.append(user)
+                                    }
+                                    else if userWantChoice == 2 { // target user wants fun
+                                        self.funUers.append(user)
+                                    }
+                                    else if userWantChoice == 3 { // target user wants both
+                                        self.relationshipUsers.append(user)
+                                        self.funUers.append(user)
+                                    }
+                                    
+                                }
+                            }
+                            
+                        }
                     }
-                }
 
+                }
+                
                 print("Relationship count: \(self.relationshipUsers.count) || Fun count: \(self.funUers.count)")
                 print("----------------\n")
 
@@ -305,6 +315,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userCell", for: indexPath) as! UserCell
+        cell.layer.cornerRadius = 0.5 * cell.bounds.size.width
         
         switch relationshipFunSegmentedControl.selectedSegmentIndex {
         case 0:
@@ -312,7 +323,8 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
-                cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
+                cell.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: profileImageURL)
+//                cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
             }
 
         case 1:
@@ -320,7 +332,8 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
-                cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
+                cell.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: profileImageURL)
+//                cell.profileImageView.loadImageUsingCacheWithURL(urlString: profileImageURL)
             }
 
         default:

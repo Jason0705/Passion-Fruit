@@ -19,8 +19,12 @@ class SocialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        defaults.set(3, forKey: "SelectedTabBar")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        defaults.set(3, forKey: "SelectedTabBar")
     }
     
 

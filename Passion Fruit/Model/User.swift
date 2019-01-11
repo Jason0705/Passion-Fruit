@@ -31,29 +31,6 @@ class User: NSObject {
     var i_like: String?
     var my_date_would: String?
     
-//    var age: Int?
-//    var height: Int?
-//    var weight: Int?
-//    var ethnicity: Int?
-//    var relationship_status: Int?
-//    var want: Int?
-//    var looking_for: [Int]?
-//
-//    var gender: Int?
-//    var interested: [Int]?
-    
-//    var age: SingleChoice?
-//    var height: SingleChoice?
-//    var weight: SingleChoice?
-//    var ethnicity: SingleChoice?
-//    var relationship_status: SingleChoice?
-//    var want: SingleChoice?
-//    var looking_for: MultipleChoice?
-//
-//    var gender: SingleChoice?
-//    var interested: MultipleChoice?
-    
-    
     var age: [String: Any]?
     var height: [String: Any]?
     var weight: [String: Any]?
