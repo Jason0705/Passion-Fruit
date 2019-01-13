@@ -513,8 +513,9 @@ class ProfileEditViewController: UIViewController {
                 if self.from == 1 {
                     // Navigate to MainTabBarController
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-                    self.present(mainTabBarController, animated: true, completion: nil)
+//                    let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                    let mainContainerController = storyboard.instantiateViewController(withIdentifier: "MainContainerController")
+                    self.present(mainContainerController, animated: true, completion: nil)
                     return
                 }
             }
@@ -531,8 +532,9 @@ class ProfileEditViewController: UIViewController {
             if from == 1 {
                 // Navigate to MainTabBarController
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
-                self.present(mainTabBarController, animated: true, completion: nil)
+                //                    let mainTabBarController = storyboard.instantiateViewController(withIdentifier: "MainTabBarController")
+                let mainContainerController = storyboard.instantiateViewController(withIdentifier: "MainContainerController")
+                self.present(mainContainerController, animated: true, completion: nil)
                 return
             }
         }

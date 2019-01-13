@@ -223,10 +223,10 @@
             </objects>
             <point key="canvasLocation" x="1065" y="132"/>
         </scene>
-        <!--MainTabBarController-->
+        <!--MainContainerController-->
         <scene sceneID="S74-CI-xuX">
             <objects>
-                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MainTabBarController" id="xzm-mQ-mvp" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="MainContainerController" id="xzm-mQ-mvp" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hPe-Gh-tyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="120" y="647"/>

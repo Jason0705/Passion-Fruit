@@ -31,19 +31,27 @@ class ProfileViewController: UIViewController {
         performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
     }
     
-    @IBAction func logOutButtonPressed(_ sender: UIButton) {
-        do {
-            try Auth.auth().signOut()
-            let storyboard = UIStoryboard(name: "Authentication", bundle: nil)
-            let signInVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController")
-            self.present(signInVC, animated: true, completion: nil)
+    
+    
+    @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
+        
+        if sender.tag == 0 {
+            sender.tag = 1
+            UIView.animate(withDuration: 0.3) {
+                self.tabBarController?.view.superview?.frame.origin.x = 0 - 240
+                self.view.layoutIfNeeded()
+            }
             
-        } catch let logOutError {
-            print(logOutError)
-            SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+        }
+        else if sender.tag == 1 {
+            sender.tag = 0
+            UIView.animate(withDuration: 0.3) {
+                self.tabBarController?.view.superview?.frame.origin.x = 0
+                self.view.layoutIfNeeded()
+            }
         }
         
     }
     
-
+    
 }

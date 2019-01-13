@@ -57,7 +57,7 @@ class SignInViewController: UIViewController {
         if Auth.auth().currentUser != nil {
 //            performSegue(withIdentifier: "signInToMainTabBarController", sender: nil)
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "MainTabBarController") as! UITabBarController
+            let viewController = mainStoryboard.instantiateViewController(withIdentifier: "MainContainerController") as! UIViewController
             UIApplication.shared.keyWindow?.rootViewController = viewController
         }
     }

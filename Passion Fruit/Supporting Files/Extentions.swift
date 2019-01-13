@@ -8,7 +8,19 @@
 
 import UIKit
 
-
+extension UILabel {
+    func createProfileLabel(with labelText: String, on view: UIView, lastElementOnView: UILabel, verticalSpacing: CGFloat) {
+        let label = UILabel()
+        label.frame = CGRect(x: lastElementOnView.frame.origin.x, y: lastElementOnView.frame.origin.y + lastElementOnView.frame.height + verticalSpacing, width: lastElementOnView.frame.width, height: CGFloat.greatestFiniteMagnitude)
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.textAlignment = .left
+        label.textColor = UIColor.black
+        label.text = labelText
+        label.sizeToFit()
+        view.addSubview(label)
+    }
+}
 
 
 ////let imageCache = NSCache<AnyObject, AnyObject>()
