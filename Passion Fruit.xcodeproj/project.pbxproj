@@ -25,6 +25,10 @@
 		823982AA21EAD556008112B1 /* TabBarControl.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 823982A921EAD556008112B1 /* TabBarControl.storyboard */; };
 		823982AC21EAD5F2008112B1 /* SideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 823982AB21EAD5F2008112B1 /* SideMenu.storyboard */; };
 		823982AE21EADF6E008112B1 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823982AD21EADF6E008112B1 /* SideMenuViewController.swift */; };
+		823982B521EC23D2008112B1 /* PostCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823982B321EC23D2008112B1 /* PostCollectionCell.swift */; };
+		823982B621EC23D2008112B1 /* PostCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823982B421EC23D2008112B1 /* PostCollectionCell.xib */; };
+		823982BB21ED63CB008112B1 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 823982B921ED63CB008112B1 /* ProfileHeaderView.swift */; };
+		823982BC21ED63CB008112B1 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 823982BA21ED63CB008112B1 /* ProfileHeaderView.xib */; };
 		825BC03E21C201F000376F0B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825BC03D21C201F000376F0B /* User.swift */; };
 		8267109F2197F19D005B3D0A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8267109E2197F19D005B3D0A /* AuthService.swift */; };
 		826710A12197F7BC005B3D0A /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 826710A02197F7BC005B3D0A /* AlertService.swift */; };
@@ -96,6 +100,10 @@
 		823982A921EAD556008112B1 /* TabBarControl.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = TabBarControl.storyboard; sourceTree = "<group>"; };
 		823982AB21EAD5F2008112B1 /* SideMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SideMenu.storyboard; sourceTree = "<group>"; };
 		823982AD21EADF6E008112B1 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		823982B321EC23D2008112B1 /* PostCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCollectionCell.swift; sourceTree = "<group>"; };
+		823982B421EC23D2008112B1 /* PostCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCollectionCell.xib; sourceTree = "<group>"; };
+		823982B921ED63CB008112B1 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		823982BA21ED63CB008112B1 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
 		825BC03D21C201F000376F0B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8267109E2197F19D005B3D0A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		826710A02197F7BC005B3D0A /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
@@ -201,6 +209,10 @@
 				822AB987219A948D00F5C266 /* ProfileStatsCell.xib */,
 				823982A121D5A7AC008112B1 /* UserCell.swift */,
 				823982A221D5A7AC008112B1 /* UserCell.xib */,
+				823982B321EC23D2008112B1 /* PostCollectionCell.swift */,
+				823982B421EC23D2008112B1 /* PostCollectionCell.xib */,
+				823982B921ED63CB008112B1 /* ProfileHeaderView.swift */,
+				823982BA21ED63CB008112B1 /* ProfileHeaderView.xib */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -442,11 +454,13 @@
 				826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */,
 				822AB981219A945D00F5C266 /* ImageVideoCell.xib in Resources */,
 				823982AA21EAD556008112B1 /* TabBarControl.storyboard in Resources */,
+				823982B621EC23D2008112B1 /* PostCollectionCell.xib in Resources */,
 				823982AC21EAD5F2008112B1 /* SideMenu.storyboard in Resources */,
 				826B4094218AEC5800F042D9 /* Main.storyboard in Resources */,
 				823982A421D5A7AC008112B1 /* UserCell.xib in Resources */,
 				822AB985219A947500F5C266 /* KeyboardInputCell.xib in Resources */,
 				826B40E0218BC12200F042D9 /* NearBy.storyboard in Resources */,
+				823982BC21ED63CB008112B1 /* ProfileHeaderView.xib in Resources */,
 				822AB989219A948D00F5C266 /* ProfileStatsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -589,8 +603,10 @@
 				82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */,
 				822AB980219A945D00F5C266 /* ImageVideoCell.swift in Sources */,
 				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,
+				823982BB21ED63CB008112B1 /* ProfileHeaderView.swift in Sources */,
 				826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */,
 				8267109F2197F19D005B3D0A /* AuthService.swift in Sources */,
+				823982B521EC23D2008112B1 /* PostCollectionCell.swift in Sources */,
 				823982AE21EADF6E008112B1 /* SideMenuViewController.swift in Sources */,
 				822AB9782198122A00F5C266 /* CustomizationService.swift in Sources */,
 				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
