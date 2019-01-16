@@ -10,6 +10,12 @@ import UIKit
 
 class ProfileHeaderView: UICollectionReusableView {
 
+    @IBOutlet weak var contentView: UIView!
+    
+    
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

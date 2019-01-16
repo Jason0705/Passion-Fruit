@@ -43,6 +43,10 @@ class ProfileViewController: UIViewController {
         defaults.set(4, forKey: "SelectedTabBar")
     }
     
+    override func viewWillLayoutSubviews() {
+        super .viewWillLayoutSubviews()
+        profileCollectionView.collectionViewLayout.invalidateLayout()
+    }
     
     
     
@@ -101,10 +105,10 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeaderView", for: indexPath) as! ProfileHeaderView
+            let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeaderView", for: indexPath) as! ProfileHeaderView
             
-            header.backgroundColor = UIColor.blue
-            return header
+            headerView.backgroundColor = UIColor.blue
+            return headerView
         default:
             assert(false, "Unexpected element kind")
         }
@@ -112,7 +116,17 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 378)
+        
+        if let headerView = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader).first as? ProfileHeaderView {
+
+            headerView.layoutIfNeeded()
+
+            let height = headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
+
+            return CGSize(width: collectionView.frame.width, height: height)
+        }
+        
+        return CGSize(width: collectionView.frame.width, height: 1)
     }
     
 
