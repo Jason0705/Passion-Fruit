@@ -13,6 +13,7 @@ class ProfileHeaderView: UICollectionReusableView {
     @IBOutlet weak var contentView: UIView!
     
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
     
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var FollowMessageButtonsStackView: UIStackView!

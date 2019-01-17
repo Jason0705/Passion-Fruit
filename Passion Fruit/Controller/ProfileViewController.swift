@@ -20,7 +20,10 @@ class ProfileViewController: UIViewController {
     
     var uid = String()
     
-    var profilePhotoURL: String?
+//    var profilePhotoURL: String?
+//    var userName: String?
+//    var age: String?
+    var user = User()
     
     // MARK: - IBOutlets
     
@@ -53,10 +56,10 @@ class ProfileViewController: UIViewController {
         defaults.set(4, forKey: "SelectedTabBar")
     }
     
-    override func viewWillLayoutSubviews() {
-        super .viewWillLayoutSubviews()
-        profileCollectionView.collectionViewLayout.invalidateLayout()
-    }
+//    override func viewWillLayoutSubviews() {
+//        super .viewWillLayoutSubviews()
+//        profileCollectionView.collectionViewLayout.invalidateLayout()
+//    }
     
     
     
@@ -86,11 +89,17 @@ class ProfileViewController: UIViewController {
                 print(error!)
             }
             
-            self.profilePhotoURL = user?.profile_photo_url
+//            self.profilePhotoURL = user?.profile_photo_url
+//            self.userName = user?.user_name
+//            if user?.age != nil {
+//                self.age = user?.age!["content"] as? String
+//            }
             
+            if user != nil {
+                self.user = user!
+            }
             
             self.profileCollectionView.reloadData()
-            self.profileCollectionView.collectionViewLayout.invalidateLayout()
         }
         
         
@@ -176,8 +185,19 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 headerView.FollowMessageButtonsStackView.isHidden = false
             }
 
-            if let url = profilePhotoURL {
+//            if let url = profilePhotoURL {
+//                headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
+//            }
+//            if let userName = self.userName {
+//                headerView.userNameLabel.text = userName
+//            }
+            
+            
+            if let url = user.profile_photo_url {
                 headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
+            }
+            if let userName = user.user_name {
+                headerView.userNameLabel.text = userName
             }
             
             
@@ -191,16 +211,22 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         
-        if let headerView = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader).first as? ProfileHeaderView {
-
-            headerView.layoutIfNeeded()
-
-            let height = headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
-
-            return CGSize(width: collectionView.frame.width, height: height)
+//        if let headerView = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader).first as? ProfileHeaderView {
+//
+//            headerView.layoutIfNeeded()
+//
+//            let height = headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+//
+//            return CGSize(width: collectionView.frame.width, height: height)
+//        }
+        
+        
+        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "profileHeaderView", for: IndexPath(row: 0, section: section)) as? ProfileHeaderView {
+            
+            return CGSize(width: collectionView.frame.width, height: headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height)
         }
         
-        return CGSize(width: collectionView.frame.width, height: 500)
+        return CGSize(width: collectionView.frame.width, height: 1)
     }
     
 

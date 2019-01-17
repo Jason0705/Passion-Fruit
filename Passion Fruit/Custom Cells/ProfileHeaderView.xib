@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00C-7X-GzS">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="336"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="298"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lLl-0i-KQk">
-                            <rect key="frame" x="0.0" y="32" width="320" height="303"/>
+                            <rect key="frame" x="0.0" y="32" width="320" height="265"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3JP-Od-uvv">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -116,21 +116,21 @@
                                     <rect key="frame" x="24" y="161" width="272" height="30"/>
                                     <state key="normal" title="Edit Profile"/>
                                 </button>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="u9o-rr-WNW">
-                                    <rect key="frame" x="24" y="199" width="272" height="30"/>
+                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="u9o-rr-WNW">
+                                    <rect key="frame" x="24" y="195" width="272" height="0.0"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq8-tc-7oZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="0.0"/>
                                             <state key="normal" title="Follow"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t32-CP-lNf">
-                                            <rect key="frame" x="144" y="0.0" width="128" height="30"/>
+                                            <rect key="frame" x="144" y="0.0" width="128" height="0.0"/>
                                             <state key="normal" title="Message"/>
                                         </button>
                                     </subviews>
                                 </stackView>
                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfC-8G-jk2">
-                                    <rect key="frame" x="0.0" y="233" width="320" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="195" width="320" height="0.0"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Ky-Lm-UHt">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
@@ -146,11 +146,11 @@
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-uK-3NH">
-                                    <rect key="frame" x="24" y="237" width="272" height="30"/>
+                                    <rect key="frame" x="24" y="199" width="272" height="30"/>
                                     <state key="normal" title="More"/>
                                 </button>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gg6-Lr-VmP">
-                                    <rect key="frame" x="0.0" y="275" width="320" height="29"/>
+                                    <rect key="frame" x="0.0" y="237" width="320" height="29"/>
                                     <segments>
                                         <segment title="First"/>
                                         <segment title="Second"/>
@@ -198,6 +198,7 @@
                 <outlet property="contentView" destination="00C-7X-GzS" id="0bd-Pu-ivL"/>
                 <outlet property="editProfileButton" destination="bpk-UN-ZD8" id="1nK-CZ-s6I"/>
                 <outlet property="profileImageView" destination="JNr-gy-bEd" id="c91-Gf-dtc"/>
+                <outlet property="userNameLabel" destination="HaL-4E-AKk" id="RdG-gd-UDC"/>
             </connections>
             <point key="canvasLocation" x="155.19999999999999" y="480.35982008995506"/>
         </collectionReusableView>
