@@ -36,6 +36,8 @@ class AuthService {
         }
     }
     
+    
+    // First time set up user
     static func setUserInfo(email: String, uid: String, onSuccess: @escaping() -> Void) {
         let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
         let usersReference = databaseReference.child("users") // : https://passion-fruit-39bda.firebaseio.com/users
@@ -46,4 +48,5 @@ class AuthService {
     
         onSuccess()
     }
+    
 }

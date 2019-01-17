@@ -15,9 +15,17 @@ class ProfileViewController: UIViewController {
     // MARK: - Variables
     let defaults = UserDefaults.standard
     
+    var from = 0 // from tab controll, 1: from profile selection
+    var otherUID = String()
     
+    var uid = String()
+    
+    var profilePhotoURL: String?
     
     // MARK: - IBOutlets
+    
+    
+    @IBOutlet weak var menuBarButton: UIBarButtonItem!
     
     @IBOutlet weak var profileCollectionView: UICollectionView!
     
@@ -34,7 +42,9 @@ class ProfileViewController: UIViewController {
         profileCollectionView.register(UINib(nibName: "PostCollectionCell", bundle: nil), forCellWithReuseIdentifier: "postCollectionCell")
         
         
-        profileCollectionView.reloadData()
+        setUp()
+        
+        FetchUser()
         
     }
     
@@ -50,16 +60,56 @@ class ProfileViewController: UIViewController {
     
     
     
-    // MARK: - IBActions
+    // MARK: - Functions
     
-    @IBAction func editButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
+    func setUp() {
+        if from == 0 { // from tab control, self profile
+            self.navigationItem.rightBarButtonItem = menuBarButton
+        }
+        else if from == 1 { // from profile selection, other's profile
+            self.navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    func FetchUser() {
+        if from == 0 { // from tab control, self profile
+            uid = UserService.getCurrentUserID()
+        }
+        else if from == 1 { // from profile selection, other's profile
+            uid = otherUID
+        }
+        
+//        user = UserService.getUser(with: uid)
+        
+        UserService.getUser(with: uid) { (user, error) in
+            if error != nil {
+                print(error!)
+            }
+            
+            self.profilePhotoURL = user?.profile_photo_url
+            
+            
+            self.profileCollectionView.reloadData()
+            self.profileCollectionView.collectionViewLayout.invalidateLayout()
+        }
+        
+        
+        
     }
     
     
     
+    
+    
+    // MARK: - IBActions
+    
+//    @IBAction func editButtonPressed(_ sender: UIButton) {
+//        performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
+//    }
+    
+    
+    
     @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
-        
         if sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.3) {
@@ -87,6 +137,9 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    
+    // Cells
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 3
     }
@@ -97,15 +150,36 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         return cell
     }
     
+    
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    
+    
+    // Header
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         switch kind {
         case UICollectionView.elementKindSectionHeader:
+            
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeaderView", for: indexPath) as! ProfileHeaderView
+            
+            if from == 0 { // from tab control, self profile
+                headerView.editProfileButton.isHidden = false
+                headerView.FollowMessageButtonsStackView.isHidden = true
+            }
+            else if from == 1 { // from profile selection, other's profile
+                headerView.editProfileButton.isHidden = true
+                headerView.FollowMessageButtonsStackView.isHidden = false
+            }
+
+            if let url = profilePhotoURL {
+                headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
+            }
+            
             
             headerView.backgroundColor = UIColor.blue
             return headerView
@@ -126,7 +200,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             return CGSize(width: collectionView.frame.width, height: height)
         }
         
-        return CGSize(width: collectionView.frame.width, height: 1)
+        return CGSize(width: collectionView.frame.width, height: 500)
     }
     
 

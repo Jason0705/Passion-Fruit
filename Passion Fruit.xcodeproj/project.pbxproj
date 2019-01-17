@@ -49,6 +49,7 @@
 		826B40E6218BC29100F042D9 /* Social.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E5218BC29100F042D9 /* Social.storyboard */; };
 		826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E7218BC2D500F042D9 /* Profile.storyboard */; };
 		826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E9218D107400F042D9 /* GoogleService-Info.plist */; };
+		82A7256921F018730020150A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7256821F018730020150A /* UserService.swift */; };
 		82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */; };
 		82AA6EB2219B9C5A008D2FFA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */; };
 		82AA6EB8219CF937008D2FFA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AA6EB7219CF937008D2FFA /* Home.storyboard */; };
@@ -130,6 +131,7 @@
 		826B40E5218BC29100F042D9 /* Social.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Social.storyboard; sourceTree = "<group>"; };
 		826B40E7218BC2D500F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		826B40E9218D107400F042D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		82A7256821F018730020150A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		82AA6EB7219CF937008D2FFA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -221,11 +223,12 @@
 			isa = PBXGroup;
 			children = (
 				8267109E2197F19D005B3D0A /* AuthService.swift */,
+				82A7256821F018730020150A /* UserService.swift */,
 				826710A02197F7BC005B3D0A /* AlertService.swift */,
 				822AB9772198122A00F5C266 /* CustomizationService.swift */,
 				82AA6EC121ABB100008D2FFA /* VideoService.swift */,
-				823982A521D70FC6008112B1 /* Extentions.swift */,
 				823982A721E81873008112B1 /* ImageService.swift */,
+				823982A521D70FC6008112B1 /* Extentions.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -605,6 +608,7 @@
 				826B40CA218BA1C300F042D9 /* SocialViewController.swift in Sources */,
 				823982BB21ED63CB008112B1 /* ProfileHeaderView.swift in Sources */,
 				826B40C0218BA15A00F042D9 /* SignInViewController.swift in Sources */,
+				82A7256921F018730020150A /* UserService.swift in Sources */,
 				8267109F2197F19D005B3D0A /* AuthService.swift in Sources */,
 				823982B521EC23D2008112B1 /* PostCollectionCell.swift in Sources */,
 				823982AE21EADF6E008112B1 /* SideMenuViewController.swift in Sources */,

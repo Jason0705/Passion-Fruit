@@ -72,6 +72,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="menuBarButton" destination="s2d-pg-aic" id="dkg-yk-cZK"/>
                         <outlet property="profileCollectionView" destination="w5s-0F-zDE" id="9Lh-lO-Dxh"/>
                         <segue destination="d3w-rl-foS" kind="show" identifier="profileToProfileEditVC" id="4wJ-Jn-I10"/>
                     </connections>
