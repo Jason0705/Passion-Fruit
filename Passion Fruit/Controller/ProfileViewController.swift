@@ -97,9 +97,12 @@ class ProfileViewController: UIViewController {
             
             if user != nil {
                 self.user = user!
+                
+                
+                self.profileCollectionView.reloadData()
             }
             
-            self.profileCollectionView.reloadData()
+            
         }
         
         
@@ -119,6 +122,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
+        profileCollectionView.reloadData()
         if sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.3) {
@@ -192,6 +196,13 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 //                headerView.userNameLabel.text = userName
 //            }
             
+            if let age = user.age, age["content"] as? String != "" {
+                headerView.moreButton.isHidden = false
+            }
+//            else {
+//                headerView.moreButton.isHidden = true
+//            }
+            
             
             if let url = user.profile_photo_url {
                 headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
@@ -222,6 +233,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         
         if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "profileHeaderView", for: IndexPath(row: 0, section: section)) as? ProfileHeaderView {
+            
+            headerView.layoutIfNeeded()
             
             return CGSize(width: collectionView.frame.width, height: headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height)
         }

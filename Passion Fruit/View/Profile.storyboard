@@ -13,7 +13,7 @@
         <!--Profile-->
         <scene sceneID="fzJ-Wx-g2d">
             <objects>
-                <viewController id="QRl-g9-4Y2" customClass="ProfileViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileVC" id="QRl-g9-4Y2" customClass="ProfileViewController" customModule="Passion_Fruit" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Lzo-RU-Kwc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -18,6 +18,7 @@ class ProfileHeaderView: UICollectionReusableView {
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var FollowMessageButtonsStackView: UIStackView!
     
+    @IBOutlet weak var moreButton: UIButton!
     
     
     override func awakeFromNib() {

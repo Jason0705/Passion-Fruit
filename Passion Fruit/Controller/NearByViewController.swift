@@ -19,6 +19,8 @@ class NearByViewController: UIViewController {
     var relationshipUsers = [User]()
     var funUers = [User]()
     
+    var selectedIndexPath: IndexPath!
+    
     
     // MARK: - IBOutlets
     
@@ -344,6 +346,35 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndexPath = indexPath
+        performSegue(withIdentifier: "nearByToProfileVC", sender: self)
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "nearByToProfileVC" {
+            let destinationVC = segue.destination as! ProfileViewController
+            destinationVC.from = 1
+            switch relationshipFunSegmentedControl.selectedSegmentIndex {
+            case 0:
+                let user = relationshipUsers[selectedIndexPath.row]
+                if let uid = user.uid {
+                    destinationVC.otherUID = uid
+                }
+                
+            case 1:
+                let user = funUers[selectedIndexPath.row]
+                if let uid = user.uid {
+                    destinationVC.otherUID = uid
+                }
+                
+            default:
+                break
+            }
+        }
+    }
     
 }
 

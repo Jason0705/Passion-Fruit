@@ -190,11 +190,20 @@
                         <outlet property="relationshipFunSegmentedControl" destination="xZG-Lf-Qux" id="ZfD-QK-NXF"/>
                         <outlet property="usersCollectionView" destination="ABW-gE-wgH" id="oWs-rh-IDW"/>
                         <segue destination="3w0-ew-Vfy" kind="show" id="5pv-Nd-6JG"/>
+                        <segue destination="2AN-iR-P5s" kind="show" identifier="nearByToProfileVC" id="hLV-TK-Z8z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBV-aM-QzZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3644" y="-1202.2167487684731"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="cwO-8m-TuS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileVC" id="2AN-iR-P5s" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AAY-fN-2DY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4743" y="-1463"/>
         </scene>
         <!--Match-->
         <scene sceneID="ooq-wz-FXG">
@@ -210,7 +219,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LV4-wK-iln" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4581" y="-1200"/>
+            <point key="canvasLocation" x="4975" y="-749"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IMF-SS-aIN">
