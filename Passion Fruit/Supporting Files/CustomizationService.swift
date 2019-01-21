@@ -19,7 +19,7 @@ class CustomizationService {
         textField.layer.addSublayer(bottomLayer)
     }
     
-    func labelUnderline(label: UILabel) {
+    static func labelUnderline(label: UILabel) {
         let bottomLayer = CALayer()
         bottomLayer.frame = CGRect(x: 0, y: label.frame.height - 1, width: label.frame.width, height: 0.6)
         bottomLayer.backgroundColor = UIColor.gray.cgColor
@@ -27,13 +27,13 @@ class CustomizationService {
     }
     
     
-    func threeCellPerRowStyle(view: UIView, spacing: CGFloat, inset: UIEdgeInsets, heightMultiplier: CGFloat) -> UICollectionViewFlowLayout {
-        let cellSize = (view.frame.size.width - (spacing * 4)) / 3
+    static func threeCellPerRowStyle(view: UIView, lineSpacing: CGFloat, itemSpacing: CGFloat, inset: CGFloat, heightMultiplier: CGFloat) -> UICollectionViewFlowLayout {
+        let cellWidth = (view.frame.size.width - (itemSpacing * 4)) / 3
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = inset
-        layout.itemSize = CGSize(width: cellSize, height: cellSize * heightMultiplier)
-        layout.minimumInteritemSpacing = spacing
-        layout.minimumLineSpacing = spacing
+        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        layout.itemSize = CGSize(width: cellWidth, height: cellWidth * heightMultiplier)
+        layout.minimumLineSpacing = lineSpacing
+        layout.minimumInteritemSpacing = itemSpacing
         
         return layout
     }

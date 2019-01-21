@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00C-7X-GzS">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="344"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="444"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lLl-0i-KQk">
-                            <rect key="frame" x="0.0" y="32" width="320" height="311"/>
+                            <rect key="frame" x="0.0" y="32" width="320" height="411"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3JP-Od-uvv">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
@@ -91,6 +91,9 @@
                                             </constraints>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="320" id="gR6-cn-mrq"/>
+                                    </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Om6-4c-XbS">
                                     <rect key="frame" x="0.0" y="108" width="320" height="0.0"/>
@@ -130,27 +133,30 @@
                                     </subviews>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PfC-8G-jk2">
-                                    <rect key="frame" x="0.0" y="237" width="320" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="237" width="320" height="100"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Ky-Lm-UHt">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1Ky-Lm-UHt">
+                                            <rect key="frame" x="24" y="0.0" width="272" height="100"/>
                                         </stackView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="1Ky-Lm-UHt" firstAttribute="leading" secondItem="PfC-8G-jk2" secondAttribute="leading" id="4sz-FS-Ud4"/>
+                                        <constraint firstItem="1Ky-Lm-UHt" firstAttribute="leading" secondItem="PfC-8G-jk2" secondAttribute="leading" constant="24" id="4sz-FS-Ud4"/>
                                         <constraint firstItem="1Ky-Lm-UHt" firstAttribute="top" secondItem="PfC-8G-jk2" secondAttribute="top" id="9UL-Rm-DDJ"/>
-                                        <constraint firstAttribute="height" id="EKt-hc-rIL"/>
                                         <constraint firstAttribute="bottom" secondItem="1Ky-Lm-UHt" secondAttribute="bottom" id="G5h-gN-T6i"/>
-                                        <constraint firstAttribute="trailing" secondItem="1Ky-Lm-UHt" secondAttribute="trailing" id="qPe-wN-jTb"/>
+                                        <constraint firstAttribute="height" constant="100" id="l9E-JT-JXT"/>
+                                        <constraint firstAttribute="trailing" secondItem="1Ky-Lm-UHt" secondAttribute="trailing" constant="24" id="qPe-wN-jTb"/>
                                     </constraints>
                                 </view>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oe8-uK-3NH">
-                                    <rect key="frame" x="24" y="245" width="272" height="30"/>
+                                    <rect key="frame" x="24" y="345" width="272" height="30"/>
                                     <state key="normal" title="More"/>
+                                    <connections>
+                                        <action selector="moreButtonPressed:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="6ka-eg-y4r"/>
+                                    </connections>
                                 </button>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gg6-Lr-VmP">
-                                    <rect key="frame" x="0.0" y="283" width="320" height="29"/>
+                                    <rect key="frame" x="0.0" y="383" width="320" height="29"/>
                                     <segments>
                                         <segment title="First"/>
                                         <segment title="Second"/>
@@ -195,8 +201,11 @@
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
                 <outlet property="FollowMessageButtonsStackView" destination="u9o-rr-WNW" id="kFV-h4-V5v"/>
+                <outlet property="contentStackView" destination="lLl-0i-KQk" id="lu2-so-dwf"/>
                 <outlet property="contentView" destination="00C-7X-GzS" id="0bd-Pu-ivL"/>
                 <outlet property="editProfileButton" destination="bpk-UN-ZD8" id="1nK-CZ-s6I"/>
+                <outlet property="infoLabelView" destination="PfC-8G-jk2" id="thi-sY-4Fz"/>
+                <outlet property="infoLabelsStackView" destination="1Ky-Lm-UHt" id="1Xd-kg-UDJ"/>
                 <outlet property="moreButton" destination="Oe8-uK-3NH" id="Sf7-Rm-FWX"/>
                 <outlet property="profileImageView" destination="JNr-gy-bEd" id="c91-Gf-dtc"/>
                 <outlet property="userNameLabel" destination="HaL-4E-AKk" id="RdG-gd-UDC"/>

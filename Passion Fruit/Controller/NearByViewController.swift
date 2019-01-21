@@ -191,7 +191,7 @@ class NearByViewController: UIViewController {
     func setUp() {
         showRelationshipView()
         
-        usersCollectionView.collectionViewLayout = CustomizationService().threeCellPerRowStyle(view: self.view, spacing: 4, inset: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4), heightMultiplier: 1)
+        usersCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 16, itemSpacing: 16, inset: 16, heightMultiplier: 1)
     }
     
     
@@ -322,7 +322,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
         switch relationshipFunSegmentedControl.selectedSegmentIndex {
         case 0:
             let user = relationshipUsers[indexPath.row]
-            cell.userNameLabel.text = user.user_name
+//            cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
                 cell.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: profileImageURL)
@@ -331,7 +331,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
         case 1:
             let user = funUers[indexPath.row]
-            cell.userNameLabel.text = user.user_name
+//            cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
                 cell.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: profileImageURL)
@@ -361,14 +361,16 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
             case 0:
                 let user = relationshipUsers[selectedIndexPath.row]
                 if let uid = user.uid {
-                    destinationVC.otherUID = uid
+                    destinationVC.uid = uid
                 }
+//                destinationVC.user = user
                 
             case 1:
                 let user = funUers[selectedIndexPath.row]
                 if let uid = user.uid {
-                    destinationVC.otherUID = uid
+                    destinationVC.uid = uid
                 }
+//                destinationVC.user = user
                 
             default:
                 break

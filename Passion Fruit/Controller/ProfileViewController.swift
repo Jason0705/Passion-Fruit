@@ -16,14 +16,15 @@ class ProfileViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     var from = 0 // from tab controll, 1: from profile selection
-    var otherUID = String()
-    
-    var uid = String()
-    
-//    var profilePhotoURL: String?
-//    var userName: String?
-//    var age: String?
+    var uid: String!
     var user = User()
+    
+    // for header
+    var headerIndexPath = IndexPath()
+    var infoLabelViewIsHidden = true
+    var moreButtonTag = 0
+    
+    
     
     // MARK: - IBOutlets
     
@@ -47,7 +48,9 @@ class ProfileViewController: UIViewController {
         
         setUp()
         
-        FetchUser()
+        FetchCurrentUser()
+        
+        profileCollectionView.reloadData()
         
     }
     
@@ -72,40 +75,28 @@ class ProfileViewController: UIViewController {
         else if from == 1 { // from profile selection, other's profile
             self.navigationItem.rightBarButtonItem = nil
         }
+        
+        profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 1, itemSpacing: 1, inset: 0, heightMultiplier: 1)
     }
     
-    func FetchUser() {
+    func FetchCurrentUser() {
         if from == 0 { // from tab control, self profile
             uid = UserService.getCurrentUserID()
         }
-        else if from == 1 { // from profile selection, other's profile
-            uid = otherUID
-        }
-        
-//        user = UserService.getUser(with: uid)
         
         UserService.getUser(with: uid) { (user, error) in
             if error != nil {
                 print(error!)
             }
             
-//            self.profilePhotoURL = user?.profile_photo_url
-//            self.userName = user?.user_name
-//            if user?.age != nil {
-//                self.age = user?.age!["content"] as? String
-//            }
-            
             if user != nil {
                 self.user = user!
-                
                 
                 self.profileCollectionView.reloadData()
             }
             
             
         }
-        
-        
         
     }
     
@@ -122,14 +113,14 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
-        profileCollectionView.reloadData()
+        
         if sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.3) {
                 self.tabBarController?.view.superview?.frame.origin.x = 0 - 240
                 self.view.layoutIfNeeded()
             }
-            
+
         }
         else if sender.tag == 1 {
             sender.tag = 0
@@ -153,32 +144,37 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     // Cells
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCollectionCell", for: indexPath) as! PostCollectionCell
         cell.backgroundColor = UIColor.green
+        
         return cell
     }
-    
-    
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    
     
     // Header
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
+
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            
+
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeaderView", for: indexPath) as! ProfileHeaderView
+            
+            headerView.delegate = self
+            
+            headerIndexPath = indexPath
+            headerView.moreButton.tag = moreButtonTag
+            
+            headerView.infoLabelView.isHidden = infoLabelViewIsHidden
             
             if from == 0 { // from tab control, self profile
                 headerView.editProfileButton.isHidden = false
@@ -189,58 +185,64 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 headerView.FollowMessageButtonsStackView.isHidden = false
             }
 
-//            if let url = profilePhotoURL {
-//                headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
-//            }
-//            if let userName = self.userName {
-//                headerView.userNameLabel.text = userName
-//            }
-            
-            if let age = user.age, age["content"] as? String != "" {
-                headerView.moreButton.isHidden = false
+            if let iAm = user.i_am, let iLike = user.i_like, let myDate = user.my_date_would, let age = user.age, let height = user.height, let weight = user.weight, let ethnicity = user.ethnicity, let relationshipStatus = user.relationship_status, let want = user.want, let lookingFor = user.looking_for, let gender = user.gender, let interested = user.interested {
+
+                if iAm == "" && iLike == "" && myDate == "" && age["content"] as? String == "" && height["content"] as? String == "" && weight["content"] as? String == "" && ethnicity["content"] as? String == "" && relationshipStatus["content"] as? String == "" && want["content"] as? String == "" && lookingFor["content"] as? String == "" && gender["content"] as? String == "" && interested["content"] as? String == "" {
+                    headerView.moreButton.isHidden = true
+                }
+//                else {
+//                    headerView.moreButton.isHidden = false
+//                }
             }
-//            else {
-//                headerView.moreButton.isHidden = true
-//            }
-            
-            
+
             if let url = user.profile_photo_url {
                 headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
             }
             if let userName = user.user_name {
                 headerView.userNameLabel.text = userName
             }
-            
-            
+
             headerView.backgroundColor = UIColor.blue
             return headerView
+            
         default:
             assert(false, "Unexpected element kind")
         }
     }
-    
-    
+
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-//        if let headerView = collectionView.visibleSupplementaryViews(ofKind: UICollectionView.elementKindSectionHeader).first as? ProfileHeaderView {
-//
-//            headerView.layoutIfNeeded()
-//
-//            let height = headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
-//
-//            return CGSize(width: collectionView.frame.width, height: height)
-//        }
-        
-        
-        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "profileHeaderView", for: IndexPath(row: 0, section: section)) as? ProfileHeaderView {
+
+        if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "profileHeaderView", for: headerIndexPath) as? ProfileHeaderView {
             
-            headerView.layoutIfNeeded()
-            
-            return CGSize(width: collectionView.frame.width, height: headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height)
+            let height = headerView.contentView.systemLayoutSizeFitting(UIView.layoutFittingExpandedSize).height
+
+            return CGSize(width: collectionView.frame.width, height: height)
         }
-        
+
         return CGSize(width: collectionView.frame.width, height: 1)
     }
     
+
+}
+
+
+extension ProfileViewController: ProfileHeaderViewProtocol {
+    
+    
+    func reloadCollectionView(with tag: Int) {
+        
+        if tag == 0 {
+            moreButtonTag = 1
+            infoLabelViewIsHidden = false
+        }
+        else if tag == 1 {
+            moreButtonTag = 0
+            infoLabelViewIsHidden = true
+        }
+        profileCollectionView.reloadData()
+
+    }
+
 
 }
