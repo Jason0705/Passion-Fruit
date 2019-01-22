@@ -50,6 +50,7 @@
 		826B40E8218BC2D500F042D9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E7218BC2D500F042D9 /* Profile.storyboard */; };
 		826B40EA218D107400F042D9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 826B40E9218D107400F042D9 /* GoogleService-Info.plist */; };
 		82A7256921F018730020150A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7256821F018730020150A /* UserService.swift */; };
+		82A7257121F6A0710020150A /* LabelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A7257021F6A0700020150A /* LabelService.swift */; };
 		82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */; };
 		82AA6EB2219B9C5A008D2FFA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */; };
 		82AA6EB8219CF937008D2FFA /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AA6EB7219CF937008D2FFA /* Home.storyboard */; };
@@ -132,6 +133,7 @@
 		826B40E7218BC2D500F042D9 /* Profile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		826B40E9218D107400F042D9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		82A7256821F018730020150A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		82A7257021F6A0700020150A /* LabelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelService.swift; sourceTree = "<group>"; };
 		82AA6EAF219B9C29008D2FFA /* MatchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchViewController.swift; sourceTree = "<group>"; };
 		82AA6EB1219B9C5A008D2FFA /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		82AA6EB7219CF937008D2FFA /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				82AA6EC121ABB100008D2FFA /* VideoService.swift */,
 				823982A721E81873008112B1 /* ImageService.swift */,
 				823982A521D70FC6008112B1 /* Extentions.swift */,
+				82A7257021F6A0700020150A /* LabelService.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */,
 				823982A621D70FC6008112B1 /* Extentions.swift in Sources */,
 				822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */,
+				82A7257121F6A0710020150A /* LabelService.swift in Sources */,
 				826710A12197F7BC005B3D0A /* AlertService.swift in Sources */,
 				823982A821E81873008112B1 /* ImageService.swift in Sources */,
 				825BC03E21C201F000376F0B /* User.swift in Sources */,

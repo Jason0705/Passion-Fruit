@@ -20,7 +20,6 @@ class ProfileHeaderView: UICollectionReusableView {
     
     
     @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var contentViewHeight: NSLayoutConstraint!
     
     
     @IBOutlet weak var contentStackView: UIStackView!
@@ -32,7 +31,7 @@ class ProfileHeaderView: UICollectionReusableView {
     @IBOutlet weak var FollowMessageButtonsStackView: UIStackView!
     
     @IBOutlet weak var infoLabelView: UIView!
-    @IBOutlet weak var infoLabelsStackView: UIStackView!
+    @IBOutlet weak var infoLabelViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var moreButton: UIButton!
     

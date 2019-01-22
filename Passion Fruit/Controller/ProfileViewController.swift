@@ -21,7 +21,6 @@ class ProfileViewController: UIViewController {
     
     // for header
     var headerIndexPath = IndexPath()
-    var infoLabelViewIsHidden = true
     var moreButtonTag = 0
     
     
@@ -50,7 +49,6 @@ class ProfileViewController: UIViewController {
         
         FetchCurrentUser()
         
-        profileCollectionView.reloadData()
         
     }
     
@@ -113,7 +111,7 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
-        
+        profileCollectionView.reloadData()
         if sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.3) {
@@ -169,12 +167,28 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeaderView", for: indexPath) as! ProfileHeaderView
             
+            var labelOrigin = CGPoint(x: 0, y: 0)
+            var labelViewHeight: CGFloat = 0
+            
+            func createLabelView(title: String, body: String, in view: UIView, at origin: CGPoint) {
+                let labelView = UIView()
+//                labelView.frame.origin = origin
+                labelView.frame = CGRect(x: 0, y: origin.y, width: headerView.frame.width - 48, height: 30)
+                let height = labelView.createProfileLabelWithTitle(title: title, body: body)
+                labelView.frame = CGRect(x: 0, y: origin.y, width: headerView.frame.width - 48, height: height)
+                labelView.addUnderline()
+                view.addSubview(labelView)
+                labelOrigin.y += labelView.bounds.height + 16
+                labelViewHeight += labelView.bounds.height + 16
+            }
+            
             headerView.delegate = self
             
             headerIndexPath = indexPath
             headerView.moreButton.tag = moreButtonTag
+            headerView.moreButton.setTitle("", for: .normal)
             
-            headerView.infoLabelView.isHidden = infoLabelViewIsHidden
+//            headerView.infoLabelViewHeight.constant = labelViewHeight
             
             if from == 0 { // from tab control, self profile
                 headerView.editProfileButton.isHidden = false
@@ -190,9 +204,15 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                 if iAm == "" && iLike == "" && myDate == "" && age["content"] as? String == "" && height["content"] as? String == "" && weight["content"] as? String == "" && ethnicity["content"] as? String == "" && relationshipStatus["content"] as? String == "" && want["content"] as? String == "" && lookingFor["content"] as? String == "" && gender["content"] as? String == "" && interested["content"] as? String == "" {
                     headerView.moreButton.isHidden = true
                 }
-//                else {
-//                    headerView.moreButton.isHidden = false
-//                }
+            }
+            
+            if moreButtonTag == 0 {
+                headerView.moreButton.setImage(UIImage(named: "round_expand_more"), for: .normal)
+                headerView.infoLabelView.isHidden = true
+            }
+            else if moreButtonTag == 1 {
+                headerView.moreButton.setImage(UIImage(named: "round_expand_less"), for: .normal)
+                headerView.infoLabelView.isHidden = false
             }
 
             if let url = user.profile_photo_url {
@@ -200,9 +220,50 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
             if let userName = user.user_name {
                 headerView.userNameLabel.text = userName
+                
             }
+            
+            if let iAm = user.i_am, iAm != "" {
+                createLabelView(title: "I Am", body: iAm, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let iLike = user.i_like, iLike != "" {
+                createLabelView(title: "I Like", body: iLike, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let myDate = user.my_date_would, myDate != "" {
+                createLabelView(title: "My Date Would", body: myDate, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let age = user.age, age["content"] as? String != "" {
+                createLabelView(title: "Age", body: age["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let height = user.height, height["content"] as? String != "" {
+                createLabelView(title: "Height", body: height["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let weight = user.weight, weight["content"] as? String != "" {
+                createLabelView(title: "Weight", body: weight["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let ethnicity = user.ethnicity, ethnicity["content"] as? String != "" {
+                createLabelView(title: "Ethnicity", body: ethnicity["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let gender = user.gender, gender["content"] as? String != "" {
+                createLabelView(title: "Gender", body: gender["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let interested = user.interested, interested["content"] as? String != "" {
+                createLabelView(title: "Interested", body: interested["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let relationshipStatus = user.relationship_status, relationshipStatus["content"] as? String != "" {
+                createLabelView(title: "Relationship Status", body: relationshipStatus["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let want = user.want, want["content"] as? String != "" {
+                createLabelView(title: "Want", body: want["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            if let lookingFor = user.looking_for, lookingFor["content"] as? String != "" {
+                createLabelView(title: "Looking For", body: lookingFor["content"] as! String, in: headerView.infoLabelView, at: labelOrigin)
+            }
+            
+            headerView.infoLabelViewHeight.constant = labelViewHeight - 16
 
             headerView.backgroundColor = UIColor.blue
+            
             return headerView
             
         default:
@@ -234,11 +295,9 @@ extension ProfileViewController: ProfileHeaderViewProtocol {
         
         if tag == 0 {
             moreButtonTag = 1
-            infoLabelViewIsHidden = false
         }
         else if tag == 1 {
             moreButtonTag = 0
-            infoLabelViewIsHidden = true
         }
         profileCollectionView.reloadData()
 
