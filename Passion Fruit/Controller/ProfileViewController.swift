@@ -10,10 +10,12 @@ import UIKit
 import FirebaseAuth
 import SVProgressHUD
 
+
 class ProfileViewController: UIViewController {
 
     // MARK: - Variables
     let defaults = UserDefaults.standard
+    
     
     var from = 0 // from tab controll, 1: from profile selection
     var uid: String!
@@ -87,7 +89,7 @@ class ProfileViewController: UIViewController {
                 print(error!)
             }
             
-            if user != nil {
+            else if user != nil {
                 self.user = user!
                 
                 self.profileCollectionView.reloadData()
@@ -111,22 +113,28 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
-        profileCollectionView.reloadData()
+//        profileCollectionView.reloadData()
         if sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.3) {
-                self.tabBarController?.view.superview?.frame.origin.x = 0 - 240
+//                self.tabBarController?.view.superview?.frame.origin.x = 0 - 240
+//                self.tabBarController?.parent?.view.superview?.frame.origin.x = 0 - 240
+//                self.tabBarController?.view.superview?.superview?.frame.origin.x = 0 - 240
+                self.tabBarController?.view.superview?.superview?.bounds.origin.x = 0 + 240
                 self.view.layoutIfNeeded()
             }
-
         }
         else if sender.tag == 1 {
             sender.tag = 0
             UIView.animate(withDuration: 0.3) {
-                self.tabBarController?.view.superview?.frame.origin.x = 0
+//                self.tabBarController?.view.superview?.frame.origin.x = 0
+//                self.tabBarController?.parent?.view.superview?.frame.origin.x = 0
+//                self.tabBarController?.view.superview?.superview?.frame.origin.x = 0
+                self.tabBarController?.view.superview?.superview?.bounds.origin.x = 0
                 self.view.layoutIfNeeded()
             }
         }
+        
         
     }
     
