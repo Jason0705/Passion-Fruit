@@ -25,6 +25,9 @@ class ProfileViewController: UIViewController {
     var headerIndexPath = IndexPath()
     var moreButtonTag = 0
     
+    // for cells
+    var publicPosts = [Post]()
+    var privatePosts = [Post]()
     
     
     // MARK: - IBOutlets
@@ -49,20 +52,15 @@ class ProfileViewController: UIViewController {
         
         setUp()
         
-        FetchCurrentUser()
-        
-        
+        fetchUser()
+        fetchPublicPosts()
+        fetchPrivatePosts()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         defaults.set(4, forKey: "SelectedTabBar")
     }
-    
-//    override func viewWillLayoutSubviews() {
-//        super .viewWillLayoutSubviews()
-//        profileCollectionView.collectionViewLayout.invalidateLayout()
-//    }
     
     
     
@@ -79,7 +77,7 @@ class ProfileViewController: UIViewController {
         profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 1, itemSpacing: 1, inset: 0, heightMultiplier: 1)
     }
     
-    func FetchCurrentUser() {
+    func fetchUser() {
         if from == 0 { // from tab control, self profile
             uid = UserService.getCurrentUserID()
         }
@@ -96,6 +94,41 @@ class ProfileViewController: UIViewController {
             }
             
             
+        }
+        
+    }
+    
+    func fetchPublicPosts() {
+        if from == 0 { // from tab control, self profile
+            uid = UserService.getCurrentUserID()
+        }
+        
+        PostService.fetchPublicPosts(with: uid) { (posts, error) in
+            if error != nil {
+                print(error!)
+            }
+            else if posts != nil {
+                self.publicPosts = posts!
+                
+                self.profileCollectionView.reloadData()
+            }
+        }
+    }
+    
+    func fetchPrivatePosts() {
+        if from == 0 { // from tab control, self profile
+            uid = UserService.getCurrentUserID()
+        }
+        
+        PostService.fetchPrivatePosts(with: uid) { (posts, error) in
+            if error != nil {
+                print(error!)
+            }
+            else if posts != nil {
+                self.privatePosts = posts!
+                
+                self.profileCollectionView.reloadData()
+            }
         }
         
     }
@@ -117,9 +150,6 @@ class ProfileViewController: UIViewController {
         if sender.tag == 0 {
             sender.tag = 1
             UIView.animate(withDuration: 0.3) {
-//                self.tabBarController?.view.superview?.frame.origin.x = 0 - 240
-//                self.tabBarController?.parent?.view.superview?.frame.origin.x = 0 - 240
-//                self.tabBarController?.view.superview?.superview?.frame.origin.x = 0 - 240
                 self.tabBarController?.view.superview?.superview?.bounds.origin.x = 0 + 240
                 self.view.layoutIfNeeded()
             }
@@ -127,9 +157,6 @@ class ProfileViewController: UIViewController {
         else if sender.tag == 1 {
             sender.tag = 0
             UIView.animate(withDuration: 0.3) {
-//                self.tabBarController?.view.superview?.frame.origin.x = 0
-//                self.tabBarController?.parent?.view.superview?.frame.origin.x = 0
-//                self.tabBarController?.view.superview?.superview?.frame.origin.x = 0
                 self.tabBarController?.view.superview?.superview?.bounds.origin.x = 0
                 self.view.layoutIfNeeded()
             }

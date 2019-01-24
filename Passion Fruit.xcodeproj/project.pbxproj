@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		54E088A7BFCFA3EF0A103583 /* Pods_Passion_FruitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */; };
 		731DC1023F3A8909ED8BFEE9 /* Pods_Passion_Fruit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C4DAA29DB821A7EDC7CBEB /* Pods_Passion_Fruit.framework */; };
+		820CE77321F92E3100CB2BEC /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820CE77221F92E3100CB2BEC /* PostService.swift */; };
+		820CE77521F92E4000CB2BEC /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 820CE77421F92E4000CB2BEC /* Post.swift */; };
 		822AB9782198122A00F5C266 /* CustomizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB9772198122A00F5C266 /* CustomizationService.swift */; };
 		822AB97A219A61F800F5C266 /* ProfileEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 822AB979219A61F800F5C266 /* ProfileEdit.storyboard */; };
 		822AB97C219A641900F5C266 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822AB97B219A641900F5C266 /* ProfileEditViewController.swift */; };
@@ -86,6 +88,8 @@
 		4B10AF26A7B833155EF6EEE8 /* Pods-Passion FruitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		51B9F83310D14DA0EE780D58 /* Pods-Passion FruitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitUITests/Pods-Passion FruitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		80CD88FE5281F8805A5FF6D5 /* Pods-Passion FruitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion FruitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion FruitTests/Pods-Passion FruitTests.release.xcconfig"; sourceTree = "<group>"; };
+		820CE77221F92E3100CB2BEC /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		820CE77421F92E4000CB2BEC /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		822AB9772198122A00F5C266 /* CustomizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationService.swift; sourceTree = "<group>"; };
 		822AB979219A61F800F5C266 /* ProfileEdit.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProfileEdit.storyboard; sourceTree = "<group>"; };
 		822AB97B219A641900F5C266 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 			children = (
 				8267109E2197F19D005B3D0A /* AuthService.swift */,
 				82A7256821F018730020150A /* UserService.swift */,
+				820CE77221F92E3100CB2BEC /* PostService.swift */,
 				826710A02197F7BC005B3D0A /* AlertService.swift */,
 				822AB9772198122A00F5C266 /* CustomizationService.swift */,
 				82AA6EC121ABB100008D2FFA /* VideoService.swift */,
@@ -336,6 +341,7 @@
 			children = (
 				82AA6EBF21AA2B08008D2FFA /* StaticVariables.swift */,
 				825BC03D21C201F000376F0B /* User.swift */,
+				820CE77421F92E4000CB2BEC /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				820CE77321F92E3100CB2BEC /* PostService.swift in Sources */,
 				82C7A60F21AE7DC100C61B1E /* CapturePreviewViewController.swift in Sources */,
 				822AB97C219A641900F5C266 /* ProfileEditViewController.swift in Sources */,
 				82AA6EB2219B9C5A008D2FFA /* HomeViewController.swift in Sources */,
@@ -605,6 +612,7 @@
 				82AA6EBC21A8D6E5008D2FFA /* NewPostViewController.swift in Sources */,
 				823982A321D5A7AC008112B1 /* UserCell.swift in Sources */,
 				826B40C4218BA18C00F042D9 /* NearByViewController.swift in Sources */,
+				820CE77521F92E4000CB2BEC /* Post.swift in Sources */,
 				82AA6EC021AA2B08008D2FFA /* StaticVariables.swift in Sources */,
 				82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */,
 				822AB980219A945D00F5C266 /* ImageVideoCell.swift in Sources */,

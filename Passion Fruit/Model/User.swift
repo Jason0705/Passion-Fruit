@@ -6,18 +6,7 @@
 //  Copyright © 2018 Jason Li. All rights reserved.
 //
 
-import UIKit
-
-
-//struct SingleChoice {
-//    var content: String?
-//    var choice: Int?
-//}
-//
-//struct MultipleChoice {
-//    var content: String?
-//    var choice: [Int]?
-//}
+import Foundation
 
 
 class User: NSObject {

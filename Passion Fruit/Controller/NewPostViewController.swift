@@ -238,6 +238,8 @@ class NewPostViewController: UIViewController {
             
             newPostReference.child("/caption").setValue(caption)
             newPostReference.child("/uid").setValue(uid)
+            newPostReference.child("/post_id").setValue(newPostID)
+            newPostReference.child("/timestamp").setValue(ServerValue.timestamp())
             
             SVProgressHUD.showSuccess(withStatus: "Post Shared")
             SVProgressHUD.dismiss(withDelay: 1)
