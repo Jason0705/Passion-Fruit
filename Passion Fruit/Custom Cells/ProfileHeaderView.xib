@@ -152,9 +152,12 @@
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gg6-Lr-VmP">
                                             <rect key="frame" x="0.0" y="30" width="320" height="29"/>
                                             <segments>
-                                                <segment title="First"/>
-                                                <segment title="Second"/>
+                                                <segment title="Public"/>
+                                                <segment title="Private"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="publicPrivateSegmentedControlPressed:" destination="U6b-Vx-4bR" eventType="valueChanged" id="ZtV-1g-V94"/>
+                                            </connections>
                                         </segmentedControl>
                                     </subviews>
                                     <constraints>
@@ -208,6 +211,7 @@
                 <outlet property="infoLabelViewHeight" destination="wfj-99-8NA" id="zQU-66-4yL"/>
                 <outlet property="moreButton" destination="Oe8-uK-3NH" id="Sf7-Rm-FWX"/>
                 <outlet property="profileImageView" destination="JNr-gy-bEd" id="c91-Gf-dtc"/>
+                <outlet property="publicPrivateSegmentedControl" destination="gg6-Lr-VmP" id="7HU-G9-Gfz"/>
                 <outlet property="userNameLabel" destination="HaL-4E-AKk" id="RdG-gd-UDC"/>
             </connections>
             <point key="canvasLocation" x="155.19999999999999" y="480.35982008995506"/>

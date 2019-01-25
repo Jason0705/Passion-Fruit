@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 
+let playerCache = NSCache<AnyObject, AnyObject>()
+
 class VideoService {
     
     static var player: AVPlayer!
@@ -17,6 +19,7 @@ class VideoService {
     // MARK: - Create Video Player Layer
     static func createAVPlayerLayer(on view: UIView, with url: URL) {
         player = AVPlayer(url: url)
+        player.automaticallyWaitsToMinimizeStalling = false
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.frame = view.frame
         playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
@@ -27,6 +30,57 @@ class VideoService {
             player.play()
         }
     }
+    
+    
+    static func createAVPlayerLayer(on view: UIView, with player: AVPlayer, play: Bool) {
+        player.automaticallyWaitsToMinimizeStalling = false
+        let playerLayer = AVPlayerLayer(player: player)
+        playerLayer.frame = view.frame
+        playerLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        view.layer.addSublayer(playerLayer)
+        player.isMuted = true
+        if play {
+            player.play()
+        }
+        else if !play {
+            player.pause()
+        }
+        NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main) { _ in
+            player.seek(to: CMTime.zero)
+            player.play()
+        }
+    }
+    
+    
+    static func getPlayerUsingCacheWithURL(urlString: String) -> AVPlayer {
+        
+        
+        // check cache for image first
+        if let cachedPlayer = playerCache.object(forKey: urlString as AnyObject) as? AVPlayer {
+            player = cachedPlayer
+            return player
+        }
+        
+        // otherwise download
+        if let url = URL(string: urlString) {
+            
+            let downloadedPlayer = AVPlayer(url: url)
+            playerCache.setObject(downloadedPlayer, forKey: urlString as AnyObject) as? AVPlayer
+                
+            player = downloadedPlayer
+                
+            return player
+            
+        }
+        
+        return player
+        
+    }
+    
+    
+    
+    
+    
     
     
     // MARK: - Crop Video

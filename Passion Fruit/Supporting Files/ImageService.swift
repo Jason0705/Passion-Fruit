@@ -17,7 +17,7 @@ class ImageService {
         print("CACHE CLEARED")
     }
     
-    func getImageUsingCacheWithURL(urlString: String) -> UIImage {
+    static func getImageUsingCacheWithURL(urlString: String) -> UIImage {
         
         var image = UIImage()
         

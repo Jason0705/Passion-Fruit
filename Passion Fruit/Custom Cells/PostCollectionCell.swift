@@ -10,6 +10,16 @@ import UIKit
 
 class PostCollectionCell: UICollectionViewCell {
 
+    
+    
+    @IBOutlet weak var postVideoContainerView: UIView!
+    @IBOutlet weak var postVideoView: UIView!
+    
+    
+    @IBOutlet weak var postImageContainerView: UIView!
+    @IBOutlet weak var postImageView: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

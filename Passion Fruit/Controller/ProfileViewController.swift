@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import SVProgressHUD
+import FirebaseDatabase
 
 
 class ProfileViewController: UIViewController {
@@ -24,6 +25,7 @@ class ProfileViewController: UIViewController {
     // for header
     var headerIndexPath = IndexPath()
     var moreButtonTag = 0
+    var publicPrivateSegmentedControlSelectedIndex = 0
     
     // for cells
     var publicPosts = [Post]()
@@ -53,8 +55,8 @@ class ProfileViewController: UIViewController {
         setUp()
         
         fetchUser()
-        fetchPublicPosts()
-        fetchPrivatePosts()
+        fetchPosts(of: "public")
+        fetchPosts(of: "private")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,8 +76,9 @@ class ProfileViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = nil
         }
         
-        profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 1, itemSpacing: 1, inset: 0, heightMultiplier: 1)
+        profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 2, itemSpacing: 1, inset: 0, heightMultiplier: 1)
     }
+    
     
     func fetchUser() {
         if from == 0 { // from tab control, self profile
@@ -93,44 +96,31 @@ class ProfileViewController: UIViewController {
                 self.profileCollectionView.reloadData()
             }
             
-            
         }
         
     }
     
-    func fetchPublicPosts() {
-        if from == 0 { // from tab control, self profile
-            uid = UserService.getCurrentUserID()
-        }
-        
-        PostService.fetchPublicPosts(with: uid) { (posts, error) in
-            if error != nil {
-                print(error!)
-            }
-            else if posts != nil {
-                self.publicPosts = posts!
-                
-                self.profileCollectionView.reloadData()
-            }
-        }
-    }
     
-    func fetchPrivatePosts() {
+    func fetchPosts(of kind: String) {
         if from == 0 { // from tab control, self profile
             uid = UserService.getCurrentUserID()
         }
         
-        PostService.fetchPrivatePosts(with: uid) { (posts, error) in
+        PostService.fetchPosts(of: kind, with: uid) { (posts, error) in
             if error != nil {
                 print(error!)
             }
             else if posts != nil {
-                self.privatePosts = posts!
+                if kind == "public" {
+                    self.publicPosts = posts!
+                }
+                else if kind == "private" {
+                    self.privatePosts = posts!
+                }
                 
                 self.profileCollectionView.reloadData()
             }
         }
-        
     }
     
     
@@ -183,15 +173,80 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 3
+        switch publicPrivateSegmentedControlSelectedIndex {
+        case 0:
+            return publicPosts.count
+        case 1:
+            return privatePosts.count
+        default:
+            return publicPosts.count
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCollectionCell", for: indexPath) as! PostCollectionCell
         cell.backgroundColor = UIColor.green
         
+        func showImage() {
+            cell.postImageContainerView.isHidden = false
+            cell.postVideoContainerView.isHidden = true
+        }
+        func showVideo() {
+            cell.postImageContainerView.isHidden = true
+            cell.postImageView.image = nil
+            cell.postVideoContainerView.isHidden = false
+        }
+        
+        switch publicPrivateSegmentedControlSelectedIndex {
+        case 0: // public posts
+            let post = publicPosts[indexPath.row]
+            if let postImageURL = post.image_url {
+                showImage()
+                cell.postImageView.image = ImageService.getImageUsingCacheWithURL(urlString: postImageURL)
+            }
+            else {
+                showVideo()
+            }
+            if let postVideoURL = post.video_url {
+                showVideo()
+                let player = VideoService.getPlayerUsingCacheWithURL(urlString: postVideoURL)
+                VideoService.createAVPlayerLayer(on: cell.postVideoView, with: player, play: false)
+            }
+            else {
+                showImage()
+            }
+        case 1: // private posts
+            let post = privatePosts[indexPath.row]
+            if let postImageURL = post.image_url {
+                showImage()
+                cell.postImageView.image = ImageService.getImageUsingCacheWithURL(urlString: postImageURL)
+            }
+            else {
+                showVideo()
+            }
+            if let postVideoURL = post.video_url {
+                showVideo()
+                let player = VideoService.getPlayerUsingCacheWithURL(urlString: postVideoURL)
+                VideoService.createAVPlayerLayer(on: cell.postVideoView, with: player, play: false)
+            }
+            else {
+                showImage()
+            }
+        default:
+            break
+        }
+        
+        
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let a = publicPosts[indexPath.row]
+        print("!!!!\(a.image_url)")
+        
+    }
+    
     
     // Header
     
@@ -207,7 +262,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             func createLabelView(title: String, body: String, in view: UIView, at origin: CGPoint) {
                 let labelView = UIView()
-//                labelView.frame.origin = origin
                 labelView.frame = CGRect(x: 0, y: origin.y, width: headerView.frame.width - 48, height: 30)
                 let height = labelView.createProfileLabelWithTitle(title: title, body: body)
                 labelView.frame = CGRect(x: 0, y: origin.y, width: headerView.frame.width - 48, height: height)
@@ -222,8 +276,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             headerIndexPath = indexPath
             headerView.moreButton.tag = moreButtonTag
             headerView.moreButton.setTitle("", for: .normal)
+            headerView.publicPrivateSegmentedControl.selectedSegmentIndex = publicPrivateSegmentedControlSelectedIndex
             
-//            headerView.infoLabelViewHeight.constant = labelViewHeight
             
             if from == 0 { // from tab control, self profile
                 headerView.editProfileButton.isHidden = false
@@ -251,7 +305,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
 
             if let url = user.profile_photo_url {
-                headerView.profileImageView.image = ImageService().getImageUsingCacheWithURL(urlString: url)
+                headerView.profileImageView.image = ImageService.getImageUsingCacheWithURL(urlString: url)
             }
             if let userName = user.user_name {
                 headerView.userNameLabel.text = userName
@@ -326,16 +380,26 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 extension ProfileViewController: ProfileHeaderViewProtocol {
     
     
-    func reloadCollectionView(with tag: Int) {
+    func reloadCollectionViewWith(moreTag: Int) {
         
-        if tag == 0 {
+        if moreTag == 0 {
             moreButtonTag = 1
         }
-        else if tag == 1 {
+        else if moreTag == 1 {
             moreButtonTag = 0
         }
         profileCollectionView.reloadData()
 
+    }
+    
+    func reloadCollectionViewWith(segmentIndex: Int) {
+        if segmentIndex == 0 {
+            publicPrivateSegmentedControlSelectedIndex = 0
+        }
+        else if segmentIndex == 1 {
+            publicPrivateSegmentedControlSelectedIndex = 1
+        }
+        profileCollectionView.reloadData()
     }
 
 

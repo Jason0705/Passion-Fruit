@@ -10,7 +10,8 @@ import UIKit
 
 
 protocol ProfileHeaderViewProtocol {
-    func reloadCollectionView(with tag: Int)
+    func reloadCollectionViewWith(moreTag: Int)
+    func reloadCollectionViewWith(segmentIndex: Int)
 }
 
 
@@ -35,6 +36,9 @@ class ProfileHeaderView: UICollectionReusableView {
     
     @IBOutlet weak var moreButton: UIButton!
     
+    @IBOutlet weak var publicPrivateSegmentedControl: UISegmentedControl!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -46,30 +50,32 @@ class ProfileHeaderView: UICollectionReusableView {
     
     @IBAction func moreButtonPressed(_ sender: UIButton) {
         
-//        if sender.tag == 0 {
-//            sender.tag = 1
-//            delegate?.reloadCollectionView(with: 0)
-//        }
-//        else if sender.tag == 1 {
-//            sender.tag = 0
-//            delegate?.reloadCollectionView(with: 1)
-//        }
         
         if sender.tag == 0 {
 //            sender.tag = 1
             infoLabelView.isHidden = false
-            delegate?.reloadCollectionView(with: 0)
+            delegate?.reloadCollectionViewWith(moreTag: 0)
 
         }
         else if sender.tag == 1 {
 //            sender.tag = 0
             infoLabelView.isHidden = true
-            delegate?.reloadCollectionView(with: 1)
+            delegate?.reloadCollectionViewWith(moreTag: 1)
         }
-//
-//        print("contentview Height: \(contentViewHeight.constant)")
     }
     
+    @IBAction func publicPrivateSegmentedControlPressed(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            delegate?.reloadCollectionViewWith(segmentIndex: 0)
+        case 1:
+            delegate?.reloadCollectionViewWith(segmentIndex: 1)
+        default:
+            break
+        }
+        
+    }
     
     
 }

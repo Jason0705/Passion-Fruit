@@ -139,7 +139,7 @@ class ProfileEditViewController: UIViewController {
 //                        }
 //
 //                    }).resume()
-                    self.selectedProfilePhoto = ImageService().getImageUsingCacheWithURL(urlString: profileImageURL)
+                    self.selectedProfilePhoto = ImageService.getImageUsingCacheWithURL(urlString: profileImageURL)
                     self.selectedProfilePhotoSaved = self.selectedProfilePhoto
 
                 }
