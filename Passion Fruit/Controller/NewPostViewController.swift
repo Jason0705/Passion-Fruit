@@ -70,7 +70,7 @@ class NewPostViewController: UIViewController {
     }
     
     func updateShareBarButton() {
-        if selectedPostimage != nil || selectedVideoURL != nil || !caption.isEmpty {
+        if selectedPostimage != nil || selectedVideoURL != nil /*|| !caption.isEmpty */{
             shareBarButton.isEnabled = true
         }
         else {
