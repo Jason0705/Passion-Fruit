@@ -31,7 +31,7 @@ class PostService {
                 
                 if post.uid != nil && post.uid == uid {
                     posts.append(post)
-                    posts = posts.reversed()
+//                    posts = posts.reversed()
                 }
                 
             }

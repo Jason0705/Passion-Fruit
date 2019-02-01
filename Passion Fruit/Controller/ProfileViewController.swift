@@ -112,10 +112,10 @@ class ProfileViewController: UIViewController {
             }
             else if posts != nil {
                 if kind == "public" {
-                    self.publicPosts = posts!
+                    self.publicPosts = posts!.reversed()
                 }
                 else if kind == "private" {
-                    self.privatePosts = posts!
+                    self.privatePosts = posts!.reversed()
                 }
                 
                 self.profileCollectionView.reloadData()
@@ -184,51 +184,40 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCollectionCell", for: indexPath) as! PostCollectionCell
         cell.backgroundColor = UIColor.green
-        
-        func showImage() {
-            cell.postImageContainerView.isHidden = false
-            cell.postVideoContainerView.isHidden = true
-        }
-        func showVideo() {
-            cell.postImageContainerView.isHidden = true
-            cell.postImageView.image = nil
-            cell.postVideoContainerView.isHidden = false
-        }
+        cell.videoIcon.isHidden = true
         
         switch publicPrivateSegmentedControlSelectedIndex {
         case 0: // public posts
             let post = publicPosts[indexPath.row]
             if let postImageURL = post.image_url {
-                showImage()
+                
                 cell.postImageView.image = ImageService.getImageUsingCacheWithURL(urlString: postImageURL)
+                
+                if post.video_url == nil {
+                    cell.videoIcon.isHidden = true
+                }
+                else {
+                    cell.videoIcon.isHidden = false
+                }
             }
             else {
-                showVideo()
-            }
-            if let postVideoURL = post.video_url {
-                showVideo()
-                let player = VideoService.getPlayerUsingCacheWithURL(urlString: postVideoURL)
-                VideoService.createAVPlayerLayer(on: cell.postVideoView, with: player, play: false)
-            }
-            else {
-                showImage()
+                cell.postImageView.image = nil
             }
         case 1: // private posts
             let post = privatePosts[indexPath.row]
             if let postImageURL = post.image_url {
-                showImage()
+                
                 cell.postImageView.image = ImageService.getImageUsingCacheWithURL(urlString: postImageURL)
+                
+                if post.video_url == nil {
+                    cell.videoIcon.isHidden = true
+                }
+                else {
+                    cell.videoIcon.isHidden = false
+                }
             }
             else {
-                showVideo()
-            }
-            if let postVideoURL = post.video_url {
-                showVideo()
-                let player = VideoService.getPlayerUsingCacheWithURL(urlString: postVideoURL)
-                VideoService.createAVPlayerLayer(on: cell.postVideoView, with: player, play: false)
-            }
-            else {
-                showImage()
+                cell.postImageView.image = nil
             }
         default:
             break

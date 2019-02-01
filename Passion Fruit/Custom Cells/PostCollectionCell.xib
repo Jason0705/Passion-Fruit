@@ -22,57 +22,25 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4w-QH-gkL">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvC-u7-cNK">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tac-nw-JFc">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7tq-T5-cWk">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="5F5-82-Doo">
-                                        <rect key="frame" x="223" y="5" width="22" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="22" id="XW1-1L-B5D"/>
-                                            <constraint firstAttribute="width" constant="22" id="cdB-hi-qZq"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="video" translatesAutoresizingMaskIntoConstraints="NO" id="5F5-82-Doo">
+                                <rect key="frame" x="223" y="5" width="22" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="7tq-T5-cWk" secondAttribute="bottom" id="9sp-OV-aBV"/>
-                                    <constraint firstItem="7tq-T5-cWk" firstAttribute="leading" secondItem="nvC-u7-cNK" secondAttribute="leading" id="HnC-rm-hnX"/>
-                                    <constraint firstAttribute="trailing" secondItem="5F5-82-Doo" secondAttribute="trailing" constant="5" id="c92-jW-968"/>
-                                    <constraint firstAttribute="trailing" secondItem="7tq-T5-cWk" secondAttribute="trailing" id="gF4-I6-v06"/>
-                                    <constraint firstItem="7tq-T5-cWk" firstAttribute="top" secondItem="nvC-u7-cNK" secondAttribute="top" id="pfU-hO-4ks"/>
-                                    <constraint firstItem="5F5-82-Doo" firstAttribute="top" secondItem="nvC-u7-cNK" secondAttribute="top" constant="5" id="sPf-h5-MEf"/>
+                                    <constraint firstAttribute="height" constant="22" id="XW1-1L-B5D"/>
+                                    <constraint firstAttribute="width" constant="22" id="cdB-hi-qZq"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pHj-Wd-qlL">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="tac-nw-JFc">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
-                                    </imageView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="tac-nw-JFc" secondAttribute="bottom" id="CCh-Ia-rG3"/>
-                                    <constraint firstItem="tac-nw-JFc" firstAttribute="leading" secondItem="pHj-Wd-qlL" secondAttribute="leading" id="Fob-zs-QQp"/>
-                                    <constraint firstAttribute="trailing" secondItem="tac-nw-JFc" secondAttribute="trailing" id="JiC-kw-IkJ"/>
-                                    <constraint firstItem="tac-nw-JFc" firstAttribute="top" secondItem="pHj-Wd-qlL" secondAttribute="top" id="JpC-ZW-yLr"/>
-                                </constraints>
-                            </view>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="pHj-Wd-qlL" secondAttribute="trailing" id="2rJ-RY-ryS"/>
-                            <constraint firstAttribute="bottom" secondItem="nvC-u7-cNK" secondAttribute="bottom" id="9Q7-fh-zSA"/>
-                            <constraint firstItem="nvC-u7-cNK" firstAttribute="top" secondItem="n4w-QH-gkL" secondAttribute="top" id="Bwt-s0-e7K"/>
-                            <constraint firstAttribute="bottom" secondItem="pHj-Wd-qlL" secondAttribute="bottom" id="H8a-3O-qPu"/>
-                            <constraint firstItem="pHj-Wd-qlL" firstAttribute="leading" secondItem="n4w-QH-gkL" secondAttribute="leading" id="M9e-jj-aUy"/>
-                            <constraint firstAttribute="trailing" secondItem="nvC-u7-cNK" secondAttribute="trailing" id="Ubh-Y1-C5Z"/>
-                            <constraint firstItem="pHj-Wd-qlL" firstAttribute="top" secondItem="n4w-QH-gkL" secondAttribute="top" id="mtV-eO-wCW"/>
-                            <constraint firstItem="nvC-u7-cNK" firstAttribute="leading" secondItem="n4w-QH-gkL" secondAttribute="leading" id="taO-MF-7Lg"/>
+                            <constraint firstItem="tac-nw-JFc" firstAttribute="leading" secondItem="n4w-QH-gkL" secondAttribute="leading" id="12Q-17-l86"/>
+                            <constraint firstAttribute="trailing" secondItem="5F5-82-Doo" secondAttribute="trailing" constant="5" id="44e-xq-bn9"/>
+                            <constraint firstItem="5F5-82-Doo" firstAttribute="top" secondItem="n4w-QH-gkL" secondAttribute="top" constant="5" id="FD9-IY-Ybh"/>
+                            <constraint firstAttribute="trailing" secondItem="tac-nw-JFc" secondAttribute="trailing" id="WL4-6J-fL6"/>
+                            <constraint firstAttribute="bottom" secondItem="tac-nw-JFc" secondAttribute="bottom" id="gfB-Hh-iPA"/>
+                            <constraint firstItem="tac-nw-JFc" firstAttribute="top" secondItem="n4w-QH-gkL" secondAttribute="top" id="uLt-RD-Esb"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -85,15 +53,12 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <connections>
-                <outlet property="postImageContainerView" destination="pHj-Wd-qlL" id="fwr-aA-lMJ"/>
                 <outlet property="postImageView" destination="tac-nw-JFc" id="KrK-7U-K6D"/>
-                <outlet property="postVideoContainerView" destination="nvC-u7-cNK" id="ifa-YP-Nmi"/>
-                <outlet property="postVideoView" destination="7tq-T5-cWk" id="dFN-L7-FDG"/>
+                <outlet property="videoIcon" destination="5F5-82-Doo" id="TqM-ij-kMA"/>
             </connections>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="person" width="96" height="96"/>
         <image name="video" width="90" height="90"/>
     </resources>
 </document>
