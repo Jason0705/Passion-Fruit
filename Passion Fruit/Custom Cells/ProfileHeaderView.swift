@@ -10,6 +10,7 @@ import UIKit
 
 
 protocol ProfileHeaderViewProtocol {
+    func editProfile()
     func reloadCollectionViewWith(moreTag: Int)
     func reloadCollectionViewWith(segmentIndex: Int)
 }
@@ -48,8 +49,13 @@ class ProfileHeaderView: UICollectionReusableView {
     }
     
     
+    @IBAction func editProfileButtonPressed(_ sender: UIButton) {
+        delegate?.editProfile()
+    }
+    
+    
+    
     @IBAction func moreButtonPressed(_ sender: UIButton) {
-        
         
         if sender.tag == 0 {
 //            sender.tag = 1

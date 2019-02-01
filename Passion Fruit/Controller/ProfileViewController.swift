@@ -129,11 +129,6 @@ class ProfileViewController: UIViewController {
     
     // MARK: - IBActions
     
-//    @IBAction func editButtonPressed(_ sender: UIButton) {
-//        performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
-//    }
-    
-    
     
     @IBAction func menuBarButtonPressed(_ sender: UIBarButtonItem) {
 //        profileCollectionView.reloadData()
@@ -185,6 +180,8 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCollectionCell", for: indexPath) as! PostCollectionCell
         cell.backgroundColor = UIColor.green
         
@@ -379,6 +376,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 extension ProfileViewController: ProfileHeaderViewProtocol {
     
+    func editProfile() {
+        performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
+    }
     
     func reloadCollectionViewWith(moreTag: Int) {
         

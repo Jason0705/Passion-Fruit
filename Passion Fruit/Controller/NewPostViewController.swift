@@ -214,6 +214,7 @@ class NewPostViewController: UIViewController {
             }
             
             else if selectedVideoURL != nil {
+                // save video
                 videoReference.putFile(from: selectedVideoURL!, metadata: nil) { (storageMetadata, error) in
                     if error != nil { // error
                         print("Save profile photo error: \(error!)")
@@ -234,6 +235,29 @@ class NewPostViewController: UIViewController {
                         newPostReference.child("/video_url").setValue(postVideoURL)
                     })
                 }
+                // save video thumbnail
+                let imageData = VideoService.createVideoThumbnail(with: selectedVideoURL!)?.jpegData(compressionQuality: 0.1)
+                imageReference.putData(imageData!, metadata: nil) { (storageMetadata, error) in
+                    if error != nil { // error
+                        print("Save profile photo error: \(error!)")
+                        SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                        SVProgressHUD.dismiss(withDelay: 2)
+                        return
+                    }
+                    // no error
+                    imageReference.downloadURL(completion: { (url, error) in
+                        if error != nil { // error
+                            print("Get profile photo URL error: \(error!)")
+                            SVProgressHUD.showError(withStatus: "Sorry, please try again later.")
+                            SVProgressHUD.dismiss(withDelay: 2)
+                            return
+                        }
+                        // no error
+                        let thumbnailURL = url?.absoluteString
+                        newPostReference.child("/image_url").setValue(thumbnailURL)
+                    })
+                }
+                
             }
             
             newPostReference.child("/caption").setValue(caption)

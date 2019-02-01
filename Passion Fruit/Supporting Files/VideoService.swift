@@ -79,6 +79,26 @@ class VideoService {
     
     
     
+    static func createVideoThumbnail(with videoURL: URL) -> UIImage? {
+        
+        let asset = AVAsset(url: videoURL)
+        let imageGenerator = AVAssetImageGenerator(asset: asset)
+        imageGenerator.appliesPreferredTrackTransform = true
+        
+        let timestamp = CMTime(seconds: 1, preferredTimescale: 600)
+        
+        do {
+            let imageRef = try imageGenerator.copyCGImage(at: timestamp, actualTime: nil)
+            let thumbnail = UIImage(cgImage: imageRef)
+            return thumbnail
+        } catch {
+            print("Image generation failed with error \(error.localizedDescription)")
+            return nil
+        }
+    }
+    
+    
+    
     
     
     
