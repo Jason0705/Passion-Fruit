@@ -11,6 +11,8 @@ import UIKit
 
 protocol ProfileHeaderViewProtocol {
     func editProfile()
+    func followAction()
+    func unfollowAction()
     func reloadCollectionViewWith(moreTag: Int)
     func reloadCollectionViewWith(segmentIndex: Int)
 }
@@ -31,6 +33,8 @@ class ProfileHeaderView: UICollectionReusableView {
     
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var FollowMessageButtonsStackView: UIStackView!
+    @IBOutlet weak var followButton: UIButton!
+    
     
     @IBOutlet weak var infoLabelView: UIView!
     @IBOutlet weak var infoLabelViewHeight: NSLayoutConstraint!
@@ -46,6 +50,7 @@ class ProfileHeaderView: UICollectionReusableView {
         // Initialization code
         
         profileImageView.layer.cornerRadius = 0.5 * profileImageView.frame.width
+        
     }
     
     
@@ -53,6 +58,18 @@ class ProfileHeaderView: UICollectionReusableView {
         delegate?.editProfile()
     }
     
+    
+    @IBAction func followButtonPressed(_ sender: UIButton) {
+        
+        if sender.tag == 0 {
+            delegate?.followAction()
+//            sender.tag = 1
+        }
+        else if sender.tag == 1 {
+            delegate?.unfollowAction()
+//            sender.tag = 0
+        }
+    }
     
     
     @IBAction func moreButtonPressed(_ sender: UIButton) {

@@ -30,4 +30,7 @@ class User: NSObject {
     
     var gender: [String: Any]?
     var interested: [String: Any]?
+    
+    var followings: [String]?
+    var followers: [String]?
 }

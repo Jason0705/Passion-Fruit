@@ -91,9 +91,6 @@
                                             </constraints>
                                         </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="320" id="gR6-cn-mrq"/>
-                                    </constraints>
                                 </stackView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Om6-4c-XbS">
                                     <rect key="frame" x="0.0" y="108" width="320" height="0.0"/>
@@ -128,6 +125,9 @@
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kq8-tc-7oZ">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="30"/>
                                             <state key="normal" title="Follow"/>
+                                            <connections>
+                                                <action selector="followButtonPressed:" destination="U6b-Vx-4bR" eventType="touchUpInside" id="yxq-q0-5FZ"/>
+                                            </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t32-CP-lNf">
                                             <rect key="frame" x="144" y="0.0" width="128" height="30"/>
@@ -191,10 +191,10 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="lLl-0i-KQk" secondAttribute="trailing" id="8eV-BM-fh4"/>
+                        <constraint firstAttribute="trailing" secondItem="lLl-0i-KQk" secondAttribute="trailing" id="2Uj-lS-Hsm"/>
+                        <constraint firstItem="lLl-0i-KQk" firstAttribute="leading" secondItem="00C-7X-GzS" secondAttribute="leading" id="K6v-8u-0sL"/>
                         <constraint firstAttribute="bottom" secondItem="lLl-0i-KQk" secondAttribute="bottom" constant="1" id="KQ5-aT-Y8g"/>
                         <constraint firstItem="lLl-0i-KQk" firstAttribute="top" secondItem="00C-7X-GzS" secondAttribute="top" constant="32" id="pYH-I3-GmF"/>
-                        <constraint firstItem="lLl-0i-KQk" firstAttribute="leading" secondItem="00C-7X-GzS" secondAttribute="leading" id="qeM-IJ-YWz"/>
                     </constraints>
                 </view>
             </subviews>
@@ -210,6 +210,7 @@
                 <outlet property="contentStackView" destination="lLl-0i-KQk" id="lu2-so-dwf"/>
                 <outlet property="contentView" destination="00C-7X-GzS" id="0bd-Pu-ivL"/>
                 <outlet property="editProfileButton" destination="bpk-UN-ZD8" id="1nK-CZ-s6I"/>
+                <outlet property="followButton" destination="Kq8-tc-7oZ" id="TUx-hn-fCc"/>
                 <outlet property="infoLabelView" destination="PfC-8G-jk2" id="thi-sY-4Fz"/>
                 <outlet property="infoLabelViewHeight" destination="wfj-99-8NA" id="zQU-66-4yL"/>
                 <outlet property="moreButton" destination="Oe8-uK-3NH" id="Sf7-Rm-FWX"/>

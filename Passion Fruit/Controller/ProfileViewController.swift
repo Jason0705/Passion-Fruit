@@ -22,6 +22,12 @@ class ProfileViewController: UIViewController {
     var uid: String!
     var user = User()
     
+    var followings = [String]()
+    var followers = [String]()
+    
+    var numOfFollowings = 0
+    var numOfFollowers = 0
+    
     // for header
     var headerIndexPath = IndexPath()
     var moreButtonTag = 0
@@ -57,7 +63,17 @@ class ProfileViewController: UIViewController {
         fetchUser()
         fetchPosts(of: "public")
         fetchPosts(of: "private")
+        
+        
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        if defaults.integer(forKey: "NewPostSaved") == 1 {
+//            fetchPosts(of: "public")
+//            fetchPosts(of: "private")
+//        }
+//    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -76,7 +92,7 @@ class ProfileViewController: UIViewController {
             self.navigationItem.rightBarButtonItem = nil
         }
         
-        profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 2, itemSpacing: 1, inset: 0, heightMultiplier: 1)
+        profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 2, itemSpacing: 2, inset: 0, heightMultiplier: 1)
     }
     
     
@@ -92,6 +108,9 @@ class ProfileViewController: UIViewController {
             
             else if user != nil {
                 self.user = user!
+                
+                self.fetchFollowings()
+                self.fetchFollowers()
                 
                 self.profileCollectionView.reloadData()
             }
@@ -124,7 +143,116 @@ class ProfileViewController: UIViewController {
     }
     
     
+    func followUser() {
+        let currentUserID = UserService.getCurrentUserID()
+        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
+        
+        let currentUserReference = databaseReference.child("users").child(currentUserID) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+        let userReference = databaseReference.child("users").child(user.uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+        
+        //fetchFollows()
+        
+        appendFollower(uid: user.uid!, to: &followings)
+        appendFollower(uid: currentUserID, to: &followers)
+        
+        currentUserReference.child("followings").setValue(followings)
+        userReference.child("followers").setValue(followers)
+        
+        profileCollectionView.reloadData()
+    }
     
+    func unfollowUser() {
+        let currentUserID = UserService.getCurrentUserID()
+        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
+        
+        let currentUserReference = databaseReference.child("users").child(currentUserID) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+        let userReference = databaseReference.child("users").child(user.uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+        
+        //fetchFollows()
+        
+        removeFollower(uid: user.uid!, from: &followings)
+        removeFollower(uid: currentUserID, from: &followers)
+        
+        currentUserReference.child("followings").setValue(followings)
+        userReference.child("followers").setValue(followers)
+        
+        profileCollectionView.reloadData()
+    }
+    
+    
+    func appendFollower(uid: String, to array: inout [String]) {
+        
+        var exist = false
+        if array.count > 0 {
+            for i in 0...array.count - 1 {
+                if array[i] == uid {
+                    exist = true
+                }
+            }
+        }
+        
+        if exist == false {
+            array.append(uid)
+        }
+    }
+    
+    
+    func removeFollower(uid: String, from array: inout [String]) {
+        if array.count > 0 {
+            for i in 0...array.count - 1 {
+                if array[i] == uid {
+                    array.remove(at: i)
+                }
+            }
+        }
+        
+    }
+    
+    func isFollowing() -> Bool {
+        
+        if followings.count > 0 {
+            for i in 0...followings.count - 1 {
+                if followings[i] == user.uid {
+                    return true
+                }
+            }
+        }
+        
+        return false
+    }
+    
+    
+    
+    func fetchFollowings() {
+        Database.database().reference().child("users").child(UserService.getCurrentUserID()).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let followings = snapshot.value as? [String] {
+                self.followings = followings
+            }
+        }, withCancel: nil)
+    }
+    
+    func fetchFollowers() {
+        Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let followers = snapshot.value as? [String] {
+                self.followers = followers
+            }
+        }, withCancel: nil)
+    }
+    
+    func fetchNumOfFollows(of user: User) {
+        Database.database().reference().child("users").child(user.uid!).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let followings = snapshot.value as? [String] {
+                self.numOfFollowings = followings.count
+                print("AAA: \(self.numOfFollowings)")
+            }
+        }, withCancel: nil)
+        Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let followers = snapshot.value as? [String] {
+                self.numOfFollowers = followers.count
+                print("aaa: \(self.numOfFollowers)")
+            }
+        }, withCancel: nil)
+    }
     
     
     // MARK: - IBActions
@@ -272,7 +400,17 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             else if from == 1 { // from profile selection, other's profile
                 headerView.editProfileButton.isHidden = true
                 headerView.FollowMessageButtonsStackView.isHidden = false
+                fetchFollowings()
+                if isFollowing() == true {
+                    headerView.followButton.tag = 1
+                    headerView.followButton.setTitle("Unfollow", for: .normal)
+                }
+                else if isFollowing() == false {
+                    headerView.followButton.tag = 0
+                    headerView.followButton.setTitle("Follow", for: .normal)
+                }
             }
+            
 
             if let iAm = user.i_am, let iLike = user.i_like, let myDate = user.my_date_would, let age = user.age, let height = user.height, let weight = user.weight, let ethnicity = user.ethnicity, let relationshipStatus = user.relationship_status, let want = user.want, let lookingFor = user.looking_for, let gender = user.gender, let interested = user.interested {
 
@@ -365,8 +503,18 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 
 extension ProfileViewController: ProfileHeaderViewProtocol {
     
+    
+    
     func editProfile() {
         performSegue(withIdentifier: "profileToProfileEditVC", sender: nil)
+    }
+    
+    func followAction() {
+        followUser()
+    }
+    
+    func unfollowAction() {
+        unfollowUser()
     }
     
     func reloadCollectionViewWith(moreTag: Int) {

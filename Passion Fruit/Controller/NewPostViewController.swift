@@ -31,7 +31,6 @@ class NewPostViewController: UIViewController {
 //    var croppedVideoURL: URL? // save to firebase/storage
     var caption = "" // save to firebase/storage
     
-    
     // MARK: - IBOutlets
     
     @IBOutlet weak var newPostTableView: UITableView!
@@ -110,6 +109,7 @@ class NewPostViewController: UIViewController {
             self.caption = ""
             self.newPostTableView.reloadData()
             self.updateShareBarButton()
+//            self.defaults.set(0, forKey: "NewPostSaved")
             self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
         }))
         
@@ -168,7 +168,7 @@ class NewPostViewController: UIViewController {
     }
     
     // Save as public post
-    func savePost(as state: String) {
+    func savePost(as kind: String) {
         
         if Auth.auth().currentUser != nil { // user signed in
             
@@ -181,13 +181,13 @@ class NewPostViewController: UIViewController {
             let databaseRefernce = Database.database().reference()
             let storageReference = Storage.storage().reference()
             
-            let postReference = databaseRefernce.child("posts").child(state)
+            let postReference = databaseRefernce.child("posts").child(kind)
             let newPostID = postReference.childByAutoId().key
             let newPostReference = postReference.child(newPostID!)
             
             let imageVideoID = NSUUID().uuidString
-            let imageReference = storageReference.child("posts").child(state).child("\(imageVideoID).jpg")
-            let videoReference = storageReference.child("posts").child(state).child("\(imageVideoID).mp4")
+            let imageReference = storageReference.child("posts").child(kind).child("\(imageVideoID).jpg")
+            let videoReference = storageReference.child("posts").child(kind).child("\(imageVideoID).mp4")
             
             if selectedPostimage != nil {
                 let imageData = selectedPostimage!.jpegData(compressionQuality: 0.1)
@@ -276,6 +276,7 @@ class NewPostViewController: UIViewController {
             self.caption = ""
             self.newPostTableView.reloadData()
             self.updateShareBarButton()
+//            self.defaults.set(1, forKey: "NewPostSaved")
             self.tabBarController?.selectedIndex = self.defaults.integer(forKey: "SelectedTabBar")
         }
         

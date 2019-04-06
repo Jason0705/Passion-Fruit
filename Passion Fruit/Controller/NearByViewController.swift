@@ -91,8 +91,8 @@ class NearByViewController: UIViewController {
     
     func fetchUsers(gender: Int, interested: [Int]) {
 
-//        relationshipUsers.removeAll()
-//        funUers.removeAll()
+        relationshipUsers.removeAll()
+        funUers.removeAll()
         
         let user = Auth.auth().currentUser
         let uid = user?.uid
@@ -191,7 +191,7 @@ class NearByViewController: UIViewController {
     func setUp() {
         showRelationshipView()
         
-        usersCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 16, itemSpacing: 16, inset: 16, heightMultiplier: 1)
+        usersCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 8, itemSpacing: 8, inset: 8, heightMultiplier: 1)
     }
     
     
@@ -323,7 +323,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
         switch relationshipFunSegmentedControl.selectedSegmentIndex {
         case 0:
             let user = relationshipUsers[indexPath.row]
-//            cell.userNameLabel.text = user.user_name
+            cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
                 cell.profileImageView.image = ImageService.getImageUsingCacheWithURL(urlString: profileImageURL)
@@ -332,7 +332,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
         case 1:
             let user = funUers[indexPath.row]
-//            cell.userNameLabel.text = user.user_name
+            cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
                 cell.profileImageView.image = ImageService.getImageUsingCacheWithURL(urlString: profileImageURL)

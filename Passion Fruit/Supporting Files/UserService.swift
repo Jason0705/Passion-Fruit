@@ -21,7 +21,7 @@ class UserService {
             return uid
         }
         
-        return String()
+        return ""
     }
     
     
