@@ -22,11 +22,8 @@ class ProfileViewController: UIViewController {
     var uid: String!
     var user = User()
     
-    var followings = [String]()
-    var followers = [String]()
-    
-    var numOfFollowings = 0
-    var numOfFollowers = 0
+    var followings = [String]() // array of current user's following users' uids
+    var followers = [String]() // array of target user's followers uids
     
     // for header
     var headerIndexPath = IndexPath()
@@ -109,8 +106,10 @@ class ProfileViewController: UIViewController {
             else if user != nil {
                 self.user = user!
                 
-                self.fetchFollowings()
-                self.fetchFollowers()
+//                self.fetchFollowings()
+//                self.fetchFollowers()
+                self.fetchFollowingsOfCurrentUser()
+                self.fetchFollowers(of: user!)
                 
                 self.profileCollectionView.reloadData()
             }
@@ -209,7 +208,7 @@ class ProfileViewController: UIViewController {
     }
     
     func isFollowing() -> Bool {
-        
+        fetchFollowingsOfCurrentUser()
         if followings.count > 0 {
             for i in 0...followings.count - 1 {
                 if followings[i] == user.uid {
@@ -223,35 +222,29 @@ class ProfileViewController: UIViewController {
     
     
     
-    func fetchFollowings() {
-        Database.database().reference().child("users").child(UserService.getCurrentUserID()).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let followings = snapshot.value as? [String] {
+    func fetchFollowingsOfCurrentUser() {
+//    Database.database().reference().child("users").child(UserService.getCurrentUserID()).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let followings = snapshot.value as? [String] {
+//                self.followings = followings
+//            }
+//        }, withCancel: nil)
+        
+        UserService.getUser(with: UserService.getCurrentUserID()) { (user, error) in
+            if let followings = user?.followings {
                 self.followings = followings
             }
-        }, withCancel: nil)
+        }
     }
     
-    func fetchFollowers() {
-        Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let followers = snapshot.value as? [String] {
-                self.followers = followers
-            }
-        }, withCancel: nil)
-    }
-    
-    func fetchNumOfFollows(of user: User) {
-        Database.database().reference().child("users").child(user.uid!).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let followings = snapshot.value as? [String] {
-                self.numOfFollowings = followings.count
-                print("AAA: \(self.numOfFollowings)")
-            }
-        }, withCancel: nil)
-        Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let followers = snapshot.value as? [String] {
-                self.numOfFollowers = followers.count
-                print("aaa: \(self.numOfFollowers)")
-            }
-        }, withCancel: nil)
+    func fetchFollowers(of user: User) {
+//    Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let followers = snapshot.value as? [String] {
+//                self.followers = followers
+//            }
+//        }, withCancel: nil)
+        if let followers = user.followers {
+            self.followers = followers
+        }
     }
     
     
@@ -400,7 +393,7 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             else if from == 1 { // from profile selection, other's profile
                 headerView.editProfileButton.isHidden = true
                 headerView.FollowMessageButtonsStackView.isHidden = false
-                fetchFollowings()
+//                fetchFollowings()
                 if isFollowing() == true {
                     headerView.followButton.tag = 1
                     headerView.followButton.setTitle("Unfollow", for: .normal)
@@ -410,7 +403,6 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
                     headerView.followButton.setTitle("Follow", for: .normal)
                 }
             }
-            
 
             if let iAm = user.i_am, let iLike = user.i_like, let myDate = user.my_date_would, let age = user.age, let height = user.height, let weight = user.weight, let ethnicity = user.ethnicity, let relationshipStatus = user.relationship_status, let want = user.want, let lookingFor = user.looking_for, let gender = user.gender, let interested = user.interested {
 
@@ -433,7 +425,13 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
             if let userName = user.user_name {
                 headerView.userNameLabel.text = userName
-                
+            }
+            
+            if let followings = user.followings {
+                headerView.followingCountLabel.text = "\(followings.count)"
+            }
+            if let followers = user.followers {
+                headerView.followersCountLabel.text = "\(followers.count)"
             }
             
             if let iAm = user.i_am, iAm != "" {

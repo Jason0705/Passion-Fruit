@@ -31,6 +31,9 @@ class ProfileHeaderView: UICollectionReusableView {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     
+    @IBOutlet weak var followersCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    
     @IBOutlet weak var editProfileButton: UIButton!
     @IBOutlet weak var FollowMessageButtonsStackView: UIStackView!
     @IBOutlet weak var followButton: UIButton!

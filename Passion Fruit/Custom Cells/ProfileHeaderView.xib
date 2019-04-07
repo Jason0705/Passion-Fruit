@@ -211,6 +211,8 @@
                 <outlet property="contentView" destination="00C-7X-GzS" id="0bd-Pu-ivL"/>
                 <outlet property="editProfileButton" destination="bpk-UN-ZD8" id="1nK-CZ-s6I"/>
                 <outlet property="followButton" destination="Kq8-tc-7oZ" id="TUx-hn-fCc"/>
+                <outlet property="followersCountLabel" destination="Ytk-fb-18j" id="Uhd-Mh-Ll6"/>
+                <outlet property="followingCountLabel" destination="x9a-HH-TOC" id="om7-6R-qyh"/>
                 <outlet property="infoLabelView" destination="PfC-8G-jk2" id="thi-sY-4Fz"/>
                 <outlet property="infoLabelViewHeight" destination="wfj-99-8NA" id="zQU-66-4yL"/>
                 <outlet property="moreButton" destination="Oe8-uK-3NH" id="Sf7-Rm-FWX"/>

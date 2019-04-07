@@ -90,6 +90,9 @@ class UserService {
                 user.gender = dictionary["gender"] as? [String: Any]
                 user.interested = dictionary["interested"] as? [String: Any]
                 
+                user.followings = dictionary["followings"] as? [String]
+                user.followers = dictionary["followers"] as? [String]
+                
                 completion(user, nil)
             }
         }) { (error) in
