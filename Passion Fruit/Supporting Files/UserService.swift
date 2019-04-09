@@ -61,8 +61,49 @@ class UserService {
 //        return user
 //    }
     
-    static func getUser(with uid: String, completion: @escaping (User?, Error?) -> Void) {
+    static func getUserOnce(with uid: String, completion: @escaping (User?, Error?) -> Void) {
 
+        
+        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                
+                let user = User()
+                
+                user.uid = dictionary["uid"] as? String
+                user.email = dictionary["email"] as? String
+                
+                user.profile_photo_url = dictionary["profile_photo_url"] as? String
+                
+                user.user_name = dictionary["user_name"] as? String
+                user.i_am = dictionary["i_am"] as? String
+                user.i_like = dictionary["i_like"] as? String
+                user.my_date_would = dictionary["my_date_would"] as? String
+                
+                user.age = dictionary["age"] as? [String: Any]
+                user.height = dictionary["height"] as? [String: Any]
+                user.weight = dictionary["weight"] as? [String: Any]
+                user.ethnicity = dictionary["ethnicity"] as? [String: Any]
+                user.relationship_status = dictionary["relationship_status"] as? [String: Any]
+                user.want = dictionary["want"] as? [String: Any]
+                user.looking_for = dictionary["looking_for"] as? [String: Any]
+                
+                user.gender = dictionary["gender"] as? [String: Any]
+                user.interested = dictionary["interested"] as? [String: Any]
+                
+                user.followings = dictionary["followings"] as? [String]
+                user.followers = dictionary["followers"] as? [String]
+                
+                completion(user, nil)
+            }
+        }, withCancel: { (error) in
+            completion(nil, error)
+        })
+    }
+    
+    
+    
+    static func getUser(with uid: String, completion: @escaping (User?, Error?) -> Void) {
+        
         
         Database.database().reference().child("users").child(uid).observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
@@ -95,8 +136,9 @@ class UserService {
                 
                 completion(user, nil)
             }
-        }) { (error) in
+        }, withCancel: { (error) in
             completion(nil, error)
-        }
+        })
     }
+    
 }

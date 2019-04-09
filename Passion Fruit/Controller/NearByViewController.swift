@@ -17,7 +17,7 @@ class NearByViewController: UIViewController {
     let defaults = UserDefaults.standard
     
     var relationshipUsers = [User]()
-    var funUers = [User]()
+    var funUsers = [User]()
     
     var selectedIndexPath: IndexPath!
     
@@ -92,10 +92,11 @@ class NearByViewController: UIViewController {
     func fetchUsers(gender: Int, interested: [Int]) {
 
         relationshipUsers.removeAll()
-        funUers.removeAll()
+        funUsers.removeAll()
         
-        let user = Auth.auth().currentUser
-        let uid = user?.uid
+//        let user = Auth.auth().currentUser
+//        let uid = user?.uid
+        let uid = UserService.getCurrentUserID()
 
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
 
@@ -122,6 +123,9 @@ class NearByViewController: UIViewController {
 
                 user.gender = dictionary["gender"] as? [String: Any]
                 user.interested = dictionary["interested"] as? [String: Any]
+                
+                user.followings = dictionary["followings"] as? [String]
+                user.followers = dictionary["followers"] as? [String]
 
                 if user.uid != nil && uid != user.uid {
                     
@@ -136,14 +140,14 @@ class NearByViewController: UIViewController {
                                         print("Relationship: \(user.user_name) || \(user.gender) || \(user.interested)")
                                     }
                                     else if userWantChoice == 2 { // target user wants fun
-                                        self.funUers.append(user)
+                                        self.funUsers.append(user)
                                         
                                         print("Self: \(interested) || \(gender)")
                                         print("Fun: \(user.user_name) || \(user.gender) || \(user.interested)")
                                     }
                                     else if userWantChoice == 3 { // target user wants both
                                         self.relationshipUsers.append(user)
-                                        self.funUers.append(user)
+                                        self.funUsers.append(user)
                                         
                                         print("Self: \(interested) || \(gender)")
                                         print("Both: \(user.user_name) || \(user.gender) || \(user.interested)")
@@ -161,11 +165,11 @@ class NearByViewController: UIViewController {
                                         self.relationshipUsers.append(user)
                                     }
                                     else if userWantChoice == 2 { // target user wants fun
-                                        self.funUers.append(user)
+                                        self.funUsers.append(user)
                                     }
                                     else if userWantChoice == 3 { // target user wants both
                                         self.relationshipUsers.append(user)
-                                        self.funUers.append(user)
+                                        self.funUsers.append(user)
                                     }
                                     
                                 }
@@ -176,7 +180,7 @@ class NearByViewController: UIViewController {
 
                 }
                 
-                print("Relationship count: \(self.relationshipUsers.count) || Fun count: \(self.funUers.count)")
+                print("Relationship count: \(self.relationshipUsers.count) || Fun count: \(self.funUsers.count)")
                 print("----------------\n")
 
                 self.usersCollectionView.reloadData()
@@ -309,7 +313,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
         case 0:
             return relationshipUsers.count
         case 1:
-            return funUers.count
+            return funUsers.count
         default:
             return relationshipUsers.count
         }
@@ -331,7 +335,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
             }
 
         case 1:
-            let user = funUers[indexPath.row]
+            let user = funUsers[indexPath.row]
             cell.userNameLabel.text = user.user_name
             
             if let profileImageURL = user.profile_photo_url {
@@ -367,7 +371,7 @@ extension NearByViewController: UICollectionViewDelegate, UICollectionViewDataSo
 //                destinationVC.user = user
                 
             case 1:
-                let user = funUers[selectedIndexPath.row]
+                let user = funUsers[selectedIndexPath.row]
                 if let uid = user.uid {
                     destinationVC.uid = uid
                 }

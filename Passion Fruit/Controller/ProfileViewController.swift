@@ -22,8 +22,8 @@ class ProfileViewController: UIViewController {
     var uid: String!
     var user = User()
     
-    var followings = [String]() // array of current user's following users' uids
-    var followers = [String]() // array of target user's followers uids
+//    var followings = [String]() // array of current user's following users' uids
+//    var followers = [String]() // array of target user's followers uids
     
     // for header
     var headerIndexPath = IndexPath()
@@ -60,7 +60,6 @@ class ProfileViewController: UIViewController {
         fetchUser()
         fetchPosts(of: "public")
         fetchPosts(of: "private")
-        
         
     }
     
@@ -106,15 +105,14 @@ class ProfileViewController: UIViewController {
             else if user != nil {
                 self.user = user!
                 
-//                self.fetchFollowings()
-//                self.fetchFollowers()
-                self.fetchFollowingsOfCurrentUser()
-                self.fetchFollowers(of: user!)
+//                self.fetchFollowingsOfCurrentUser()
+//                self.fetchFollowers(of: user!)
                 
                 self.profileCollectionView.reloadData()
             }
             
         }
+        
         
     }
     
@@ -142,110 +140,114 @@ class ProfileViewController: UIViewController {
     }
     
     
-    func followUser() {
-        let currentUserID = UserService.getCurrentUserID()
-        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
-        
-        let currentUserReference = databaseReference.child("users").child(currentUserID) // : https://passion-fruit-39bda.firebaseio.com/users/uid
-        let userReference = databaseReference.child("users").child(user.uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
-        
-        //fetchFollows()
-        
-        appendFollower(uid: user.uid!, to: &followings)
-        appendFollower(uid: currentUserID, to: &followers)
-        
-        currentUserReference.child("followings").setValue(followings)
-        userReference.child("followers").setValue(followers)
-        
-        profileCollectionView.reloadData()
-    }
-    
-    func unfollowUser() {
-        let currentUserID = UserService.getCurrentUserID()
-        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
-        
-        let currentUserReference = databaseReference.child("users").child(currentUserID) // : https://passion-fruit-39bda.firebaseio.com/users/uid
-        let userReference = databaseReference.child("users").child(user.uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
-        
-        //fetchFollows()
-        
-        removeFollower(uid: user.uid!, from: &followings)
-        removeFollower(uid: currentUserID, from: &followers)
-        
-        currentUserReference.child("followings").setValue(followings)
-        userReference.child("followers").setValue(followers)
-        
-        profileCollectionView.reloadData()
-    }
-    
-    
-    func appendFollower(uid: String, to array: inout [String]) {
-        
-        var exist = false
-        if array.count > 0 {
-            for i in 0...array.count - 1 {
-                if array[i] == uid {
-                    exist = true
-                }
-            }
-        }
-        
-        if exist == false {
-            array.append(uid)
-        }
-    }
-    
-    
-    func removeFollower(uid: String, from array: inout [String]) {
-        if array.count > 0 {
-            for i in 0...array.count - 1 {
-                if array[i] == uid {
-                    array.remove(at: i)
-                }
-            }
-        }
-        
-    }
-    
-    func isFollowing() -> Bool {
-        fetchFollowingsOfCurrentUser()
-        if followings.count > 0 {
-            for i in 0...followings.count - 1 {
-                if followings[i] == user.uid {
-                    return true
-                }
-            }
-        }
-        
-        return false
-    }
-    
-    
-    
-    func fetchFollowingsOfCurrentUser() {
-//    Database.database().reference().child("users").child(UserService.getCurrentUserID()).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let followings = snapshot.value as? [String] {
+//    func followUser() {
+//        let currentUserID = UserService.getCurrentUserID()
+//        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
+//
+//        let currentUserReference = databaseReference.child("users").child(currentUserID) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+//        let userReference = databaseReference.child("users").child(user.uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+//
+//        //fetchFollows()
+//
+//        appendFollower(uid: user.uid!, to: &followings)
+//        appendFollower(uid: currentUserID, to: &followers)
+//
+//        currentUserReference.child("followings").setValue(followings)
+//        userReference.child("followers").setValue(followers)
+//
+//        profileCollectionView.reloadData()
+//    }
+//
+//    func unfollowUser() {
+//        let currentUserID = UserService.getCurrentUserID()
+//        let databaseReference = Database.database().reference() // : https://passion-fruit-39bda.firebaseio.com
+//
+//        let currentUserReference = databaseReference.child("users").child(currentUserID) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+//        let userReference = databaseReference.child("users").child(user.uid!) // : https://passion-fruit-39bda.firebaseio.com/users/uid
+//
+//        //fetchFollows()
+//
+//        removeFollower(uid: user.uid!, from: &followings)
+//        removeFollower(uid: currentUserID, from: &followers)
+//
+//        currentUserReference.child("followings").setValue(followings)
+//        userReference.child("followers").setValue(followers)
+//
+//        profileCollectionView.reloadData()
+//    }
+//
+//
+//    func appendFollower(uid: String, to array: inout [String]) {
+//
+////        var exist = false
+////        if array.count > 0 {
+////            for i in 0...array.count - 1 {
+////                if array[i] == uid {
+////                    exist = true
+////                }
+////            }
+////        }
+////
+////        if exist == false {
+////            array.append(uid)
+////        }
+//        if !array.contains(uid) {
+//            array.append(uid)
+//        }
+//    }
+//
+//
+//    func removeFollower(uid: String, from array: inout [String]) {
+////        if array.count > 0 {
+////            for i in 0...array.count - 1 {
+////                if array[i] == uid {
+////                    array.remove(at: i)
+////                }
+////            }
+////        }
+//        array.removeAll{$0 == uid}
+//
+//    }
+//
+//    func isFollowing() -> Bool {
+//        fetchFollowingsOfCurrentUser()
+//        if followings.count > 0 {
+//            for i in 0...followings.count - 1 {
+//                if followings[i] == user.uid {
+//                    return true
+//                }
+//            }
+//        }
+//
+//        return false
+//    }
+//
+//
+//
+//    func fetchFollowingsOfCurrentUser() {
+////    Database.database().reference().child("users").child(UserService.getCurrentUserID()).child("followings").observeSingleEvent(of: .value, with: { (snapshot) in
+////            if let followings = snapshot.value as? [String] {
+////                self.followings = followings
+////            }
+////        }, withCancel: nil)
+//
+//        UserService.getUser(with: UserService.getCurrentUserID()) { (user, error) in
+//            if let followings = user?.followings {
 //                self.followings = followings
 //            }
-//        }, withCancel: nil)
-        
-        UserService.getUser(with: UserService.getCurrentUserID()) { (user, error) in
-            if let followings = user?.followings {
-                self.followings = followings
-            }
-        }
-    }
-    
-    func fetchFollowers(of user: User) {
-//    Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let followers = snapshot.value as? [String] {
-//                self.followers = followers
-//            }
-//        }, withCancel: nil)
-        if let followers = user.followers {
-            self.followers = followers
-        }
-    }
+//        }
+//    }
+//
+//    func fetchFollowers(of user: User) {
+////    Database.database().reference().child("users").child(user.uid!).child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+////            if let followers = snapshot.value as? [String] {
+////                self.followers = followers
+////            }
+////        }, withCancel: nil)
+//        if let followers = user.followers {
+//            self.followers = followers
+//        }
+//    }
     
     
     // MARK: - IBActions
@@ -393,21 +395,35 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             else if from == 1 { // from profile selection, other's profile
                 headerView.editProfileButton.isHidden = true
                 headerView.FollowMessageButtonsStackView.isHidden = false
-//                fetchFollowings()
-                if isFollowing() == true {
-                    headerView.followButton.tag = 1
-                    headerView.followButton.setTitle("Unfollow", for: .normal)
-                }
-                else if isFollowing() == false {
-                    headerView.followButton.tag = 0
-                    headerView.followButton.setTitle("Follow", for: .normal)
-                }
+                
+                
+//                if isFollowing() == true {
+//                    headerView.followButton.tag = 1
+//                    headerView.followButton.setTitle("Unfollow", for: .normal)
+//                }
+//                else if isFollowing() == false {
+//                    headerView.followButton.tag = 0
+//                    headerView.followButton.setTitle("Follow", for: .normal)
+//                }
             }
 
             if let iAm = user.i_am, let iLike = user.i_like, let myDate = user.my_date_would, let age = user.age, let height = user.height, let weight = user.weight, let ethnicity = user.ethnicity, let relationshipStatus = user.relationship_status, let want = user.want, let lookingFor = user.looking_for, let gender = user.gender, let interested = user.interested {
 
                 if iAm == "" && iLike == "" && myDate == "" && age["content"] as? String == "" && height["content"] as? String == "" && weight["content"] as? String == "" && ethnicity["content"] as? String == "" && relationshipStatus["content"] as? String == "" && want["content"] as? String == "" && lookingFor["content"] as? String == "" && gender["content"] as? String == "" && interested["content"] as? String == "" {
                     headerView.moreButton.isHidden = true
+                }
+            }
+            
+            if let uid = user.uid {
+                let following = FollowService.isFollowingUser(of: uid)
+
+                if following {
+                    headerView.followButton.setTitle("Unfollow", for: .normal)
+                    headerView.followButton.tag = 1
+                }
+                else if !following {
+                    headerView.followButton.setTitle("Follow", for: .normal)
+                    headerView.followButton.tag = 0
                 }
             }
             
@@ -428,10 +444,10 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             }
             
             if let followings = user.followings {
-                headerView.followingCountLabel.text = "\(followings.count)"
+                headerView.followingCountLabel.text = "\(followings.count - 1)" // - 1 because followings in FollowService is initiated with a [""] placeholder. Whenever a user first have followings, the first of followings is "".
             }
             if let followers = user.followers {
-                headerView.followersCountLabel.text = "\(followers.count)"
+                headerView.followersCountLabel.text = "\(followers.count - 1)" // - 1 because followers in FollowService is initiated with a [""] placeholder. Whenever a user first have followers, the first of followings is "".
             }
             
             if let iAm = user.i_am, iAm != "" {
@@ -508,11 +524,15 @@ extension ProfileViewController: ProfileHeaderViewProtocol {
     }
     
     func followAction() {
-        followUser()
+//        followUser()
+        FollowService.followUser(of: uid)
+        profileCollectionView.reloadData()
     }
     
     func unfollowAction() {
-        unfollowUser()
+//        unfollowUser()
+        FollowService.unfollowUser(of: uid)
+        profileCollectionView.reloadData()
     }
     
     func reloadCollectionViewWith(moreTag: Int) {
@@ -536,6 +556,7 @@ extension ProfileViewController: ProfileHeaderViewProtocol {
         }
         profileCollectionView.reloadData()
     }
+    
 
 
 }
