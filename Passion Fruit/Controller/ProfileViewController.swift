@@ -250,6 +250,15 @@ class ProfileViewController: UIViewController {
 //    }
     
     
+    @objc func followingStackViewTapped(_ sender: UITapGestureRecognizer) {
+        print("FOLLOWING GESTURE")
+    }
+    
+    @objc func followerStackViewTapped(_ sender: UITapGestureRecognizer) {
+        print("FOLLOWER GESTURE")
+    }
+    
+    
     // MARK: - IBActions
     
     
@@ -366,6 +375,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
 
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "profileHeaderView", for: indexPath) as! ProfileHeaderView
             
+            let followingTapGesture = UITapGestureRecognizer(target: self, action: #selector (self.followingStackViewTapped (_:)))
+            let followerTapGesture = UITapGestureRecognizer(target: self, action: #selector (self.followerStackViewTapped (_:)))
+            
             var labelOrigin = CGPoint(x: 0, y: 0)
             var labelViewHeight: CGFloat = 0
             
@@ -386,6 +398,9 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             headerView.moreButton.tag = moreButtonTag
             headerView.moreButton.setTitle("", for: .normal)
             headerView.publicPrivateSegmentedControl.selectedSegmentIndex = publicPrivateSegmentedControlSelectedIndex
+            
+            headerView.followingStackView.addGestureRecognizer(followingTapGesture)
+            headerView.followerStackView.addGestureRecognizer(followerTapGesture)
             
             
             if from == 0 { // from tab control, self profile
