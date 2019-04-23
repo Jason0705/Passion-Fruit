@@ -493,6 +493,9 @@ class ProfileEditViewController: UIViewController {
             
             SVProgressHUD.showSuccess(withStatus: "Changes Saved")
             SVProgressHUD.dismiss(withDelay: 1)
+            
+            //self.dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
         else { // user authenticatin error
             SVProgressHUD.showError(withStatus: "Sorry, ther has been an error. Please try again later.")

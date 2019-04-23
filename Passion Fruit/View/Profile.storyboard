@@ -75,6 +75,7 @@
                         <outlet property="menuBarButton" destination="s2d-pg-aic" id="dkg-yk-cZK"/>
                         <outlet property="profileCollectionView" destination="w5s-0F-zDE" id="9Lh-lO-Dxh"/>
                         <segue destination="d3w-rl-foS" kind="show" identifier="profileToProfileEditVC" id="4wJ-Jn-I10"/>
+                        <segue destination="d8J-QK-zZF" kind="show" identifier="profileToFollowVC" id="hb9-uB-U2r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="66H-DS-xdW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,7 +88,7 @@
                 <viewControllerPlaceholder storyboardName="ProfileEdit" referencedIdentifier="ProfileEditVC" id="d3w-rl-foS" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTe-MH-EVl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4569" y="1498"/>
+            <point key="canvasLocation" x="4569" y="1408"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hiO-KM-qUh">
@@ -110,6 +111,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZc-Od-GVP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2959.1999999999998" y="1497.7832512315272"/>
+        </scene>
+        <!--FollowVC-->
+        <scene sceneID="3r7-xy-oxl">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Follow" referencedIdentifier="FollowVC" id="d8J-QK-zZF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X8t-LF-LtQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4569" y="1586"/>
         </scene>
     </scenes>
     <resources>

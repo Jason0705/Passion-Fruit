@@ -57,9 +57,9 @@ class ProfileViewController: UIViewController {
         
         setUp()
         
-        fetchUser()
-        fetchPosts(of: "public")
-        fetchPosts(of: "private")
+//        fetchUser()
+//        fetchPosts(of: "public")
+//        fetchPosts(of: "private")
         
     }
     
@@ -86,6 +86,19 @@ class ProfileViewController: UIViewController {
         }
         else if from == 1 { // from profile selection, other's profile
             self.navigationItem.rightBarButtonItem = nil
+        }
+        
+        fetchUser()
+        fetchPosts(of: "public")
+        fetchPosts(of: "private")
+        
+        UserService.getUserOnce(with: uid) { (user, error) in
+            if error != nil {
+                print("Get User Error: \(error)")
+            }
+            else if user != nil {
+                self.navigationItem.title = user?.user_name // change navbar title to userName
+            }
         }
         
         profileCollectionView.collectionViewLayout = CustomizationService.threeCellPerRowStyle(view: self.view, lineSpacing: 2, itemSpacing: 2, inset: 0, heightMultiplier: 1)
@@ -251,12 +264,16 @@ class ProfileViewController: UIViewController {
     
     
     @objc func followingStackViewTapped(_ sender: UITapGestureRecognizer) {
-        print("FOLLOWING GESTURE")
+        performSegue(withIdentifier: "profileToFollowVC", sender: nil)
     }
     
     @objc func followerStackViewTapped(_ sender: UITapGestureRecognizer) {
-        print("FOLLOWER GESTURE")
+        performSegue(withIdentifier: "profileToFollowVC", sender: nil)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        <#code#>
+//    }
     
     
     // MARK: - IBActions

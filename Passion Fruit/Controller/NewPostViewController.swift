@@ -88,7 +88,7 @@ class NewPostViewController: UIViewController {
                 
                 // keyboard editing state
             else if state == 1 {
-                self.doneButtonViewHeight.constant = 258 + 44 + 44 // keyboard height + sugest text view height + visable dont button view height
+                self.doneButtonViewHeight.constant = 258 + 44 + 44 // keyboard height + suggested text view height + visable dont button view height
                 self.doneButton.isHidden = false
             }
             

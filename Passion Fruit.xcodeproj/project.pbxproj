@@ -65,6 +65,8 @@
 		82AA6EC221ABB100008D2FFA /* VideoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EC121ABB100008D2FFA /* VideoService.swift */; };
 		82AA6EC421ACD399008D2FFA /* CustomCamera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82AA6EC321ACD399008D2FFA /* CustomCamera.storyboard */; };
 		82AA6EC621ACD3B9008D2FFA /* CustomCameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AA6EC521ACD3B9008D2FFA /* CustomCameraViewController.swift */; };
+		82B8387022692E67004622CD /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82B8386F22692E67004622CD /* Follow.storyboard */; };
+		82B8387222692EFD004622CD /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82B8387122692EFD004622CD /* FollowViewController.swift */; };
 		82C7A60F21AE7DC100C61B1E /* CapturePreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C7A60E21AE7DC100C61B1E /* CapturePreviewViewController.swift */; };
 		C21B84E231C1EEC782FEBAD3 /* Pods_Passion_FruitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAD17207B876E347189F7AAF /* Pods_Passion_FruitUITests.framework */; };
 /* End PBXBuildFile section */
@@ -153,6 +155,8 @@
 		82AA6EC121ABB100008D2FFA /* VideoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoService.swift; sourceTree = "<group>"; };
 		82AA6EC321ACD399008D2FFA /* CustomCamera.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CustomCamera.storyboard; sourceTree = "<group>"; };
 		82AA6EC521ACD3B9008D2FFA /* CustomCameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraViewController.swift; sourceTree = "<group>"; };
+		82B8386F22692E67004622CD /* Follow.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Follow.storyboard; sourceTree = "<group>"; };
+		82B8387122692EFD004622CD /* FollowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		82C7A60E21AE7DC100C61B1E /* CapturePreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePreviewViewController.swift; sourceTree = "<group>"; };
 		88F8A3EA1F1E0961A065D9A5 /* Pods_Passion_FruitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Passion_FruitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94A5020046CB151770960919 /* Pods-Passion Fruit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Passion Fruit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Passion Fruit/Pods-Passion Fruit.release.xcconfig"; sourceTree = "<group>"; };
@@ -320,6 +324,7 @@
 				82AA6EBB21A8D6E5008D2FFA /* NewPostViewController.swift */,
 				826B40C9218BA1C300F042D9 /* SocialViewController.swift */,
 				826B40CB218BA1D300F042D9 /* ProfileViewController.swift */,
+				82B8387122692EFD004622CD /* FollowViewController.swift */,
 				82AA6EC521ACD3B9008D2FFA /* CustomCameraViewController.swift */,
 				82C7A60E21AE7DC100C61B1E /* CapturePreviewViewController.swift */,
 			);
@@ -339,6 +344,7 @@
 				826B40E1218BC1EF00F042D9 /* NewPost.storyboard */,
 				826B40E5218BC29100F042D9 /* Social.storyboard */,
 				826B40E7218BC2D500F042D9 /* Profile.storyboard */,
+				82B8386F22692E67004622CD /* Follow.storyboard */,
 				826B4097218AEC5A00F042D9 /* LaunchScreen.storyboard */,
 				82AA6EC321ACD399008D2FFA /* CustomCamera.storyboard */,
 			);
@@ -466,6 +472,7 @@
 				826B40CE218BAB0300F042D9 /* Authentication.storyboard in Resources */,
 				826B4099218AEC5A00F042D9 /* LaunchScreen.storyboard in Resources */,
 				826B40E6218BC29100F042D9 /* Social.storyboard in Resources */,
+				82B8387022692E67004622CD /* Follow.storyboard in Resources */,
 				826B40E2218BC1EF00F042D9 /* NewPost.storyboard in Resources */,
 				82AA6EC421ACD399008D2FFA /* CustomCamera.storyboard in Resources */,
 				826B4096218AEC5A00F042D9 /* Assets.xcassets in Resources */,
@@ -638,6 +645,7 @@
 				826B408F218AEC5800F042D9 /* AppDelegate.swift in Sources */,
 				826B40CC218BA1D300F042D9 /* ProfileViewController.swift in Sources */,
 				8277CDC0225C01D10097F7B8 /* FollowService.swift in Sources */,
+				82B8387222692EFD004622CD /* FollowViewController.swift in Sources */,
 				82AA6EB0219B9C29008D2FFA /* MatchViewController.swift in Sources */,
 				823982A621D70FC6008112B1 /* Extentions.swift in Sources */,
 				822AB988219A948D00F5C266 /* ProfileStatsCell.swift in Sources */,
